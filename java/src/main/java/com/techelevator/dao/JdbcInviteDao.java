@@ -4,9 +4,11 @@ import com.techelevator.model.Invite;
 import com.techelevator.model.Restaurant;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class JdbcInviteDao implements InviteDao {
 
     private final InviteDao inviteDao;
