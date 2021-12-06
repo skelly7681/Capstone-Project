@@ -33,6 +33,7 @@ CREATE TABLE invites (
 CREATE TABLE restaurants (
         restaurant_id serial NOT NULL,
         restaurant_name varchar(200),
+        restaurant_type varchar (50),
         restaurant_address varchar(200),
         open_time time,
         closing_time time,

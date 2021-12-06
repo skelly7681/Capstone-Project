@@ -1,20 +1,25 @@
 package com.techelevator.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Invite {
 
     private int inviteId;
     private int senderUserId;
-    private String closingDate;
-    private double closingTime;
+    private Date closingDate;
+    private Time closingTime;
     private String uniqueLink;
 
-    public Invite(int inviteId, int senderUserId, String closingDate, double closingTime, String uniqueLink) {
+    public Invite(int inviteId, int senderUserId, Date closingDate, Time closingTime, String uniqueLink) {
         this.inviteId = inviteId;
         this.senderUserId = senderUserId;
         this.closingDate = closingDate;
         this.closingTime = closingTime;
         this.uniqueLink = uniqueLink;
     }
+
+    public Invite() {}
 
     public int getInviteId() {
         return inviteId;
@@ -32,19 +37,19 @@ public class Invite {
         this.senderUserId = senderUserId;
     }
 
-    public String getClosingDate() {
+    public Date getClosingDate() {
         return closingDate;
     }
 
-    public void setClosingDate(String closingDate) {
+    public void setClosingDate(Date closingDate) {
         this.closingDate = closingDate;
     }
 
-    public double getClosingTime() {
+    public Time getClosingTime() {
         return closingTime;
     }
 
-    public void setClosingTime(double closingTime) {
+    public void setClosingTime(Time closingTime) {
         this.closingTime = closingTime;
     }
 

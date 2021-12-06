@@ -1,21 +1,26 @@
 package com.techelevator.model;
 
+
+import java.sql.Time;
+
 public class Restaurant {
 
     private int restaurantId;
     private String restaurantName;
+    private String restaurantType;
     private String restaurantAddress;
-    private double openTime;
-    private double closeTime;
+    private Time openTime;
+    private Time closeTime;
     private String phoneNumber;
     private String thumbnailImage;
     private int starRating;
     private boolean takeOut;
     private boolean delivery;
 
-    public Restaurant(int restaurantId, String restaurantName, String restaurantAddress, double openTime, double closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery) {
+    public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, Time openTime, Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
+        this.restaurantType = restaurantType;
         this.restaurantAddress = restaurantAddress;
         this.openTime = openTime;
         this.closeTime = closeTime;
@@ -25,6 +30,7 @@ public class Restaurant {
         this.takeOut = takeOut;
         this.delivery = delivery;
     }
+    public Restaurant() {}
 
     public int getRestaurantId() {
         return restaurantId;
@@ -42,6 +48,14 @@ public class Restaurant {
         this.restaurantName = restaurantName;
     }
 
+    public String getRestaurantType() {
+        return restaurantType;
+    }
+
+    public void setRestaurantType(String restaurantType) {
+        this.restaurantType = restaurantType;
+    }
+
     public String getRestaurantAddress() {
         return restaurantAddress;
     }
@@ -50,19 +64,19 @@ public class Restaurant {
         this.restaurantAddress = restaurantAddress;
     }
 
-    public double getOpenTime() {
+    public Time getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(double openTime) {
+    public void setOpenTime(Time openTime) {
         this.openTime = openTime;
     }
 
-    public double getCloseTime() {
+    public Time getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(double closeTime) {
+    public void setCloseTime(Time closeTime) {
         this.closeTime = closeTime;
     }
 
