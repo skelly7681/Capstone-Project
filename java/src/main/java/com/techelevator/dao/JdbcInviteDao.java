@@ -15,6 +15,8 @@ public class JdbcInviteDao implements InviteDao {
     private final InviteDao inviteDao;
     private final JdbcTemplate jdbcTemplate;
 
+    //For 12-7: import RestaurantDAO to use in methods
+
     public JdbcInviteDao(InviteDao inviteDao, JdbcTemplate jdbcTemplate) {
         this.inviteDao = inviteDao;
         this.jdbcTemplate = jdbcTemplate;

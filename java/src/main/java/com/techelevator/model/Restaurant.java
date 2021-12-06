@@ -17,6 +17,10 @@ public class Restaurant {
     private boolean takeOut;
     private boolean delivery;
 
+    // Gonna rip this from a JOIN on invite-restaurant
+
+    private boolean vetoed;
+
     public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, Time openTime, Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
@@ -118,5 +122,15 @@ public class Restaurant {
 
     public void setDelivery(boolean delivery) {
         this.delivery = delivery;
+    }
+
+    // Getter and setter for that ripped property
+
+    public boolean isVetoed() {
+        return vetoed;
+    }
+
+    public void setVetoed(boolean vetoed) {
+        this.vetoed = vetoed;
     }
 }

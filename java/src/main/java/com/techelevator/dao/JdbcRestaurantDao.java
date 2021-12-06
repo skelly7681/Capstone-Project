@@ -24,6 +24,9 @@ public class JdbcRestaurantDao implements RestaurantDao {
                 "star_rating, take_out, delivery " +
                 "FROM restaurants " +
                 "WHERE restaurant_id = ?";
+
+                // For 12-7: add in JOIN to grab vetoed data
+
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, restaurantId);
         if (results.next()) {
             restaurant = mapRowToRestaurant(results);
@@ -68,6 +71,10 @@ public class JdbcRestaurantDao implements RestaurantDao {
         restaurant.setStarRating(rs.getInt("star_rating"));
         restaurant.setTakeOut(rs.getBoolean("take_out"));
         restaurant.setDelivery(rs.getBoolean("delivery"));
+
+
+        //For 12-7: connect this to the JOIN up top
+        //restaurant.setVetoed();
 
         return restaurant;
     }
