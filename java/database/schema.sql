@@ -23,3 +23,31 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 
 COMMIT TRANSACTION;
+
+Start Transaction;
+
+Create table invites(
+invite_id serial NOT NULL,
+sender_user_id integer NOT NULL,
+closing_date date,
+closing_time time,
+unique_link varchar (200));
+
+create table invite_restaurant(
+invite_id integer,
+restaurant_id integer,
+vetoed boolean));
+
+create table restaurants(
+restaurant_id serial NOT NULL,
+restaurant_name varchar(200),
+restaurant_address varchar(200),
+open_time time,
+closing_time time,
+phone_number varchar (20),
+thumbnail_img varchar (200),
+star_rating integer,
+take_out boolean,
+delivery boolean));
+
+rollback transaction;
