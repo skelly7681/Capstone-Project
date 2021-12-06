@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -21,22 +22,52 @@ public class JdbcInviteDao implements InviteDao {
 
     public Invite getInviteById(int inviteId) {
 
-        return null;
+        Invite invite = null;
+
+        String sql = "SELECT sender_user_id, closing_date, closing_time, unique_link " +
+                " FROM invite WHERE invite_id = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
+        if (results.next()){
+            invite = mapRowToInvite(results);
+        }
+        return invite;
     };
 
     public Invite getInviteBySenderId(int senderUserId) {
+        Invite invite = null;
 
-        return null;
+        String sql = "SELECT invite_id, closing_date, closing_time, unique_link " +
+                "FROM invite WHERE sender_user_id = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderUserId);
+        if (results.next()){
+            invite = mapRowToInvite(results);
+        }
+        return invite;
     };
 
     public List<Invite> getAllInvitesBySenderId(int senderUserId) {
+        List<Invite> invites = new ArrayList<>();
 
-        return null;
+        String sql = "SELECT invite_id, closing_date, closing_time, unique_link " +
+                "FROM invite WHERE sender_user_id = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderUserId);
+        while (results.next()){
+            Invite invite = mapRowToInvite(results);
+            invites.add(invite);
+        }
+        return invites;
     };
 
     public Invite getInviteByUniqueLink(String uniqueLink) {
+        Invite invite = null;
 
-        return null;
+        String sql = "SELECT invite_id, sender_user_id, closing_date, closing_time " +
+                "FROM invite WHERE unique_link = ? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, uniqueLink);
+        if (results.next()){
+            invite = mapRowToInvite(results);
+        }
+        return invite;
     };
 
     private Invite mapRowToInvite(SqlRowSet rs) {
