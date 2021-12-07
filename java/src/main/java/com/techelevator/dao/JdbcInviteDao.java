@@ -76,6 +76,8 @@ public class JdbcInviteDao implements InviteDao {
         return invite;
     };
 
+    // Some kind of POST method for putting invites into DB
+
     private Invite mapRowToInvite(SqlRowSet rs) {
 
         Invite invite = new Invite();
