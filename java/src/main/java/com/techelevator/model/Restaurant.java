@@ -1,9 +1,12 @@
 package com.techelevator.model;
 
 
-import java.sql.Time;
+import com.techelevator.dao.RestaurantDao;
 
-public class Restaurant {
+import java.sql.Time;
+import java.util.List;
+
+public class Restaurant implements RestaurantDao {
 
     private int restaurantId;
     private String restaurantName;
