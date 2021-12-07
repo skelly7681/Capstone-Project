@@ -12,11 +12,10 @@ import java.util.List;
 @Component
 public class JdbcRestaurantDao implements RestaurantDao {
 
-    private final RestaurantDao restaurantDao;
+
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcRestaurantDao(RestaurantDao restaurantDao, JdbcTemplate jdbcTemplate) {
-        this.restaurantDao = restaurantDao;
+    public JdbcRestaurantDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
