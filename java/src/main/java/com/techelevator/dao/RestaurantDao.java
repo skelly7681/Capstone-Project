@@ -14,6 +14,4 @@ public interface RestaurantDao {
 
     void thumbsDown(int restaurantId);
 
-    void thumbsUp(int restaurantId);
-
 }

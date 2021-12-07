@@ -25,10 +25,9 @@ public class TenderController {
 
     }
 
-    //Get All Restaurants by invite
     @RequestMapping(path = "/restaurants", method = RequestMethod.GET)
-    public List<Restaurant> getAllRestaurantsById(int restaurantId) {
-        return restaurantDao.getRestaurantById(restaurantId);
+    public List<Restaurant> getAllRestaurantsByInviteId(int restaurantId) {
+        return restaurantDao.getAllRestaurantsByInviteId(restaurantId);
     }
 
 
