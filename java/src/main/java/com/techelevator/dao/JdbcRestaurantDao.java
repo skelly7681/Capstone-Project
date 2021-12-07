@@ -79,12 +79,16 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
     // Add method for finalists -- SELECT WHERE vetoed = false
 
+    // Some kind of POST method for putting restaurants into DB
+
     @Override
     public void thumbsDown(int restaurantId) {
 
         String sql = "UPDATE invite_restaurant " +
                 "JOIN restaurants r ON ir.restaurant_id = r.restaurant_id " +
                 "SET vetoed = true WHERE restaurant_id = ?";
+
+        //Look into this method type, I think this is still incomplete
     }
 
     private Restaurant mapRowToRestaurant(SqlRowSet rs) {
