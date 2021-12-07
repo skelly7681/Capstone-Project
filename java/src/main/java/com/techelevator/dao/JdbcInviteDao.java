@@ -13,15 +13,16 @@ import java.util.List;
 public class JdbcInviteDao implements InviteDao {
 
     private final InviteDao inviteDao;
+    private final RestaurantDao restaurantDao;
     private final JdbcTemplate jdbcTemplate;
 
-    //For 12-7: import RestaurantDAO to use in methods
-
-    public JdbcInviteDao(InviteDao inviteDao, JdbcTemplate jdbcTemplate) {
+    public JdbcInviteDao(InviteDao inviteDao, RestaurantDao restaurantDao, JdbcTemplate jdbcTemplate) {
         this.inviteDao = inviteDao;
+        this.restaurantDao = restaurantDao;
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public Invite getInviteById(int inviteId) {
 
         Invite invite = null;
@@ -35,6 +36,7 @@ public class JdbcInviteDao implements InviteDao {
         return invite;
     };
 
+    @Override
     public Invite getInviteBySenderId(int senderUserId) {
         Invite invite = null;
 
@@ -47,6 +49,7 @@ public class JdbcInviteDao implements InviteDao {
         return invite;
     };
 
+    @Override
     public List<Invite> getAllInvitesBySenderId(int senderUserId) {
         List<Invite> invites = new ArrayList<>();
 
@@ -60,6 +63,7 @@ public class JdbcInviteDao implements InviteDao {
         return invites;
     };
 
+    @Override
     public Invite getInviteByUniqueLink(String uniqueLink) {
         Invite invite = null;
 
@@ -71,6 +75,8 @@ public class JdbcInviteDao implements InviteDao {
         }
         return invite;
     };
+
+    // Some kind of POST method for putting invites into DB
 
     private Invite mapRowToInvite(SqlRowSet rs) {
 
