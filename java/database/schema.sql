@@ -2,8 +2,8 @@ BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS seq_user_id;
-DROP TABLE IF EXISTS invites;
 DROP TABLE IF EXISTS invite_restaurant;
+DROP TABLE IF EXISTS invites;
 DROP TABLE IF EXISTS restaurants;
 
 CREATE SEQUENCE seq_user_id
@@ -51,18 +51,19 @@ CREATE TABLE invite_restaurant (
         vetoed boolean
 );
 
+ALTER TABLE invites
+ADD FOREIGN KEY (sender_user_id)
+REFERENCES users(user_id);
 
 ALTER TABLE invite_restaurant
 ADD FOREIGN KEY (invite_id)
-REFERENCES invite(invite_id);
+REFERENCES invites(invite_id);
 
 ALTER TABLE invite_restaurant
 ADD FOREIGN KEY (restaurant_id)
-REFERENCES restaurant(restaurant_id);
+REFERENCES restaurants(restaurant_id);
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-
-ROLLBACK TRANSACTION;
 
 COMMIT TRANSACTION;
