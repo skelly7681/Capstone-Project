@@ -78,7 +78,35 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
     // Add method for finalists -- SELECT WHERE vetoed = false
 
+    @Override
+    public List<Restaurant> getFinalistsByInviteId(int inviteId) {
+
+        List<Restaurant> restaurants = new ArrayList<>();
+
+        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.close_time, " +
+                "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
+                "FROM restaurants r " +
+                "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
+                "JOIN invite i ON ir.invite_id = ir.invite_id " +
+                "WHERE invite_id = ? && ir_vetoed = false";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
+        while (results.next()){
+            Restaurant restaurant = mapRowToRestaurant(results);
+            restaurants.add(restaurant);
+        }
+
+        return restaurants;
+
+    }
+
     // Some kind of POST method for putting restaurants into DB
+
+    @Override
+    public Restaurant createRestaurant() {
+
+        return null;
+
+    }
 
     @Override
     public void thumbsDown(int restaurantId) {
@@ -87,7 +115,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
                 "JOIN restaurants r ON ir.restaurant_id = r.restaurant_id " +
                 "SET vetoed = true WHERE restaurant_id = ?";
 
-        //Look into this method type, I think this is still incomplete
+        jdbcTemplate.update(sql, restaurantId);
     }
 
     private Restaurant mapRowToRestaurant(SqlRowSet rs) {
