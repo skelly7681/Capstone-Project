@@ -81,6 +81,8 @@ public class JdbcInviteDao implements InviteDao {
         return null;
     }
 
+    // POST (or PUT?) method to establish the connection in the associative table
+
     public void addRestaurantToInvite() {
 
 

@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +89,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
                 "JOIN invite i ON ir.invite_id = ir.invite_id " +
-                "WHERE invite_id = ? && ir_vetoed = false";
+                "WHERE invite_id = ? AND ir_vetoed = false";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         while (results.next()){
             Restaurant restaurant = mapRowToRestaurant(results);
@@ -102,9 +103,16 @@ public class JdbcRestaurantDao implements RestaurantDao {
     // Some kind of POST method for putting restaurants into DB
 
     @Override
-    public Restaurant createRestaurant() {
+    public void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, Time openTime,
+                                 Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut,
+                                 boolean delivery, boolean vetoed) {
 
-        return null;
+        String sql = "";
+
+        //Unsure of how this INSERT INTO statement is supposed to work
+
+        jdbcTemplate.update(sql, restaurantName, restaurantType, restaurantAddress, openTime, closeTime, phoneNumber,
+                thumbnailImage, starRating, takeOut, delivery, vetoed);
 
     }
 

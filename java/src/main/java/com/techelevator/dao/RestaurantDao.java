@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Restaurant;
 
+import java.sql.Time;
 import java.util.List;
 
 public interface RestaurantDao {
@@ -14,7 +15,9 @@ public interface RestaurantDao {
 
     List<Restaurant> getFinalistsByInviteId(int inviteId);
 
-    Restaurant createRestaurant();
+    void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, Time openTime,
+                          Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut,
+                          boolean delivery, boolean vetoed);
 
     void thumbsDown(int restaurantId);
 
