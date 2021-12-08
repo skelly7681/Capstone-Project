@@ -11,7 +11,6 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-
 public class TenderController {
 
     private final UserDao userDao;
@@ -30,8 +29,6 @@ public class TenderController {
     public List<Restaurant> getAllRestaurantsByInviteId(int restaurantId) {
         return restaurantDao.getAllRestaurantsByInviteId(restaurantId);
     }
-
-
 
 }
 

@@ -54,17 +54,19 @@ export default {
   },
   methods: {
     login() {
+      alert("calling service");
       authService
         .login(this.user)
         .then(response => {
+          alert("promise kept");
           if (response.status == 200) {
-            // this.userId = response.data.id;
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
         })
         .catch(error => {
+          alert(error);
           const response = error.response;
 
           if (response.status === 401) {
@@ -72,8 +74,6 @@ export default {
           }
         });
     }
-  }, 
-  created() {
   }
 };
 </script>
