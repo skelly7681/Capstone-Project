@@ -21,7 +21,7 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     @Override
-    public Invite getInviteById(int inviteId) {
+    public Invite getInviteByInviteId(int inviteId) {
 
         Invite invite = null;
 
@@ -75,6 +75,14 @@ public class JdbcInviteDao implements InviteDao {
     };
 
     // Some kind of POST method for putting invites into DB
+
+    public Invite createInvite() {
+
+    }
+
+    public void addRestaurantToInvite() {
+
+    }
 
     private Invite mapRowToInvite(SqlRowSet rs) {
 
