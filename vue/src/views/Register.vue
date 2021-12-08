@@ -67,7 +67,6 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
-              this.
               this.$router.push({
                 path: '/login',
                 query: { registration: 'success' },
@@ -87,13 +86,6 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
-    created(){
-
-   
-    }
   },
 };
 </script>
-
-<style></style>
-
