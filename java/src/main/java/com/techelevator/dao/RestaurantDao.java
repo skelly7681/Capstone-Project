@@ -12,7 +12,7 @@ public interface RestaurantDao {
 
     List<Restaurant> getAllRestaurantsByInviteId(int inviteId);
 
-    List<Restaurant> getFinalistsByInviteId();
+    List<Restaurant> getFinalistsByInviteId(int inviteId);
 
     Restaurant createRestaurant();
 

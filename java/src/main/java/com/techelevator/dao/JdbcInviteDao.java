@@ -78,9 +78,11 @@ public class JdbcInviteDao implements InviteDao {
 
     public Invite createInvite() {
 
+        return null;
     }
 
     public void addRestaurantToInvite() {
+
 
     }
 

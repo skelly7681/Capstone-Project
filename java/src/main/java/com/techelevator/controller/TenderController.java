@@ -43,6 +43,13 @@ public class TenderController {
     }
 
     @PreAuthorize("hasRole('USER')")
+    @RequestMapping(path = "/restaurants", method = RequestMethod.GET)
+    public List<Restaurant> getFinalistsByInviteId(int inviteId) {
+
+        return restaurantDao.getFinalistsByInviteId(inviteId);
+    }
+
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/restaurants/{restaurantId}", method = RequestMethod.PUT)
     public void thumbsDown(int restaurantId) {
 
