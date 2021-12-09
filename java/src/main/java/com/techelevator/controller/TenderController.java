@@ -5,11 +5,9 @@ import com.techelevator.Service.RestaurantService;
 import com.techelevator.dao.*;
 import com.techelevator.model.Invite;
 import com.techelevator.model.Restaurant;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -64,6 +62,15 @@ public class TenderController {
         //Do we need a @RequestBody here if we're only changing one variable?
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/restaurants/restaurant", method = RequestMethod.POST)
+    public void createRestaurant(@RequestBody Restaurant restaurant) {
+        restaurantDao.createRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantAddress(),
+                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
+                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
+    }
+
     // Restaurant method/Invite method Divider //
 
     @PreAuthorize("hasRole('USER')")
@@ -87,7 +94,7 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/test", method = RequestMethod.GET)
     public Restaurant getYelpTest() {
-        return rs.getBasic();
+        return rs.getAllRestaurants();
     }
 
 
