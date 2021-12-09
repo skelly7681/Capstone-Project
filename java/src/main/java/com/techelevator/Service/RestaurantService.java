@@ -28,7 +28,7 @@ public class RestaurantService implements RestaurantServices {
     public Restaurant getAllRestaurants() {
 
 
-        String restaurantByLocationEndpoint = "/businesses/search?location=VirginiaBeach&categories=restaurants&limit=49&offset=49";
+        String restaurantByLocationEndpoint = "/businesses/search?location=Williamsport&categories=restaurants&limit=49&offset=49";
         //need to adjust this so that parameters are not hard coded (path variable?)
 
         HttpHeaders headers = new HttpHeaders();
@@ -41,6 +41,7 @@ public class RestaurantService implements RestaurantServices {
 
         System.out.println(response.getBody());
         //map this to a restaurantDTO object and then put that into a list to send back to the front
+        //for-loop, dump into a list
 
         return new Restaurant();
     }
