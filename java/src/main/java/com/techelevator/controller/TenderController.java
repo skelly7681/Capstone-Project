@@ -96,6 +96,21 @@ public class TenderController {
         return inviteDao.getAllInvitesBySenderId(senderUserId);
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
+    public void createRestaurant(@RequestBody Invite invite) {
+
+        inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
+    public void addRestaurantToInvite(int inviteId, int restaurantId) {
+
+        inviteDao.addRestaurantToInvite(inviteId, restaurantId);
+    }
 
     //THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

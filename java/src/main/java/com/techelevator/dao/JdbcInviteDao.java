@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,18 +76,23 @@ public class JdbcInviteDao implements InviteDao {
         return invite;
     };
 
-    // Some kind of POST method for putting invites into DB
+    @Override
+    public void createInvite(int senderUserId, Date closingDate, Time closingTime, String uniqueLink) {
 
-    public Invite createInvite() {
+        String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link)\n" +
+                "VALUES (?, ?, ?, ?)";
 
-        return null;
+        jdbcTemplate.update(sql, senderUserId, closingDate, closingTime, uniqueLink);
     }
 
     // POST (or PUT?) method to establish the connection in the associative table
 
-    public void addRestaurantToInvite() {
+    public void addRestaurantToInvite(int inviteId, int restaurantId) {
 
+        String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id)\n" +
+                "VALUES (?, ?)";
 
+        jdbcTemplate.update(sql, inviteId, restaurantId);
     }
 
     private Invite mapRowToInvite(SqlRowSet rs) {
