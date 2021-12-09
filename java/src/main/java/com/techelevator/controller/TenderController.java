@@ -54,6 +54,7 @@ public class TenderController {
 //        return restaurantDao.getFinalistsByInviteId(inviteId);
 //    }
 
+    //DATABASE
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/restaurants/{restaurantId}", method = RequestMethod.PUT)
     public void thumbsDown(int restaurantId) {
@@ -79,12 +80,28 @@ public class TenderController {
         return inviteDao.getAllInvitesBySenderId(senderUserId);
     }
 
+
+    //THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    //THIS IS A TEST!!! TESTING 3rd PARTY API
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/test", method = RequestMethod.GET)
     public Restaurant getYelpTest() {
-
         return rs.getBasic();
     }
+
+
+    //-------- BASIC RESTAURANT SEARCH ---------------------------------------
+    //need a unique end point to bring restaurants up to the front for viewing
+    // user selects their choices, that creates a post
+    //base endpoint /categories/restaurants/location?? (plug in the location from the user FE search)
+    //this is just rerouting - no db connections
+
+    //-------- INVITE RESTAURANT SEARCH ---------------------------------------
+    // this takes that ripped restaurant ID from selected (plus sign) res in front end and then does a new search for
+    // just that res to then store to the DB for an invite
+    // use restaurantDAO && inviteDAO (bundle them together)
+
 
 }
 

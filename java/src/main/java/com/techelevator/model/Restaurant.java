@@ -19,6 +19,9 @@ public class Restaurant {
 
     private boolean vetoed;
 
+    //add a YelpId Variable?
+    //scratch takeout/delivery -- confirm if we can get that info from Yelp and if not, scrap it.
+
     public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, Time openTime, Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
