@@ -1,10 +1,10 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
-DROP SEQUENCE IF EXISTS seq_user_id;
 DROP TABLE IF EXISTS invite_restaurant;
 DROP TABLE IF EXISTS invites;
 DROP TABLE IF EXISTS restaurants;
+DROP TABLE IF EXISTS users;
+DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
@@ -42,6 +42,7 @@ CREATE TABLE restaurants (
         star_rating integer,
         take_out boolean,
         delivery boolean,
+        yelp_key varchar(50),
         CONSTRAINT pk_restaurant_restaurant_id PRIMARY KEY (restaurant_id)
 );
 
