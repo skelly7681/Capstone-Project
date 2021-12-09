@@ -6,6 +6,7 @@ import java.util.List;
 public class Restaurant {
 
     private int restaurantId;
+    private String yelpKey;
     private String restaurantName;
     private String restaurantType;
     private String restaurantAddress;
@@ -18,9 +19,6 @@ public class Restaurant {
     private boolean delivery;
 
     private boolean vetoed;
-
-    //add a YelpId Variable?
-    //scratch takeout/delivery -- confirm if we can get that info from Yelp and if not, scrap it.
 
     public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, Time openTime, Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
         this.restaurantId = restaurantId;
@@ -133,5 +131,13 @@ public class Restaurant {
 
     public void setVetoed(boolean vetoed) {
         this.vetoed = vetoed;
+    }
+
+    public String getYelpKey() {
+        return yelpKey;
+    }
+
+    public void setYelpKey(String yelpKey) {
+        this.yelpKey = yelpKey;
     }
 }
