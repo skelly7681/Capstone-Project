@@ -52,6 +52,12 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        password_length: 0,
+        contains_eight_characters: false,
+        contains_number: false,
+        contains_uppercase: false,
+        contains_lowercase: false,
+        valid_password: false
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -59,10 +65,36 @@ export default {
   },
   methods: {
     register() {
-      if (this.user.password != this.user.confirmPassword) {
+      this.contains_uppercase = /[A-Z]/.test(this.user.password);
+      this.contains_lowercase = /[a-z]/.test(this.user.password);
+      this.contains_number = /\d/.test(this.user.password);
+      this.user.password_length = this.user.password.length;		
+      if (this.user.password_length > 8) {
+          this.contains_eight_characters = true;
+        } else {
+          this.contains_eight_characters = false;
+			}
+			if(this.contains_eight_characters === false){
+        this.registrationErrors = true;
+        this.registrationErrorMsg = 'Password is too short. Minimum length is 8 characters.';
+      }
+      else if(this.contains_uppercase === false){
+        this.registrationErrors = true;
+        this.registrationErrorMsg = 'Password is missing an uppercase letter';
+      }
+      else if(this.contains_lowercase === false){
+        this.registrationErrors = true;
+        this.registrationErrorMsg = 'Password is missing a lowercase letter.';
+      }
+      else if(this.contains_number === false){
+              this.registrationErrors = true;
+        this.registrationErrorMsg = 'Password is missing a number';
+      }
+      else if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
-      } else {
+      }      
+      else {
         authService
           .register(this.user)
           .then((response) => {
@@ -77,7 +109,7 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = 'Username already exists, please choose another username.';
             }
           });
       }
