@@ -2,8 +2,7 @@
   <body class="container">
 
     <div id="top-bar">
-      <img src="" alt="LOGO HERE">
-
+      Restaurant TEnder
     </div>
 
     <div class="Master-row">
@@ -73,11 +72,9 @@ export default {
   },
   methods: {
     login() {
-      alert("calling service");
       authService
         .login(this.user)
         .then(response => {
-          alert("promise kept");
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
@@ -100,6 +97,9 @@ export default {
 
 #top-bar{
   height: 80px;
+  font-size: 50px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: plum;
   
 
 }
@@ -142,6 +142,5 @@ body{
   flex-basis: 33%;
 
 }
-
 
 </style>
