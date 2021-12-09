@@ -20,8 +20,10 @@ public class RestaurantService implements RestaurantServices {
 
     public RestaurantService (){}
 
+    //rename this method but this should be the template for other API calls
     public Restaurant getBasic() {
 
+        //DANKO
         String singleRestaurantEndpoint = "/businesses/WavvLdfdP6g8aZTtbBQHTw";
 
         HttpHeaders headers = new HttpHeaders();
@@ -32,9 +34,16 @@ public class RestaurantService implements RestaurantServices {
         ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + singleRestaurantEndpoint, HttpMethod.GET, request, String.class);
 
         System.out.println(response.getBody());
+        //can we dot chain .getBody() to break up that clunky JSON object??
 
         return new Restaurant();
     }
+
+
+    // can we use the .getBody() object to create a Restaurant object that can then be embedded in an invitation object and then
+    // pass that puppy around the whole back end?
+    // meaning: use these methods below to "reverse map" JSON object into a java object that we can use.
+
 
     public Restaurant getRestaurantId() {
         Restaurant restaurant = restTemplate.getForObject(BASE_URL, Restaurant.class); //this will need to include API-KEY
