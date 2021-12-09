@@ -25,27 +25,22 @@ public class RestaurantService implements RestaurantServices {
 //    public Restaurant
 
 
-
-
-
     public Restaurant getAllRestaurants() {
 
-        //DANKO
-        String singleRestaurantEndpoint = "/businesses/search?location=NYC&categories=restaurants&open_now=true&limit=49&offset=49";
-        //need to adjust this so that paramters are not hard coded
 
-
-
+        String restaurantByLocationEndpoint = "/businesses/search?location=VirginiaBeach&categories=restaurants&limit=49&offset=49";
+        //need to adjust this so that parameters are not hard coded (path variable?)
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + API_KEY);
-
         HttpEntity request = new HttpEntity(headers);
 
-        ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + singleRestaurantEndpoint, HttpMethod.GET, request, String.class);
+
+        ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + restaurantByLocationEndpoint, HttpMethod.GET, request, String.class);
+        //getforobject?
 
         System.out.println(response.getBody());
-        //can we dot chain .getBody() to break up that clunky JSON object??
+        //map this to a restaurantDTO object and then put that into a list to send back to the front
 
         return new Restaurant();
     }

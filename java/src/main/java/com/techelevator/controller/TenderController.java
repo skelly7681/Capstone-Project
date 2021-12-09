@@ -4,11 +4,20 @@ package com.techelevator.controller;
 import com.techelevator.Service.RestaurantService;
 import com.techelevator.dao.*;
 import com.techelevator.model.Invite;
+import com.techelevator.model.LoginDTO;
 import com.techelevator.model.Restaurant;
+import com.techelevator.model.User;
+import com.techelevator.security.jwt.JWTFilter;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -104,10 +113,18 @@ public class TenderController {
     //base endpoint /categories/restaurants/location?? (plug in the location from the user FE search)
     //this is just rerouting - no db connections
 
+
     //-------- INVITE RESTAURANT SEARCH ---------------------------------------
     // this takes that ripped restaurant ID from selected (plus sign) res in front end and then does a new search for
     // just that res to then store to the DB for an invite
     // use restaurantDAO && inviteDAO (bundle them together)
+
+
+
+
+
+
+
 
 
 }
