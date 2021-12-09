@@ -17,7 +17,7 @@ public interface RestaurantDao {
 
     void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, Time openTime,
                           Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut,
-                          boolean delivery, boolean vetoed);
+                          boolean delivery, String yelpKey);
 
     void thumbsDown(int restaurantId);
 

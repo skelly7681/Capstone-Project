@@ -105,14 +105,14 @@ public class JdbcRestaurantDao implements RestaurantDao {
     @Override
     public void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, Time openTime,
                                  Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut,
-                                 boolean delivery, boolean vetoed) {
+                                 boolean delivery, String yelpKey) {
 
-        String sql = "";
-
-        //Unsure of how this INSERT INTO statement is supposed to work
+        String sql = "INSERT INTO restaurants (restaurant_name, restaurant_type, restaurant_address, open_time, close_time, " +
+                "phone_number, thumbnail_img, star_rating, take_out, delivery, yelp_key)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql, restaurantName, restaurantType, restaurantAddress, openTime, closeTime, phoneNumber,
-                thumbnailImage, starRating, takeOut, delivery, vetoed);
+                thumbnailImage, starRating, takeOut, delivery, yelpKey);
 
     }
 

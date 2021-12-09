@@ -21,10 +21,21 @@ public class RestaurantService implements RestaurantServices {
     public RestaurantService (){}
 
     //rename this method but this should be the template for other API calls
-    public Restaurant getBasic() {
+
+//    public Restaurant
+
+
+
+
+
+    public Restaurant getAllRestaurants() {
 
         //DANKO
-        String singleRestaurantEndpoint = "/businesses/WavvLdfdP6g8aZTtbBQHTw";
+        String singleRestaurantEndpoint = "/businesses/search?location=NYC&categories=restaurants&open_now=true&limit=49&offset=49";
+        //need to adjust this so that paramters are not hard coded
+
+
+
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + API_KEY);
