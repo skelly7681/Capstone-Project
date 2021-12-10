@@ -1,6 +1,11 @@
 package com.techelevator.Service.DTO;
 
 
+import com.techelevator.Service.DTO.ExtModels.ApiCategories;
+import com.techelevator.Service.DTO.ExtModels.Coordinates;
+import com.techelevator.Service.DTO.ExtModels.Location;
+import com.techelevator.Service.DTO.ExtModels.Transactions;
+
 import java.util.Map;
 
 public class RestaurantDTO {
@@ -8,15 +13,21 @@ public class RestaurantDTO {
     private String id;
     private String alias;
     private String name;
+    private String imageUrl;
     private boolean isClosed;
     private String url;
-//    private Map<String, String> categories;
-//    private Map<String, String> transactionTypes;
+    private ApiCategories[] categories;
+
+    //this isn't mapping correctly
+    private Transactions[] transactionTypes;
+
     private String price; //this is yelp $$$ to show price threshold
-//    private Map<String, String> location; // need zipcode, city/state --> this is the search filter
+
+    private Location location; // need zipcode, city/state --> this is the search filter
+
+//    private Coordinates[] coordinates;
     private String phoneNumber;
     private String displayPhoneNumber;
-
 
     public String getId() {
         return id;
@@ -58,21 +69,21 @@ public class RestaurantDTO {
         this.url = url;
     }
 
-//    public Map<String, String> getCategories() {
-//        return categories;
-//    }
-//
-//    public void setCategories(Map<String, String> categories) {
-//        this.categories = categories;
-//    }
-//
-//    public Map<String, String> getTransactionTypes() {
-//        return transactionTypes;
-//    }
+    public ApiCategories[] getCategories() {
+        return categories;
+    }
 
-//    public void setTransactionTypes(Map<String, String> transactionTypes) {
-//        this.transactionTypes = transactionTypes;
-//    }
+    public void setCategories(ApiCategories[] categories) {
+        this.categories = categories;
+    }
+
+    public Transactions[] getTransactionTypes() {
+        return transactionTypes;
+    }
+
+    public void setTransactionTypes(Transactions[] transactionTypes) {
+        this.transactionTypes = transactionTypes;
+    }
 
     public String getPrice() {
         return price;
@@ -82,13 +93,13 @@ public class RestaurantDTO {
         this.price = price;
     }
 
-//    public Map<String, String> getLocation() {
-//        return location;
-//    }
-//
-//    public void setLocation(Map<String, String> location) {
-//        this.location = location;
-//    }
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -106,6 +117,35 @@ public class RestaurantDTO {
         this.displayPhoneNumber = displayPhoneNumber;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    //    public Coordinates[] getCoordinates() {
+//        return coordinates;
+//    }
+//
+//    public void setCoordinates(Coordinates[] coordinates) {
+//        this.coordinates = coordinates;
+//    }
+
     public RestaurantDTO() {
     }
+
+//    public String getType(){
+//        String result = "";
+//        if(categories != null){
+//            result = categories[1].getTitle();
+//        }
+//
+//        return result;
+//    }
+
+
+
+
 }

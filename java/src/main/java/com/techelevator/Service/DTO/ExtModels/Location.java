@@ -1,4 +1,6 @@
-package com.techelevator.Service.DTO.externalModels;
+package com.techelevator.Service.DTO.ExtModels;
+
+import java.util.Arrays;
 
 public class Location {
     private String address1;
@@ -92,4 +94,9 @@ public class Location {
     public Location() {
     }
 
+    @Override
+    public String toString() {
+        return address1 + " " +  address2 +" " + address3 +" " + city +" " + zipcode +" " + country +" " +  state;
+    }
 }
+

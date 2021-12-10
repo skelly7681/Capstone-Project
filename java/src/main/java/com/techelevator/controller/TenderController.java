@@ -31,6 +31,7 @@ public class TenderController {
     private final InviteDao inviteDao;
     private final RestaurantDao restaurantDao;
     private RestaurantService rs;
+    // can we have a restaurantDTO here?
 
     public TenderController(UserDao userDao, RestaurantDao restaurantDao, InviteDao inviteDao, RestaurantService restaurantService) {
 
@@ -55,33 +56,34 @@ public class TenderController {
         return restaurantDao.getAllRestaurantsByInviteId(inviteId);
     }
 
-//    @PreAuthorize("hasRole('USER')")
-//    @RequestMapping(path = "/restaurants", method = RequestMethod.GET)
-//    public List<Restaurant> getFinalistsByInviteId(int inviteId) {
-//
-//        return restaurantDao.getFinalistsByInviteId(inviteId);
-//    }
+    @PreAuthorize("hasRole('USER')")
+    @RequestMapping(path = "/finalists", method = RequestMethod.GET)
+    public List<Restaurant> getFinalistsByInviteId(int inviteId) {
 
-    //DATABASE
+        return restaurantDao.getFinalistsByInviteId(inviteId);
+    }
+
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/restaurants/{restaurantId}", method = RequestMethod.PUT)
-    public void thumbsDown(int restaurantId) {
+    public void thumbsDown(@RequestBody Restaurant restaurant) {
 
-        restaurantDao.thumbsDown(restaurantId);
+        restaurantDao.thumbsDown(restaurant.getRestaurantId());
 
-        //Do we need a @RequestBody here if we're only changing one variable?
     }
 
-    @PreAuthorize("hasRole('USER')")
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/restaurants/restaurant", method = RequestMethod.POST)
-    public void createRestaurant(@RequestBody Restaurant restaurant) {
-        restaurantDao.createRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantAddress(),
-                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
-                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
-    }
-
-    // Restaurant method/Invite method Divider //
+    //can we use the DTO to match this instead of reg model?
+//    @PreAuthorize("hasRole('USER')")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @RequestMapping(path = "/restaurants/restaurant", method = RequestMethod.POST)
+//    public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
+//
+//        restaurantDao.createRestaurant(restaurant.getName(), "American", restaurant.getLocation().toString(), "null", "null", restaurant.getPhoneNumber(),  );
+//
+//
+////        restaurantDao.createRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantAddress(),
+////                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
+////                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
+//    }
 
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/invites/{inviteId}", method = RequestMethod.GET)
@@ -97,43 +99,51 @@ public class TenderController {
         return inviteDao.getAllInvitesBySenderId(senderUserId);
     }
 
-//    @PreAuthorize("hasRole('USER')")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
-//    public void createRestaurant(@RequestBody Invite invite) {
-//
-//        inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
-//    }
-//
-//    @PreAuthorize("hasRole('USER')")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
-//    public void addRestaurantToInvite(int inviteId, int restaurantId) {
-//
-//        inviteDao.addRestaurantToInvite(inviteId, restaurantId);
-//    }
+    @PreAuthorize("hasRole('USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
+    public void createRestaurant(@RequestBody Invite invite) {
 
-    //THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
+    }
 
-    //3rd PARTY API
+    @PreAuthorize("hasRole('USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/invites/add/restaurant", method = RequestMethod.POST)
+    public void addRestaurantToInvite(int inviteId, int restaurantId) {
+
+        inviteDao.addRestaurantToInvite(inviteId, restaurantId);
+
+    }
+
+    //--------------------THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!------------------------
+
+    // BASIC RESTAURANT SEARCH ---------------------------------------
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/search", method = RequestMethod.GET)
-    public Restaurant searchRestaurants(String location) {
+    public List<RestaurantDTO> searchRestaurants(String location) {
         return rs.getAllRestaurants(location);
     }
 
+    // INDIVIDUAL RESTAURANT SEARCH ---------------------------------------
+    @PreAuthorize("hasRole('USER')")
+    @RequestMapping(path = "/restaurant", method = RequestMethod.GET)
+    public RestaurantDTO individualRestaurant(String yelpKey) {
+        return rs.getRestaurant(yelpKey);
 
-    //-------- BASIC RESTAURANT SEARCH ---------------------------------------
-    //need a unique end point to bring restaurants up to the front for viewing
-    // user selects their choices, that creates a post
-    //base endpoint /categories/restaurants/location?? (plug in the location from the user FE search)
-    //this is just rerouting - no db connections
+//        RestaurantDTO danko = rs.getRestaurant("WavvLdfdP6g8aZTtbBQHTw");
+//
+//        //TEST - get DANKO! into the DB
+//        restaurantDao.createRestaurant(danko.getName(), "Bougie", danko.getRestaurantAddress(),
+//                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
+//                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
 
 
-    //-------- INVITE RESTAURANT SEARCH ---------------------------------------
-    // this takes that ripped restaurant ID from selected (plus sign) res in front end and then does a new search for
-    // just that res to then store to the DB for an invite
-    // use restaurantDAO && inviteDAO (bundle them together)
+    }
+
+
+
+
 
 
 

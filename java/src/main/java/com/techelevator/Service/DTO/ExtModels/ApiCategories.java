@@ -1,4 +1,4 @@
-package com.techelevator.Service.DTO.externalModels;
+package com.techelevator.Service.DTO.ExtModels;
 
 public class ApiCategories {
 
