@@ -15,8 +15,7 @@ public interface RestaurantDao {
 
     List<Restaurant> getFinalistsByInviteId(int inviteId);
 
-    void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, String openTime,
-                          String closeTime, String phoneNumber, String thumbnailImage, double starRating, boolean takeOut,
+    void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, double starRating, boolean takeOut,
                           boolean delivery, String yelpKey);
 
     void thumbsDown(int restaurantId);

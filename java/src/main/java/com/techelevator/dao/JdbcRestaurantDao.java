@@ -103,15 +103,14 @@ public class JdbcRestaurantDao implements RestaurantDao {
     // Some kind of POST method for putting restaurants into DB
 
     @Override
-    public void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, String openTime,
-                                 String closeTime, String phoneNumber, String thumbnailImage, double starRating, boolean takeOut,
+    public void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, double starRating, boolean takeOut,
                                  boolean delivery, String yelpKey) {
 
-        String sql = "INSERT INTO restaurants (restaurant_name, restaurant_type, restaurant_address, open_time, closing_time, " +
+        String sql = "INSERT INTO restaurants (restaurant_name, restaurant_type, restaurant_address, " +
                 "phone_number, thumbnail_img, star_rating, take_out, delivery, yelp_key) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        jdbcTemplate.update(sql, restaurantName, restaurantType, restaurantAddress, openTime, closeTime, phoneNumber,
+        jdbcTemplate.update(sql, restaurantName, restaurantType, restaurantAddress, phoneNumber,
                 thumbnailImage, starRating, takeOut, delivery, yelpKey);
 
     }
