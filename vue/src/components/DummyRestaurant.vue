@@ -6,7 +6,7 @@
     <div id="searchbar">
       <h1>SEARCH BAR</h1>
       <input type="text" v-model="location" placeholder="City/Zip Code" id="location" >
-      <button v-click>Submit</button>
+      <button v-click="search">Submit</button>
       <p>{{ searchResults }}</p>
     </div>
 
@@ -42,17 +42,17 @@ export default {
             this.searchResults = response.data;
         })
     },
-//   methods: {
-//     search() {
-//       RestaurantService
-//       .search(this.location).then(response => {
-//         if(response.status === 200){                   //should be 201?
- //           this.resturant = response.data.resturant;
+  methods: {
+    search() {
+      restuarantService
+      .search(this.location).then(response => {
+        if(response.status === 200){                   //should be 201?
+           this.resturant = response.data.resturant;
           
-//         }
-//       })
-//     }
-// }
+        }
+      })
+    }
+}
 
     //     }
     // },
