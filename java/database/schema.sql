@@ -36,8 +36,6 @@ CREATE TABLE restaurants (
         restaurant_name varchar(200),
         restaurant_type varchar (50),
         restaurant_address varchar(200),
-        open_time varchar,
-        closing_time varchar,
         phone_number varchar (20),
         thumbnail_img varchar (200),
         star_rating decimal,
@@ -69,34 +67,5 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
 COMMIT TRANSACTION;
-
-Begin Transaction;
-
-INSERT INTO restaurants(
-restaurant_name,
-restaurant_type,
-restaurant_address,
-open_time,
-closing_time,
-phone_number,
-star_rating,
-take_out,
-delivery
-)
-Values(
-'Time',
-'Restaurant',
-'1307 Sansom Street Phila. PA',
-'5:00',
-'02:00',
-'215-345-1200',
- 5,
-false,
-false);
-
-
-Commit Transaction;
-
-Select * from restaurants where restaurant_name = 'Mcgillins';
 
 
