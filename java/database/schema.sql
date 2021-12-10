@@ -30,16 +30,17 @@ CREATE TABLE invites (
         CONSTRAINT pk_invite_invite_id PRIMARY KEY (invite_id)
 );
 
+
 CREATE TABLE restaurants (
         restaurant_id serial NOT NULL,
         restaurant_name varchar(200),
         restaurant_type varchar (50),
         restaurant_address varchar(200),
-        open_time time,
-        closing_time time,
+        open_time varchar,
+        closing_time varchar,
         phone_number varchar (20),
         thumbnail_img varchar (200),
-        star_rating integer,
+        star_rating decimal,
         take_out boolean,
         delivery boolean,
         yelp_key varchar(50),

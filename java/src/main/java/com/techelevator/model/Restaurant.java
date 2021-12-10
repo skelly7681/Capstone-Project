@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Restaurant {
 
-    private int restaurantId;
+    private Integer restaurantId;
     private String yelpKey;
     private String restaurantName;
     private String restaurantType;
     private String restaurantAddress;
-    private Time openTime;
-    private Time closeTime;
+    private String openTime;   //changed this from time
+    private String closeTime;  //changed this from time
     private String phoneNumber;
     private String thumbnailImage;
     private int starRating;
@@ -20,7 +20,7 @@ public class Restaurant {
 
     private boolean vetoed;
 
-    public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, Time openTime, Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
+    public Restaurant(Integer restaurantId, String restaurantName, String restaurantType, String restaurantAddress, String openTime, String closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
         this.restaurantType = restaurantType;
@@ -37,11 +37,11 @@ public class Restaurant {
 
     public Restaurant() {}
 
-    public int getRestaurantId() {
+    public Integer getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(int restaurantId) {
+    public void setRestaurantId(Integer restaurantId) {
         this.restaurantId = restaurantId;
     }
 
@@ -69,19 +69,19 @@ public class Restaurant {
         this.restaurantAddress = restaurantAddress;
     }
 
-    public Time getOpenTime() {
+    public String getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(Time openTime) {
+    public void setOpenTime(String openTime) {
         this.openTime = openTime;
     }
 
-    public Time getCloseTime() {
+    public String getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(Time closeTime) {
+    public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
 
