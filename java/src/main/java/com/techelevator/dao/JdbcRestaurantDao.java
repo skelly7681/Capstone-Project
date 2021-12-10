@@ -25,7 +25,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         Restaurant restaurant = null;
 
-        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.close_time, " +
+        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.closing_time, " +
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
@@ -44,7 +44,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         Restaurant restaurant = null;
 
-        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.close_time, " +
+        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.closing_time, " +
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
@@ -62,7 +62,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         List<Restaurant> restaurants = new ArrayList<>();
 
-        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.close_time, " +
+        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.closing_time, " +
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
@@ -84,7 +84,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         List<Restaurant> restaurants = new ArrayList<>();
 
-        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.close_time, " +
+        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, r.open_time, r.closing_time, " +
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
@@ -103,12 +103,12 @@ public class JdbcRestaurantDao implements RestaurantDao {
     // Some kind of POST method for putting restaurants into DB
 
     @Override
-    public void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, Time openTime,
-                                 Time closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut,
+    public void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, String openTime,
+                                 String closeTime, String phoneNumber, String thumbnailImage, double starRating, boolean takeOut,
                                  boolean delivery, String yelpKey) {
 
-        String sql = "INSERT INTO restaurants (restaurant_name, restaurant_type, restaurant_address, open_time, close_time, " +
-                "phone_number, thumbnail_img, star_rating, take_out, delivery, yelp_key)\n" +
+        String sql = "INSERT INTO restaurants (restaurant_name, restaurant_type, restaurant_address, open_time, closing_time, " +
+                "phone_number, thumbnail_img, star_rating, take_out, delivery, yelp_key) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sql, restaurantName, restaurantType, restaurantAddress, openTime, closeTime, phoneNumber,
@@ -134,8 +134,8 @@ public class JdbcRestaurantDao implements RestaurantDao {
         restaurant.setRestaurantName(rs.getString("restaurant_name"));
         restaurant.setRestaurantType(rs.getString("restaurant_type"));
         restaurant.setRestaurantAddress(rs.getString("restaurant_address"));
-        restaurant.setOpenTime(rs.getTime("open_time"));
-        restaurant.setCloseTime(rs.getTime("close_time"));
+        restaurant.setOpenTime(rs.getString("open_time"));
+        restaurant.setCloseTime(rs.getString("closing_time"));
         restaurant.setPhoneNumber(rs.getNString("phone_number"));
         restaurant.setThumbnailImage(rs.getString("thumbnail_img"));
         restaurant.setStarRating(rs.getInt("star_rating"));

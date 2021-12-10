@@ -6,6 +6,7 @@ import com.techelevator.Service.DTO.ExtModels.Coordinates;
 import com.techelevator.Service.DTO.ExtModels.Location;
 import com.techelevator.Service.DTO.ExtModels.Transactions;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class RestaurantDTO {
@@ -28,6 +29,7 @@ public class RestaurantDTO {
 //    private Coordinates[] coordinates;
     private String phoneNumber;
     private String displayPhoneNumber;
+    private double rating;
 
     public String getId() {
         return id;
@@ -125,6 +127,14 @@ public class RestaurantDTO {
         this.imageUrl = imageUrl;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
     //    public Coordinates[] getCoordinates() {
 //        return coordinates;
 //    }
@@ -146,6 +156,22 @@ public class RestaurantDTO {
 //    }
 
 
-
-
+    @Override
+    public String toString() {
+        return "RestaurantDTO{" +
+                "id='" + id + '\'' +
+                ", alias='" + alias + '\'' +
+                ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", isClosed=" + isClosed +
+                ", url='" + url + '\'' +
+                ", categories=" + Arrays.toString(categories) +
+                ", transactionTypes=" + Arrays.toString(transactionTypes) +
+                ", price='" + price + '\'' +
+                ", location=" + location +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", displayPhoneNumber='" + displayPhoneNumber + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }

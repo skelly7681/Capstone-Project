@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @PreAuthorize("isAuthenticated()")
@@ -72,18 +73,24 @@ public class TenderController {
     }
 
     //can we use the DTO to match this instead of reg model?
-//    @PreAuthorize("hasRole('USER')")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(path = "/restaurants/restaurant", method = RequestMethod.POST)
-//    public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
-//
-//        restaurantDao.createRestaurant(restaurant.getName(), "American", restaurant.getLocation().toString(), "null", "null", restaurant.getPhoneNumber(),  );
-//
-//
-////        restaurantDao.createRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantAddress(),
-////                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
-////                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
-//    }
+    @PreAuthorize("hasRole('USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
+    public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
+
+//        //test DANKO
+        restaurantDao.createRestaurant(restaurant.getName(), "American", restaurant.getLocation().toString(), null, null, restaurant.getPhoneNumber(),restaurant.getImageUrl(),
+                restaurant.getRating(), true, true, restaurant.getId());
+
+//                restaurantDao.createRestaurant(restaurant.getName(), null, restaurant.getLocation(),
+//                null, null, restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
+//                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
+
+
+//        restaurantDao.createRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantAddress(),
+//                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
+//                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
+    }
 
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/invites/{inviteId}", method = RequestMethod.GET)
@@ -129,7 +136,7 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/restaurant", method = RequestMethod.GET)
     public RestaurantDTO individualRestaurant(String yelpKey) {
-        return rs.getRestaurant(yelpKey);
+        return rs.getRestaurantByYelpKey(yelpKey);
 
 //        RestaurantDTO danko = rs.getRestaurant("WavvLdfdP6g8aZTtbBQHTw");
 //

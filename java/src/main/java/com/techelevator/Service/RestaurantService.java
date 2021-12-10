@@ -31,6 +31,7 @@ public class RestaurantService {
 
         List<RestaurantDTO> searchResults = new ArrayList<>();
 
+        //do we need to refine this search so that we get stuff opened now?
         String restaurantByLocationEndpoint = String.format("/businesses/search?location=%s&categories=restaurants&limit=49&offset=49", location);
 
         HttpHeaders headers = new HttpHeaders();
@@ -42,14 +43,14 @@ public class RestaurantService {
         //TO TEST
         for (RestaurantDTO rest : response.getBody().getBusinesses()) {
             searchResults.add(rest);
-            System.out.println(rest.getLocation().toString());
+            System.out.println(rest.toString());
         }
 
         return searchResults;
     }
 
 
-    public RestaurantDTO getRestaurant(String yelpKey) {
+    public RestaurantDTO getRestaurantByYelpKey(String yelpKey) {
 
         String restaurantByLocationEndpoint = String.format("/businesses/%s", yelpKey);
 
