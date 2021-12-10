@@ -46,20 +46,13 @@ export default {
 //     search() {
 //       RestaurantService
 //       .search(this.location).then(response => {
-//         if(response.status === 200){
+//         if(response.status === 200){                   //should be 201?
+ //           this.resturant = response.data.resturant;
           
 //         }
 //       })
 //     }
 // }
-
-
-
-    // methods: {
-    //     searchRestaurants(){
-    //         restuarantService.getRestaurantsByLocation().then(response => {
-    //             this.$router.push(`/`);  //don't know where to push
-    //         })
 
     //     }
     // },
