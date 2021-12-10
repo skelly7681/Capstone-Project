@@ -79,7 +79,7 @@ public class TenderController {
     public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
 
 //        //test DANKO
-        restaurantDao.createRestaurant(restaurant.getName(), "American", restaurant.getLocation().toString(), null, null, restaurant.getPhoneNumber(),restaurant.getImageUrl(),
+        restaurantDao.createRestaurant(restaurant.getName(), "American", restaurant.getLocation().toString(), null, null, restaurant.getDisplayPhoneNumber(),restaurant.getImageUrl(),
                 restaurant.getRating(), true, true, restaurant.getId());
 
 //                restaurantDao.createRestaurant(restaurant.getName(), null, restaurant.getLocation(),

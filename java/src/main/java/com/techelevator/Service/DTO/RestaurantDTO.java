@@ -1,34 +1,35 @@
 package com.techelevator.Service.DTO;
 
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.Service.DTO.ExtModels.ApiCategories;
 import com.techelevator.Service.DTO.ExtModels.Coordinates;
 import com.techelevator.Service.DTO.ExtModels.Location;
-import com.techelevator.Service.DTO.ExtModels.Transactions;
 
 import java.util.Arrays;
-import java.util.Map;
 
 public class RestaurantDTO {
 
     private String id;
     private String alias;
     private String name;
+
+    @JsonProperty("image_url")
     private String imageUrl;
+
     private boolean isClosed;
     private String url;
     private ApiCategories[] categories;
 
-    //this isn't mapping correctly
-    private Transactions[] transactionTypes;
-
+    private String[] Transactions; //will need a loop on FE to parse these values
     private String price; //this is yelp $$$ to show price threshold
 
     private Location location; // need zipcode, city/state --> this is the search filter
 
-//    private Coordinates[] coordinates;
-    private String phoneNumber;
+    private Coordinates coordinates;
+
+    @JsonProperty("display_phone")
     private String displayPhoneNumber;
+
     private double rating;
 
     public String getId() {
@@ -55,6 +56,14 @@ public class RestaurantDTO {
         this.name = name;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public boolean isClosed() {
         return isClosed;
     }
@@ -79,12 +88,12 @@ public class RestaurantDTO {
         this.categories = categories;
     }
 
-    public Transactions[] getTransactionTypes() {
-        return transactionTypes;
+    public String[] getTransactions() {
+        return Transactions;
     }
 
-    public void setTransactionTypes(Transactions[] transactionTypes) {
-        this.transactionTypes = transactionTypes;
+    public void setTransactions(String[] transactions) {
+        Transactions = transactions;
     }
 
     public String getPrice() {
@@ -103,28 +112,21 @@ public class RestaurantDTO {
         this.location = location;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
+    //this isn't working in the db for some reason
     public String getDisplayPhoneNumber() {
         return displayPhoneNumber;
     }
 
     public void setDisplayPhoneNumber(String displayPhoneNumber) {
         this.displayPhoneNumber = displayPhoneNumber;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public double getRating() {
@@ -134,14 +136,6 @@ public class RestaurantDTO {
     public void setRating(double rating) {
         this.rating = rating;
     }
-
-    //    public Coordinates[] getCoordinates() {
-//        return coordinates;
-//    }
-//
-//    public void setCoordinates(Coordinates[] coordinates) {
-//        this.coordinates = coordinates;
-//    }
 
     public RestaurantDTO() {
     }
@@ -166,10 +160,10 @@ public class RestaurantDTO {
                 ", isClosed=" + isClosed +
                 ", url='" + url + '\'' +
                 ", categories=" + Arrays.toString(categories) +
-                ", transactionTypes=" + Arrays.toString(transactionTypes) +
+                ", transactionTypes=" + getTransactions().length +
                 ", price='" + price + '\'' +
-                ", location=" + location +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", location=" + location.getZipCode() +
+                ", coordinates=" + coordinates.getLatitude() + coordinates.getLongitude() +
                 ", displayPhoneNumber='" + displayPhoneNumber + '\'' +
                 ", rating=" + rating +
                 '}';
