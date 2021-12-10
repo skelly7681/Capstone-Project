@@ -1,6 +1,7 @@
 
 package com.techelevator.controller;
 
+import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.Service.RestaurantService;
 import com.techelevator.dao.*;
 import com.techelevator.model.Invite;
@@ -96,29 +97,29 @@ public class TenderController {
         return inviteDao.getAllInvitesBySenderId(senderUserId);
     }
 
-    @PreAuthorize("hasRole('USER')")
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
-    public void createRestaurant(@RequestBody Invite invite) {
-
-        inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
-    }
-
-    @PreAuthorize("hasRole('USER')")
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
-    public void addRestaurantToInvite(int inviteId, int restaurantId) {
-
-        inviteDao.addRestaurantToInvite(inviteId, restaurantId);
-    }
+//    @PreAuthorize("hasRole('USER')")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
+//    public void createRestaurant(@RequestBody Invite invite) {
+//
+//        inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
+//    }
+//
+//    @PreAuthorize("hasRole('USER')")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @RequestMapping(path = "/invites/invite", method = RequestMethod.POST)
+//    public void addRestaurantToInvite(int inviteId, int restaurantId) {
+//
+//        inviteDao.addRestaurantToInvite(inviteId, restaurantId);
+//    }
 
     //THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    //THIS IS A TEST!!! TESTING 3rd PARTY API
+    //3rd PARTY API
     @PreAuthorize("hasRole('USER')")
-    @RequestMapping(path = "/test", method = RequestMethod.GET)
-    public Restaurant getYelpTest() {
-        return rs.getAllRestaurants();
+    @RequestMapping(path = "/search", method = RequestMethod.GET)
+    public Restaurant searchRestaurants(String location) {
+        return rs.getAllRestaurants(location);
     }
 
 

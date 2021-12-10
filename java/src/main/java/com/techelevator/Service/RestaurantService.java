@@ -1,7 +1,17 @@
 package com.techelevator.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.techelevator.Service.DTO.BusinessesDTO;
+import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.dao.JdbcRestaurantDao;
 import com.techelevator.model.Restaurant;
+import org.apache.commons.logging.Log;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -9,6 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Component
@@ -20,36 +33,28 @@ public class RestaurantService implements RestaurantServices {
 
     public RestaurantService (){}
 
-    //rename this method but this should be the template for other API calls
 
-//    public Restaurant
+    //TODO: refactor into proper type return method ya ya ya
+    public Restaurant getAllRestaurants(String location) {
 
-
-    public Restaurant getAllRestaurants() {
-
-
-        String restaurantByLocationEndpoint = "/businesses/search?location=Williamsport&categories=restaurants&limit=49&offset=49";
-        //need to adjust this so that parameters are not hard coded (path variable?)
+        String restaurantByLocationEndpoint = String.format("/businesses/search?location=%s&categories=restaurants&limit=49&offset=49", location) ;
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + API_KEY);
         HttpEntity request = new HttpEntity(headers);
 
+        ResponseEntity<BusinessesDTO> response = new RestTemplate().exchange(BASE_URL + restaurantByLocationEndpoint, HttpMethod.GET, request, BusinessesDTO.class);
 
-        ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + restaurantByLocationEndpoint, HttpMethod.GET, request, String.class);
-        //getforobject?
 
-        System.out.println(response.getBody());
-        //map this to a restaurantDTO object and then put that into a list to send back to the front
-        //for-loop, dump into a list
+        //TO TEST
+        for (RestaurantDTO rest : response.getBody().getBusinesses()) {
+            System.out.println(rest.getPrice());
+        }
 
+        // THIS RETURNS THE NULL OBJECT
         return new Restaurant();
     }
 
-
-    // can we use the .getBody() object to create a Restaurant object that can then be embedded in an invitation object and then
-    // pass that puppy around the whole back end?
-    // meaning: use these methods below to "reverse map" JSON object into a java object that we can use.
 
 
     public Restaurant getRestaurantId() {
