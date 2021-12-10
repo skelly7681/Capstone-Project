@@ -1,6 +1,7 @@
 package com.techelevator.Service;
 
 import com.techelevator.Service.DTO.BusinessesDTO;
+import com.techelevator.Service.DTO.ExtModels.ApiCategories;
 import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.model.Restaurant;
 

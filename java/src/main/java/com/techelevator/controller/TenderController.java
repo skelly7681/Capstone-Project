@@ -1,6 +1,7 @@
 
 package com.techelevator.controller;
 
+import com.techelevator.Service.DTO.ExtModels.ApiCategories;
 import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.Service.RestaurantService;
 import com.techelevator.dao.*;
@@ -78,18 +79,28 @@ public class TenderController {
     @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
     public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
 
-//        //test DANKO
-        restaurantDao.createRestaurant(restaurant.getName(), "American", restaurant.getLocation().toString(), null, null, restaurant.getDisplayPhoneNumber(),restaurant.getImageUrl(),
-                restaurant.getRating(), true, true, restaurant.getId());
+        //for-loop to take-out / delivery
+        boolean hasTakeOut = false;
+        boolean hasDelivery = false;
 
-//                restaurantDao.createRestaurant(restaurant.getName(), null, restaurant.getLocation(),
-//                null, null, restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
-//                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
+        String[] transactions = restaurant.getTransactions();
+        for (String transaction : transactions){
+            if (transaction.equalsIgnoreCase("pickup")){
+                hasTakeOut = true;
+            }
 
+            if(transaction.equalsIgnoreCase("delivery")){
+                hasDelivery = true;
+            }
+        }
 
-//        restaurantDao.createRestaurant(restaurant.getRestaurantName(), restaurant.getRestaurantType(), restaurant.getRestaurantAddress(),
-//                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
-//                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
+        //for-loop to get get type
+        ApiCategories[] categories = restaurant.getCategories();
+        String type = categories[0].getTitle();
+
+        restaurantDao.createRestaurant(restaurant.getName(), type, restaurant.getLocation().toString(), restaurant.getDisplayPhoneNumber(),restaurant.getImageUrl(),
+                restaurant.getRating(), hasTakeOut, hasDelivery, restaurant.getId());
+
     }
 
     @PreAuthorize("hasRole('USER')")

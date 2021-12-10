@@ -32,6 +32,10 @@ public class RestaurantDTO {
 
     private double rating;
 
+
+
+    //GETTERS & SETTERS
+
     public String getId() {
         return id;
     }
@@ -120,7 +124,6 @@ public class RestaurantDTO {
         this.coordinates = coordinates;
     }
 
-    //this isn't working in the db for some reason
     public String getDisplayPhoneNumber() {
         return displayPhoneNumber;
     }
@@ -140,15 +143,6 @@ public class RestaurantDTO {
     public RestaurantDTO() {
     }
 
-//    public String getType(){
-//        String result = "";
-//        if(categories != null){
-//            result = categories[1].getTitle();
-//        }
-//
-//        return result;
-//    }
-
 
     @Override
     public String toString() {
@@ -159,7 +153,7 @@ public class RestaurantDTO {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", isClosed=" + isClosed +
                 ", url='" + url + '\'' +
-                ", categories=" + Arrays.toString(categories) +
+                ", categories=" + categories[0].getAlias() +
                 ", transactionTypes=" + getTransactions().length +
                 ", price='" + price + '\'' +
                 ", location=" + location.getZipCode() +
@@ -168,4 +162,9 @@ public class RestaurantDTO {
                 ", rating=" + rating +
                 '}';
     }
+
+   //how to get the type from the categories?
+
+
+
 }
