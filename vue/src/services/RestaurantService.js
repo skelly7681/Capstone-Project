@@ -1,13 +1,17 @@
 import axios from 'axios';
 
-// export default {
+// const http = axios.create({
+//     baseURL: "http://localhost:8080"  //or this this 8081?
+//   });
 
-//   getRestaurantByLocation(location) {
-//     return axios.get('/login', user)
-//   },
+export default {
+
+  getRestaurantsByLocation(location) {
+    return axios.get('/search', location)
+  },
 
 //   register(user) {
 //     return axios.post('/register', user)
 //   }
 
-// }
+}
