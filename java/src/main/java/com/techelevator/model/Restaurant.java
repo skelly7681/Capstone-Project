@@ -10,8 +10,6 @@ public class Restaurant {
     private String restaurantName;
     private String restaurantType;
     private String restaurantAddress;
-    private String openTime;   //changed this from time
-    private String closeTime;  //changed this from time
     private String phoneNumber;
     private String thumbnailImage;
     private int starRating;
@@ -20,13 +18,11 @@ public class Restaurant {
 
     private boolean vetoed;
 
-    public Restaurant(Integer restaurantId, String restaurantName, String restaurantType, String restaurantAddress, String openTime, String closeTime, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
+    public Restaurant(Integer restaurantId, String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
         this.restaurantType = restaurantType;
         this.restaurantAddress = restaurantAddress;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
         this.phoneNumber = phoneNumber;
         this.thumbnailImage = thumbnailImage;
         this.starRating = starRating;
@@ -67,22 +63,6 @@ public class Restaurant {
 
     public void setRestaurantAddress(String restaurantAddress) {
         this.restaurantAddress = restaurantAddress;
-    }
-
-    public String getOpenTime() {
-        return openTime;
-    }
-
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
-    }
-
-    public String getCloseTime() {
-        return closeTime;
-    }
-
-    public void setCloseTime(String closeTime) {
-        this.closeTime = closeTime;
     }
 
     public String getPhoneNumber() {
