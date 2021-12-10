@@ -3,6 +3,12 @@
         <h1>THIS IS WHERE YOU BROWSE RESTAURANTS</h1>
         //change this header, of course --> for testing purposes only
 
+    <div id="searchbar">
+      <h1>SEARCH BAR</h1>
+      <input type="text" v-model="search" placeholder="Search For">
+
+    </div>
+
     </div>
 </template>
 
@@ -28,12 +34,21 @@ export default {
             savedToInvite: false
         };
     },
+    created(){
+        this.searchRestaurants();
+    },
 
-    methods: {
-        getRestaurantByLocation(searchLocation){ //this parameter is from user search
+    // methods: {
+    //     searchRestaurants(){
+    //         restuarantService.getRestaurantsByLocation().then(response => {
+    //             this.$router.push(`/`);  //don't know where to push
+    //         })
 
-        }
-    }
+    //     }
+    // },
+    // computed: (
+    //     filteredRestuarant
+    // )
 //end of export default block  
 };
 </script>
