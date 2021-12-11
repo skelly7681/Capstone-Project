@@ -53,7 +53,6 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/restaurants", method = RequestMethod.GET)
     public List<Restaurant> getAllRestaurantsByInviteId(int inviteId) {
-
         return restaurantDao.getAllRestaurantsByInviteId(inviteId);
     }
 
@@ -123,12 +122,14 @@ public class TenderController {
         inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
     }
 
+
+//TODO - this one is giving us issues testing on the back end. May need to rework
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/invites/add/restaurant", method = RequestMethod.POST)
-    public void addRestaurantToInvite(int inviteId, int restaurantId) {
+    @RequestMapping(path = "/invites/add", method = RequestMethod.POST)
+    public void addRestaurantToInvite(@RequestBody int restaurantId, int inviteId) {
 
-        inviteDao.addRestaurantToInvite(inviteId, restaurantId);
+        inviteDao.addRestaurantToInvite(2,3);
 
     }
 
