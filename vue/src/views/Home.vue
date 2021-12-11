@@ -7,7 +7,7 @@
 
     <div class="buttons">
       <router-link to="/invite" id="createButton" tag="button">create an invite</router-link>
-      <router-link to="/invite" id="viewButton" tag="button">view all invites</router-link>
+      <router-link to="/viewInvites" id="viewButton" tag="button">view all invites</router-link>
     </div>
    
 

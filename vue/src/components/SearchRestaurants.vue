@@ -76,7 +76,10 @@ export default {
             this.$store.commit('SET_SEARCH_RESULTS', this.searchResults);
             this.isLoading = false;
         })
-    }
+    }, 
+
+    // put a method here to make sure search bar only sends what Yelp will accept
+    
     }, 
     computed: {
         foundRestaurants(){
