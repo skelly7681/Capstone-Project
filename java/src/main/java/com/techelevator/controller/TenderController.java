@@ -33,7 +33,6 @@ public class TenderController {
     private final InviteDao inviteDao;
     private final RestaurantDao restaurantDao;
     private RestaurantService rs;
-    // can we have a restaurantDTO here?
 
     public TenderController(UserDao userDao, RestaurantDao restaurantDao, InviteDao inviteDao, RestaurantService restaurantService) {
 
@@ -46,7 +45,7 @@ public class TenderController {
 
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path= "/restaurants/{restaurantId}", method = RequestMethod.GET)
-    public Restaurant getRestaurantById(int restaurantId) {
+    public Restaurant getRestaurantById(@PathVariable int restaurantId) {
 
         return restaurantDao.getRestaurantById(restaurantId);
     }
@@ -66,14 +65,13 @@ public class TenderController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @RequestMapping(path = "/restaurants/{restaurantId}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/vetoed", method = RequestMethod.PUT)
     public void thumbsDown(@RequestBody Restaurant restaurant) {
 
         restaurantDao.thumbsDown(restaurant.getRestaurantId());
 
     }
 
-    //can we use the DTO to match this instead of reg model?
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
@@ -105,7 +103,7 @@ public class TenderController {
 
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/invites/{inviteId}", method = RequestMethod.GET)
-    public Invite getInviteByInviteId(int inviteId) {
+    public Invite getInviteByInviteId(@PathVariable int inviteId) {
 
         return inviteDao.getInviteByInviteId(inviteId);
     }
@@ -120,7 +118,7 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
-    public void createRestaurant(@RequestBody Invite invite) {
+    public void createInvite(@RequestBody Invite invite) {
 
         inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
     }
@@ -149,27 +147,7 @@ public class TenderController {
     public RestaurantDTO individualRestaurant(String yelpKey) {
         return rs.getRestaurantByYelpKey(yelpKey);
 
-//        RestaurantDTO danko = rs.getRestaurant("WavvLdfdP6g8aZTtbBQHTw");
-//
-//        //TEST - get DANKO! into the DB
-//        restaurantDao.createRestaurant(danko.getName(), "Bougie", danko.getRestaurantAddress(),
-//                restaurant.getOpenTime(), restaurant.getCloseTime(), restaurant.getPhoneNumber(), restaurant.getThumbnailImage(),
-//                restaurant.getStarRating(), restaurant.isTakeOut(), restaurant.isDelivery(), restaurant.getYelpKey());
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

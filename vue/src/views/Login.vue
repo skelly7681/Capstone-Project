@@ -2,17 +2,17 @@
   <body class="container">
 
     <div id="top-bar">
-      Restaurant TEnder
+      
     </div>
 
     <div class="Master-row">
             <div class="row-3">
         <!-- insert and image here  -->
-        <img src="https://cdn.vox-cdn.com/thumbor/SvWuEief9dPa4fwMGLa7BR8NkzA=/0x0:5472x3648/1200x800/filters:focal(2299x1387:3173x2261)/cdn.vox-cdn.com/uploads/chorus_image/image/63216998/2017.08.30_DAF_Pizza_Photos_0909.0.jpg" alt="IMAGE HERE" id="pizza">
+        <!-- <img src="https://cdn.vox-cdn.com/thumbor/SvWuEief9dPa4fwMGLa7BR8NkzA=/0x0:5472x3648/1200x800/filters:focal(2299x1387:3173x2261)/cdn.vox-cdn.com/uploads/chorus_image/image/63216998/2017.08.30_DAF_Pizza_Photos_0909.0.jpg" alt="IMAGE HERE" id="pizza"> -->
       </div>
       <div class="row-1">
         <!-- insert an image here -->
-        <img src="https://external-preview.redd.it/XgYORZehSDLoH1VZb6cVwy-JX7DTNF5zgU8VpyRIJaM.jpg?auto=webp&s=1aa6c764ac6c2cf15ff4abe14a3e03791ab3e845" alt="IMAGE HERE" id="mac">
+        <!-- <img src="https://external-preview.redd.it/XgYORZehSDLoH1VZb6cVwy-JX7DTNF5zgU8VpyRIJaM.jpg?auto=webp&s=1aa6c764ac6c2cf15ff4abe14a3e03791ab3e845" alt="IMAGE HERE" id="mac"> -->
       </div>
       <div id="login" class="row-2">
       
@@ -99,9 +99,8 @@ export default {
   height: 80px;
   font-size: 50px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: plum;
   
-
+  
 }
 
 body{

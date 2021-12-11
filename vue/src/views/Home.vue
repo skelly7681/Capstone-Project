@@ -2,20 +2,16 @@
 
   <div class="home" id="home">
     <router-link to="/login" v-if="this.$store.state.currentUser">Log In</router-link>&nbsp;&nbsp;
-    <h1 class="pagename">Home</h1>
-    <p>You must be authenticated to see this</p>
+    <router-link v-bind:to="{ name: '' }" id="invite-button"> invite </router-link>&nbsp;
+    <!-- <h1 class="pagename">Home</h1> -->
+    
 
     <DummyRestaurant />
 
     <div id="viewRestaurants">
 
-      <div class="loading" v-if="isLoading">
-        <img src="../assets/loading.gif" alt="HELP!!!">
-      </div>
-
       <div>
-        This is where resturant cards will be displayed?  Do we need to pull from the store or will these populate based on
-        the search results?
+        <h1>DISPLAY RESTAURANT CARDS HERE</h1>
       </div>
       
     </div>
@@ -48,10 +44,10 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Pacifico&display=swap');
 
  .pagename {
-   font-family: 'pacifico';
+   
   }
 
 

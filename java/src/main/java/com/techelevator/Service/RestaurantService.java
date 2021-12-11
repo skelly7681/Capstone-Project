@@ -41,7 +41,7 @@ public class RestaurantService {
 
         ResponseEntity<BusinessesDTO> response = new RestTemplate().exchange(BASE_URL + restaurantByLocationEndpoint, HttpMethod.GET, request, BusinessesDTO.class);
 
-        //TO TEST
+        //TO TEST FUNCTIONALITY
         for (RestaurantDTO rest : response.getBody().getBusinesses()) {
             searchResults.add(rest);
             System.out.println(rest.toString());
@@ -68,8 +68,6 @@ public class RestaurantService {
         return likedRestaurants;
 
     }
-
-
 
 }
 

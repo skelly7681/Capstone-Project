@@ -6,8 +6,15 @@ export default {
     return axios.get('/search', location)
   },
 
-//   register(user) {
-//     return axios.post('/register', user)
-//   }
+  getRestaurantById(id) {
+    return axios.get('/restaurants/{restaurantId}', id)
+  },
 
+  saveRestaurant(restaurant) {
+    return axios.post('/restaurants/save', restaurant)
+  },
+
+  addRestaurantToInvite(inviteId, restaurantId) {
+    return axios.post('/invites/add/restaurant', inviteId, restaurantId)
+  }
 }

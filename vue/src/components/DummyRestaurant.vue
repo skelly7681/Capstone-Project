@@ -1,13 +1,25 @@
 <template>
     <div>
-        <h1>THIS IS WHERE YOU BROWSE RESTAURANTS</h1>
-        //change this header, of course --> for testing purposes only
-
+    
     <div id="searchbar">
       <h1>SEARCH BAR</h1>
-      <input type="text" v-model="location" placeholder="City/Zip Code" id="location" >
-      <button v-click="search">Submit</button>
+      <form>
+        <input type="text" v-model="searchLocation" placeholder="City/Zip Code" id="location" >
+        <input type="submit" v-on:click="search()"/> 
+      </form>
+
+      <div class="loading" v-if="isLoading">
+        <img src="../assets/loading.gif" alt="HELP!!!">
+      </div>
+
       <p>{{ searchResults }}</p>
+    </div>
+
+    <div>
+        <!-- <li class="restaurant" v-for="restaurant in searchResults" v-bind:key="restaurant.id">
+            <img v-bind:src="photo.download_url" />
+            <span class="author">{{ photo.author }}</span>
+        </li> -->
     </div>
 
     </div>
@@ -18,13 +30,17 @@ import restuarantService from "../services/RestaurantService";
 
 export default {
     name: "restaurant",
+
     components: {},
     data(){
         return{
             searchLocation: "",
             searchResults: [],
             resturant: {
+                id: "",
+                alais: "",
                 name: "",
+                url: "",
                 type: "",
                 address: "", 
                 openNow: false, // may have an issue with this/ db different
@@ -32,26 +48,25 @@ export default {
                 thumbnailImg: "", 
                 starRating: 0, 
                 hasTakeOut: false, 
-                hasDelivery: false
+                hasDelivery: false, 
+                imgUrl: "", 
+                coordinates: {
+                    longitude: "", 
+                    latitude: ""
+                }
             },
-            savedToInvite: false
+            savedToInvite: false, 
+            isLoading: true
         };
     },
     created(){
         restuarantService.search(this.searchLocation).then(response => {
             this.searchResults = response.data;
+            this.isLoading = false;
         })
     },
   methods: {
-    search() {
-      restuarantService
-      .search(this.location).then(response => {
-        if(response.status === 200){                   //should be 201?
-           this.resturant = response.data.resturant;
-          
-        }
-      })
-    }
+
 }
 
     //     }
