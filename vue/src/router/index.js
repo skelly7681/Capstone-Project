@@ -5,6 +5,9 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import CreateInvite from '../views/CreateInvite.vue'
+import ViewUserInvites from '../views/ViewUserInvites.vue'
+
 
 Vue.use(Router)
 
@@ -53,6 +56,27 @@ const router = new Router({
         requiresAuth: false
       }
     },
+
+    {
+      path: "/invite",
+      name: "invite",
+      component: CreateInvite,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/viewInvites",
+      name: "viewInvites",
+      component: ViewUserInvites,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
+
+
+
   ]
 })
 

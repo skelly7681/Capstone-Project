@@ -7,7 +7,7 @@ export default {
     },
 
     getInviteByInviteId(inviteId) {
-        return axios.put('/invites/{inviteId}', inviteId)
+        return axios.put('/invites/${inviteId}', inviteId)
     },
 
     thumbsDown(restaurant) {

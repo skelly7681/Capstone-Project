@@ -4,8 +4,8 @@
     <div id="searchbar">
       <h1>SEARCH BAR</h1>
       <form>
-        <input type="text" v-model="searchLocation" placeholder="City/Zip Code" id="location" >
-        <input type="submit" v-on:click="search()"/> 
+        <input type="text" v-model="searchLocation" placeholder="City/Zip Code" id="location" />
+        <input type="submit" v-on:change="search()"/> 
       </form>
 
       <div class="loading" v-if="isLoading">
@@ -13,6 +13,10 @@
       </div>
 
       <p>{{ searchResults }}</p>
+    </div>
+
+    <div id="restaurantDisplay">
+        <h1>DISPLAY RESTAURANT CARDS HERE</h1>
     </div>
 
     <div>
@@ -26,7 +30,7 @@
 </template>
 
 <script>
-import restuarantService from "../services/RestaurantService";
+import RestuarantService from "../services/RestaurantService";
 
 export default {
     name: "restaurant",
@@ -60,20 +64,17 @@ export default {
         };
     },
     created(){
-        restuarantService.search(this.searchLocation).then(response => {
+        RestuarantService.search(this.searchLocation).then(response => {
             this.searchResults = response.data;
             this.isLoading = false;
         })
-    },
-  methods: {
+    }
+    // methods: {
 
-}
-
-    //     }
     // },
-    // computed: (
-    //     filteredRestuarant
-    // )
+    // computed: {
+
+    // }
 //end of export default block  
 };
 </script>

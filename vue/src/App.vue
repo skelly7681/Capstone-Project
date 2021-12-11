@@ -10,6 +10,9 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 #home-button{
   display: flex;
@@ -18,10 +21,6 @@
 #nav{
   float: right;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
  #tender{
    font-family: 'Rubik', sans-serif;

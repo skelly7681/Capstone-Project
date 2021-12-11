@@ -1,13 +1,17 @@
 import axios from 'axios';
 
+axios.create({
+  baseURL: 'http://localhost:8080'
+})
+
 export default {
 
-  search(location) {
-    return axios.get('/search', location)
+  search(searchLocation) {
+    return axios.get('/search', searchLocation)
   },
 
   getRestaurantById(id) {
-    return axios.get('/restaurants/{restaurantId}', id)
+    return axios.get('/restaurants/${restaurantId}', id)
   },
 
   saveRestaurant(restaurant) {

@@ -137,8 +137,8 @@ public class TenderController {
     // BASIC RESTAURANT SEARCH ---------------------------------------
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/search", method = RequestMethod.GET)
-    public List<RestaurantDTO> searchRestaurants(String location) {
-        return rs.getAllRestaurants(location);
+    public List<RestaurantDTO> searchRestaurants(String searchLocation) {
+        return rs.getAllRestaurants("NYC");  /// this is just to test the FE -- search bar is still not working
     }
 
     // INDIVIDUAL RESTAURANT SEARCH ---------------------------------------

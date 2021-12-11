@@ -29,6 +29,9 @@
             v-if="this.$route.query.registration"
           >Thank you for registering, please sign in.</div>
           
+
+
+          <!-- THIS IS THE LOG IN FORM - USED <BR> AS A TEMP SOLUTION -->
           <input
             type="text"
             id="username"
@@ -38,7 +41,7 @@
             required
             autofocus
           />
-          
+          <br>
           <input
             type="password"
             id="password"
@@ -47,8 +50,10 @@
             v-model="user.password"
             required
           />
-          <router-link :to="{ name: 'register' }">Need an account?</router-link>
-          <button type="submit" id="sign-in" >Sign in</button>
+          <br>
+          <button type="submit" id="sign-in" > Sign in </button> <br>
+          <router-link :to="{ name: 'register' }"> Need an account? </router-link>
+          
         </form>
       </div>
     </div>

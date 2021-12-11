@@ -27,7 +27,7 @@ public class RestaurantService {
     }
 
 
-    //TODO: refactor into proper type return method ya ya ya
+    //TODO: figure out why the location isn't being passed through
     public List<RestaurantDTO> getAllRestaurants(String location) {
 
         List<RestaurantDTO> searchResults = new ArrayList<>();
