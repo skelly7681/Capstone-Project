@@ -43,8 +43,7 @@ export default {
 
 #createButton, #viewButton{
   font-family: 'Rubik', sans-serif;
-  heigh
-
+  
 }
 
 

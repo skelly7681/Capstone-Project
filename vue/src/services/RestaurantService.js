@@ -7,7 +7,7 @@ axios.create({
 export default {
 
   search(searchLocation) {
-    return axios.get('/search', searchLocation)
+    return axios.post('/search', searchLocation)
   },
 
   getRestaurantById(id) {

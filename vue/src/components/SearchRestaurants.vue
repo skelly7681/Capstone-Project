@@ -5,14 +5,14 @@
       <h1>SEARCH BAR</h1>
       <form>
         <input type="text" v-model="searchLocation" placeholder="City/Zip Code" id="location" />
-        <input type="submit" v-on:change="search()"/> 
+        <input type="button" v-on:click="search()"/> 
       </form>
 
       <div class="loading" v-if="isLoading">
         <img src="../assets/loading.gif" alt="HELP!!!">
       </div>
 
-      <p>{{ searchResults }}</p>
+      <p>{{ foundRestaurants }}</p>
     </div>
 
     <div id="restaurantDisplay">
@@ -33,7 +33,7 @@
 import RestuarantService from "../services/RestaurantService";
 
 export default {
-    name: "restaurant",
+    name: "searchRestaurants",
 
     components: {},
     data(){
@@ -68,13 +68,22 @@ export default {
             this.searchResults = response.data;
             this.isLoading = false;
         })
+    }, 
+    methods: {
+        search(){
+            RestuarantService.search(this.searchLocation).then(response => {
+            this.searchResults = response.data;
+            this.$store.commit('SET_SEARCH_RESULTS', this.searchResults);
+            this.isLoading = false;
+        })
     }
-    // methods: {
+    }, 
+    computed: {
+        foundRestaurants(){
+            return this.$store.state.searchResults;
+        }
 
-    // },
-    // computed: {
-
-    // }
+    }
 //end of export default block  
 };
 </script>

@@ -14,14 +14,16 @@
     </div>
 
     <!-- all imported componets here -->
-    <dummy-restaurant/>
+    <search-restaurants/>
 
 </div>
 </template>
 
 <script>
-import DummyRestaurant from './DummyRestaurant.vue'
+import SearchRestaurants from './SearchRestaurants.vue'
+
 export default {
+  components: { SearchRestaurants },
   data(){
       return{
           isLoading: true
@@ -29,7 +31,7 @@ export default {
       
 
   },
-  components: { DummyRestaurant },
+  
 
 }
 </script>
