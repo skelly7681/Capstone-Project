@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {}, 
-    searchResults: []
+    searchResults: [], 
+    currentInvite: {},
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -41,7 +42,11 @@ export default new Vuex.Store({
     }, 
     SET_SEARCH_RESULTS(state, results){
       state.searchResults = results;
-    }
+    }, 
+    SET_CURRENT_INVITE(state, invite){
+      state.currentInvite = invite;
+    }, 
+    
 
   }
 })
