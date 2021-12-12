@@ -5,10 +5,7 @@ import com.techelevator.Service.DTO.ExtModels.ApiCategories;
 import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.Service.RestaurantService;
 import com.techelevator.dao.*;
-import com.techelevator.model.Invite;
-import com.techelevator.model.LoginDTO;
-import com.techelevator.model.Restaurant;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
 import com.techelevator.security.jwt.JWTFilter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -127,9 +124,9 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/invites/add", method = RequestMethod.POST)
-    public void addRestaurantToInvite(@RequestBody int restaurantId, int inviteId) {
+    public void addRestaurantToInvite(@RequestBody RestaurantInviteDTO restaurantInvite) {
 
-        inviteDao.addRestaurantToInvite(2,3);
+        inviteDao.addRestaurantToInvite(restaurantInvite.getRestaurantId(), restaurantInvite.getInviteId());
 
     }
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Restaurant {
 
-    private Integer restaurantId;
+    private int restaurantId;
     private String yelpKey;
     private String restaurantName;
     private String restaurantType;
@@ -18,7 +18,7 @@ public class Restaurant {
 
     private boolean vetoed;
 
-    public Restaurant(Integer restaurantId, String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
+    public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
         this.restaurantType = restaurantType;
@@ -37,7 +37,7 @@ public class Restaurant {
         return restaurantId;
     }
 
-    public void setRestaurantId(Integer restaurantId) {
+    public void setRestaurantId(int restaurantId) {
         this.restaurantId = restaurantId;
     }
 

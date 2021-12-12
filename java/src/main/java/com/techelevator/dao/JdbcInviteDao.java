@@ -87,11 +87,11 @@ public class JdbcInviteDao implements InviteDao {
 
     // POST (or PUT?) method to establish the connection in the associative table
 
-    public void addRestaurantToInvite(int inviteId, int restaurantId) {
+    public void addRestaurantToInvite(int restaurantId, int inviteId) {
 
         boolean defaultVeto = false;
 
-        String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id, vetoed)\n" +
+        String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id, vetoed) " +
                 "VALUES (?, ?, ?)";
 
         jdbcTemplate.update(sql, inviteId, restaurantId, defaultVeto);
