@@ -20,6 +20,7 @@
             <button>Call To Order</button>
         </div>
         <br>
+        <!-- should these only be present if the restaurant is included in an invite? Maybe that needs to be a bool -->
         <div id="container">
             <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()">Thumbs Up</button>
             <button type="button thumbsDown" id="button2">Thumbs Down</button>
@@ -36,11 +37,30 @@ export default {
     //     restaurant: Object
     // },
     data(){
-        return {
-            restaurant: {
-                name: ''
-            }
-
+        return{
+            searchLocation: "",
+            searchResults: [],
+            resturant: {
+                id: "",
+                alais: "",
+                name: "",
+                url: "",
+                type: "",
+                address: "", 
+                openNow: false, // may have an issue with this/ db different
+                phoneNumber: "", 
+                thumbnailImg: "", 
+                starRating: 0, 
+                hasTakeOut: false, 
+                hasDelivery: false, 
+                imgUrl: "", 
+                coordinates: {
+                    longitude: "", 
+                    latitude: ""
+                }
+            },
+            savedToInvite: false, 
+            isLoading: true
         }
     },
     created(){
