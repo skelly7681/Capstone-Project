@@ -17,6 +17,18 @@
       <p>{{ foundRestaurants }}</p>
     </div>
 
+        <!-- Below is implemented in Restaurant Card but it is not showing up -->
+        <div id="mainCard" class="card" v-for="result in searchResults" :key="result.id">
+        <h1 id="name">Restaurant Name {{result.name}}</h1>
+        <h2 >Restaurant Category{{result.categories}}</h2>
+        <h3>Address {{result.location}}</h3>
+        <h2>Is Closed: {{result.closed}}</h2>
+            <div id="container">
+                <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()">Thumbs Up</button>
+                <button type="button thumbsDown" id="button2">Thumbs Down</button>
+            </div>
+    </div>
+
     </div>
 </template>
 
