@@ -28,21 +28,31 @@
 </template>
 
 <script>
-import restaurantService from "../services/RestaurantService";
+import RestaurantService from "../services/RestaurantService";
 
 export default {
     name: 'restaurant-card',
-    props: {
-        restaurant: Object
+    // props: {
+    //     restaurant: Object
+    // },
+    data(){
+        return {
+            restaurant: {
+                name: ''
+            }
+
+        }
     },
-      methods: {
+    created(){
+        RestaurantService.submitRestaurant().then(response => {
+            this.restaurant.name = response.data;
+            this.isLoading = false;
+        })
+    },      
+    methods: {
       submitRestaurant(){
-          const savedRestaurant = {
-              restaurantName: "Test"
-        
-          }
-          restaurantService
-            .saveRestaurant(savedRestaurant)
+          RestaurantService
+            .saveRestaurant(this.restaurant.name)
             .then(response => {
                 if(response.status === 201){
                 this.$router.push('/')
