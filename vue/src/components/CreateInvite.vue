@@ -33,6 +33,7 @@ export default {
   components: { SearchRestaurants },
   data(){
       return{
+          newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
           invite: {
               inviteId: "", //this is serial, so does it need to be here?
