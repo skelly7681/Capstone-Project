@@ -21,21 +21,37 @@
         </div>
         <br>
         <div id="container">
-            <button type="button thumbsUp" id="button1" >Thumbs Up</button>
+            <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()">Thumbs Up</button>
             <button type="button thumbsDown" id="button2">Thumbs Down</button>
         </div>
     </div>
 </template>
 
 <script>
+import restaurantService from "../services/RestaurantService";
+
 export default {
     name: 'restaurant-card',
     props: {
         restaurant: Object
     },
-    methods: {}
+      methods: {
+      submitRestaurant(){
+          const savedRestaurant = {
+              restaurantName: "Test"
+        
+          }
+          restaurantService
+            .saveRestaurant(savedRestaurant)
+            .then(response => {
+                if(response.status === 201){
+                this.$router.push('/')
+                }
+            }) 
+          }
+      }
+  }
 
-}
 </script>
 
 <style>
