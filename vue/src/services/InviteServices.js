@@ -3,7 +3,7 @@ import axios from 'axios';
 export default {
 
     getFinalistsByInviteId(inviteId) {
-        return axios.get('/finalists', inviteId)
+        return axios.post('/finalists', inviteId)
     },
 
     getInviteByInviteId(inviteId) {
@@ -15,7 +15,7 @@ export default {
     },
 
     getAllInvitesBySenderId(senderUserId) {
-        return axios.get('/invites', senderUserId)
+        return axios.post('/invites', senderUserId)
     },
     
     createInvite(senderUserId) {

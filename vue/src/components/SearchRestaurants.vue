@@ -17,22 +17,39 @@
 
     <div id="restaurantDisplay">
         <h1>DISPLAY RESTAURANT CARDS HERE</h1>
-         <restaurant-card v-for="result in searchResults" :key="result.name">
-             <span>{{result.name}}</span>
-         </restaurant-card>
-         
+         <restaurant-card v-for="result in searchResults" :key="result.id">
+             <!-- This prints one card per restaurant -->
+             <h1>{{result.name}}</h1>
+         </restaurant-card>         
     </div>
 
     <div>
-       
+
+    <div id="mainCard" class="card" v-for="result in searchResults" :key="result.id">
+        <h1 id="name">Restaurant Name {{result.name}}</h1>
+        <h2 >Restaurant Category{{result.categories}}</h2>
+        <h3>Address {{result.location}}</h3>
+        <h2>Is Closed: {{result.closed}}</h2>
+    </div>
+
+   
+
+    </div>
+
+
+
+    <div>
         <!-- <li class="restaurant" v-for="restaurant in searchResults" v-bind:key="restaurant.id">
             <img v-bind:src="photo.download_url" />
             <span class="author">{{ photo.author }}</span>
         </li> -->
     </div>
+
     <div>
-        <li v-for="result in searchResults" :key="result.name">
+        <li v-for="result in searchResults" :key="result.id">
             <span>{{result.name}}</span>
+            <span>{{result.categories}}</span>
+            <!-- This prints restaurant names -->
 
         </li>
     </div>

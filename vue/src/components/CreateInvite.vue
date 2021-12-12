@@ -33,6 +33,7 @@ export default {
   components: { SearchRestaurants },
   data(){
       return{
+          newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
           invite: {
               inviteId: "", //this is serial, so does it need to be here?
@@ -42,6 +43,9 @@ export default {
               uniqueLink: "" //how tf do we make a unique link
         }
       }
+  },
+  created(){
+      
   },
   methods: {
       submitInvite(){
@@ -59,7 +63,9 @@ export default {
                 this.$router.push('/')
                 }
             }) 
-          }
+          }, 
+
+          //deal with the $Store here?
       }
   }
   
