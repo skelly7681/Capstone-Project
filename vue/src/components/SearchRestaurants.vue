@@ -17,7 +17,9 @@
 
     <div id="restaurantDisplay">
         <h1>DISPLAY RESTAURANT CARDS HERE</h1>
-         <restaurant-card />
+         <restaurant-card v-for="result in searchResults" :key="result.name">
+             <span>{{result.name}}</span>
+         </restaurant-card>
          
     </div>
 
@@ -28,6 +30,13 @@
             <span class="author">{{ photo.author }}</span>
         </li> -->
     </div>
+    <div>
+        <li v-for="result in searchResults" :key="result.name">
+            <span>{{result.name}}</span>
+
+        </li>
+    </div>
+    
 
     </div>
 </template>
@@ -90,7 +99,12 @@ export default {
     computed: {
         foundRestaurants(){
             return this.$store.state.searchResults;
+            
         }
+        // foundRestaurants(){
+        //     parseData = JSON.parse(this.$store.state.searchResults)
+        //     return parseData;
+    
 
     }
 //end of export default block  
