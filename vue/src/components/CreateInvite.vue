@@ -21,16 +21,19 @@
 
     <!-- all imported componets here -->
     <search-restaurants/>
+    <restaurant-list/>
 
 </div>
 </template>
 
 <script>
 import SearchRestaurants from './SearchRestaurants.vue';
-import inviteService from '../services/InviteServices'
+import inviteService from '../services/InviteServices';
+import RestaurantList from './RestaurantList.vue';
+
 
 export default {
-  components: { SearchRestaurants },
+  components: { SearchRestaurants, RestaurantList },
   data(){
       return{
           newInvite: [],  //this is where restaurants that are selected are stored

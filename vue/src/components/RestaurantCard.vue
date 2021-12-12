@@ -1,13 +1,22 @@
 
 <template>
-    <div id="mainCard" class="card">
+    <div id="display" class="card">
+        <div id="mainCard" class="card" v-for="result in searchResults" :key="result.id">
+        <h1 id="name">Restaurant Name {{result.name}}</h1>
+        <h2 >Restaurant Category{{result.categories.alias}}</h2>
+        <h3>Address {{result.location}}</h3>
+        <h2>Is Closed: {{result.closed}}</h2>
+    </div>
+
+
+<!-- 
         <h1 id="name">Restaurant Name</h1>
         <h2>Restaurant Category</h2>
-        <!-- <img class="thumbnail" v-if="restaurant.thumbnailimg" v-bind:src="restaurant.thumbnailimg" />
+        <img class="thumbnail" v-if="restaurant.thumbnailimg" v-bind:src="restaurant.thumbnailimg" />
         <button class="mark_invite" v-on:click.prevent="setInvite(true)" v-if=" !restaurant.invite">PLUS SIGN WILL GO HERE</button>
         <h3 class="restaurant-name">restaurant{{restaurant.name}}</h3>
         <h1 class="restaurant-type">{{restaurant.type}}</h1>
-        <h1 class="restaurant-star-rating">*****</h1> -->
+        <h1 class="restaurant-star-rating">*****</h1>
 
         <div id="address">
             <h3>Address</h3>
@@ -19,12 +28,24 @@
         
             <button>Call To Order</button>
         </div>
-        <br>
+        <br> -->
+
+
         <!-- should these only be present if the restaurant is included in an invite? Maybe that needs to be a bool -->
         <div id="container">
             <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()">Thumbs Up</button>
             <button type="button thumbsDown" id="button2">Thumbs Down</button>
         </div>
+
+        <div>
+            <h1>TESTING LISTING API ITEMS</h1>
+            <li v-for="result in searchResults" :key="result.id">
+                <span>{{result.name}}</span>
+                <span>{{result.categories}}</span>
+                <!-- This prints restaurant names -->
+        </li>
+    </div>
+
     </div>
 </template>
 
@@ -44,7 +65,9 @@ export default {
             searchResults: [],
             resturant: {
                 id: "",
-                alais: "",
+                categories:{  //is this how we pull information from a nested object
+                  alias:""  
+                },
                 name: "",
                 url: "",
                 type: "",
@@ -61,7 +84,8 @@ export default {
                     latitude: ""
                 }
             },
-            savedToInvite: false, 
+            savedToInvite: false,
+            vetoed: false,
             isLoading: true
         }
     },
@@ -81,7 +105,13 @@ export default {
                 }
             }) 
           }
-      }
+      },
+    computed: {
+        foundRestaurants(){
+            return this.$store.state.searchResults;
+        }
+    }
+
   }
 
 </script>

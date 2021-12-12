@@ -1,6 +1,7 @@
 <template>
   <div class ="restaurant-container">
       <restaurant-card v-bind:restaurant="restaurant" v-for="restaurant in $store.state.restaurants" v-bind:key="restaurant.id" />
+      
   </div>
 </template>
 
