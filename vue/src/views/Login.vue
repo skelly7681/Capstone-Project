@@ -109,7 +109,9 @@ export default {
 }
 
 body{
-  background-color: #FFDD;
+  background-color:white;
+  
+  /* original color: rgba(255, 255, 221, 0.867); */
 }
 .Master-row{
   
