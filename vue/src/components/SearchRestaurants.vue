@@ -17,9 +17,12 @@
 
     <div id="restaurantDisplay">
         <h1>DISPLAY RESTAURANT CARDS HERE</h1>
+         <restaurant-card />
+         
     </div>
 
     <div>
+       
         <!-- <li class="restaurant" v-for="restaurant in searchResults" v-bind:key="restaurant.id">
             <img v-bind:src="photo.download_url" />
             <span class="author">{{ photo.author }}</span>
@@ -30,12 +33,15 @@
 </template>
 
 <script>
-import RestuarantService from "../services/RestaurantService";
+import RestaurantService from "../services/RestaurantService";
+import RestaurantCard from "../components/RestaurantCard"
 
 export default {
     name: "searchRestaurants",
 
-    components: {},
+    components: {
+        RestaurantCard
+    },
     data(){
         return{
             searchLocation: "",
@@ -64,14 +70,14 @@ export default {
         };
     },
     created(){
-        RestuarantService.search(this.searchLocation).then(response => {
+        RestaurantService.search(this.searchLocation).then(response => {
             this.searchResults = response.data;
             this.isLoading = false;
         })
     }, 
     methods: {
         search(){
-            RestuarantService.search(this.searchLocation).then(response => {
+            RestaurantService.search(this.searchLocation).then(response => {
             this.searchResults = response.data;
             this.$store.commit('SET_SEARCH_RESULTS', this.searchResults);
             this.isLoading = false;
