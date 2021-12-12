@@ -1,9 +1,9 @@
 
 <template>
-    <div>
+    <div id="cards">
 
         <!-- Below is implemented in Restaurant Card but it is not showing up -->
-        
+        <div id="mainCard">
         <h1 id="name">{{restaurant.name}}</h1>
         <h2 >Restaurant Category: {{restaurant.categories[0].title}}</h2>
         
@@ -18,6 +18,7 @@
                 <button type="button thumbsDown" id="button2"><i class="far fa-dizzy fa-3x"/>
 </button>
             </div>
+        </div>
         
     </div>
 </template>
@@ -77,7 +78,8 @@ export default {
     display: inline-block;
 }
 
-/* #mainCard {
+
+    #mainCard {
     border-width: 10px;
     border-color: black;
     padding: 10px;
@@ -85,13 +87,15 @@ export default {
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    /* flex-direction: column; */
+    overflow-x: auto;
     justify-content: center;
     width: 20rem;
     margin: 0 .5rem 2.3rem .5rem;
+    
 }
 
-#name{
+  #name{
      text-decoration: underline;
      text-align: center;
 }
@@ -116,6 +120,6 @@ export default {
     display: block;
     margin: 0
 
-} */
+}  
 
 </style>
