@@ -44,6 +44,9 @@ export default {
         }
       }
   },
+  created(){
+      
+  },
   methods: {
       submitInvite(){
           const newInvite = {
@@ -60,7 +63,9 @@ export default {
                 this.$router.push('/')
                 }
             }) 
-          }
+          }, 
+
+          //deal with the $Store here?
       }
   }
   
