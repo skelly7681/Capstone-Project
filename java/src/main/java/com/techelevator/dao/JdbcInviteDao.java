@@ -89,10 +89,12 @@ public class JdbcInviteDao implements InviteDao {
 
     public void addRestaurantToInvite(int inviteId, int restaurantId) {
 
-        String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id)\n" +
-                "VALUES (?, ?)";
+        boolean defaultVeto = false;
 
-        jdbcTemplate.update(sql, inviteId, restaurantId);
+        String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id, vetoed)\n" +
+                "VALUES (?, ?, ?)";
+
+        jdbcTemplate.update(sql, inviteId, restaurantId, defaultVeto);
     }
 
     private Invite mapRowToInvite(SqlRowSet rs) {

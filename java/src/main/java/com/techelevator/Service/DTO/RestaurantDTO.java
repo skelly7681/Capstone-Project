@@ -33,8 +33,8 @@ public class RestaurantDTO {
     private double rating;
 
 
-
     //GETTERS & SETTERS
+
 
     public String getId() {
         return id;

@@ -29,7 +29,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
-                "WHERE restaurant_id = ?";
+                "WHERE r.restaurant_id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, restaurantId);
         if (results.next()) {
