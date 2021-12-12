@@ -1,5 +1,5 @@
 <template>
-
+  
   <div id="app">
     <div id="tender">TEnder</div>
     <div id="nav">
