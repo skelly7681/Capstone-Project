@@ -31,9 +31,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
-#home-button{
-  display: flex;
-}
 
 #nav{
   float: right;
@@ -75,6 +72,14 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
     font-size: 15px;
+  }
+
+  button {
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  input {
+    font-family: 'Rubik', sans-serif;
   }
 
 </style>

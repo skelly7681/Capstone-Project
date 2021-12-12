@@ -1,10 +1,6 @@
 <template>
   <body class="container">
 
-    <div id="top-bar">
-      
-    </div>
-
     <div class="Master-row">
             <div class="row-3">
         <!-- insert and image here  -->
@@ -17,7 +13,7 @@
       <div id="login" class="row-2">
       
         <form class="form-signin" @submit.prevent="login">
-          <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+          <h1 class="h3 mb-3 font-weight-normal">Welcome to TEnder</h1>
           <div
             class="alert_alert"
             role="alert"
@@ -51,8 +47,9 @@
             required
           />
           <br>
-          <button type="submit" id="sign-in" > Sign in </button> <br>
-          <router-link :to="{ name: 'register' }"> Need an account? </router-link>
+            <button class="submit" type="submit" id="sign-in" > SIGN IN </button> 
+          <br>
+          <div>New to TEnder? <router-link :to="{ name: 'register' }">Sign up.</router-link></div>
           
         </form>
       </div>
@@ -122,7 +119,7 @@ body{
 
 }
 
-#mac{
+/* #mac{
   width: 100%;
   height: 100%;
 }
@@ -130,7 +127,8 @@ body{
 #pizza{
   width: 100%;
   height: 100%;
-}
+} */
+
 
 .row-1{
   order: 1;
@@ -148,6 +146,33 @@ body{
   order: 3;
   flex-basis: 33%;
 
+}
+
+input.form-control {
+  width: 80%;
+  padding: 10px 15px;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+input.form-control:focus {
+  border: 3px solid black;
+}
+
+button.submit {
+  border: none;
+  background-color: rgb(243, 214, 243);
+  font-size: 20px;
+  border-radius: 25px;
+  width: 250px;
+  padding: 12px 32px;
+}
+
+button.submit:hover {
+  background-color: plum;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 </style>
