@@ -1,51 +1,25 @@
 
 <template>
-    <div id="display" class="card">
-        <div id="mainCard" class="card" v-for="result in searchResults" :key="result.id">
-        <h1 id="name">Restaurant Name {{result.name}}</h1>
-        <h2 >Restaurant Category{{result.categories.alias}}</h2>
-        <h3>Address {{result.location}}</h3>
-        <h2>Is Closed: {{result.closed}}</h2>
-    </div>
+    <div id="cards">
 
-
-<!-- 
-        <h1 id="name">Restaurant Name</h1>
-        <h2>Restaurant Category</h2>
-        <img class="thumbnail" v-if="restaurant.thumbnailimg" v-bind:src="restaurant.thumbnailimg" />
-        <button class="mark_invite" v-on:click.prevent="setInvite(true)" v-if=" !restaurant.invite">PLUS SIGN WILL GO HERE</button>
-        <h3 class="restaurant-name">restaurant{{restaurant.name}}</h3>
-        <h1 class="restaurant-type">{{restaurant.type}}</h1>
-        <h1 class="restaurant-star-rating">*****</h1>
-
-        <div id="address">
-            <h3>Address</h3>
-        </div>
-        <div id="hours">
-            <h3>Hours</h3>
-        </div>
-        <div id="phoneNumber">
+        <!-- Below is implemented in Restaurant Card but it is not showing up -->
+        <div id="mainCard">
+        <h1 id="name">{{restaurant.name}}</h1>
+        <h2 >Restaurant Category: {{restaurant.categories[0].title}}</h2>
         
-            <button>Call To Order</button>
+        <p v-if="restaurant.location.address1" class="address">Address {{restaurant.location.address1}}</p>
+        <p v-if="restaurant.location.address2" class="address">{{ restaurant.location.address2}}</p>
+        <p v-if="restaurant.location.address3" class="address">{{ restaurant.location.address3}}</p>
+        <span class="address cs" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
+        <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
+            <div id="container">
+                <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><i class="far fa-grin-stars fa-3x"/>
+</button>
+                <button type="button thumbsDown" id="button2"><i class="far fa-dizzy fa-3x"/>
+</button>
+            </div>
         </div>
-        <br> -->
-
-
-        <!-- should these only be present if the restaurant is included in an invite? Maybe that needs to be a bool -->
-        <div id="container">
-            <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()">Thumbs Up</button>
-            <button type="button thumbsDown" id="button2">Thumbs Down</button>
-        </div>
-
-        <div>
-            <h1>TESTING LISTING API ITEMS</h1>
-            <li v-for="result in searchResults" :key="result.id">
-                <span>{{result.name}}</span>
-                <span>{{result.categories}}</span>
-                <!-- This prints restaurant names -->
-        </li>
-    </div>
-
+        
     </div>
 </template>
 
@@ -56,45 +30,22 @@ import RestaurantService from "../services/RestaurantService";
 export default {
     name: 'restaurant-card',
 
-    // props: {
-    //     restaurant: Object
-    // },
+    props: {
+        restaurant: {}
+    },
+
     data(){
         return{
             searchLocation: "",
             searchResults: [],
-            resturant: {
-                id: "",
-                categories:{  //is this how we pull information from a nested object
-                  alias:""  
-                },
-                name: "",
-                url: "",
-                type: "",
-                address: "", 
-                openNow: false, // may have an issue with this/ db different
-                phoneNumber: "", 
-                thumbnailImg: "", 
-                starRating: 0, 
-                hasTakeOut: false, 
-                hasDelivery: false, 
-                imgUrl: "", 
-                coordinates: {
-                    longitude: "", 
-                    latitude: ""
-                }
-            },
             savedToInvite: false,
             vetoed: false,
             isLoading: true
         }
     },
     created(){
-        RestaurantService.submitRestaurant().then(response => {
-            this.restaurant.name = response.data;
-            this.isLoading = false;
-        })
-    },      
+       //UNKNOWN NEED: LifeCycle Hook
+       },      
     methods: {
       submitRestaurant(){
           RestaurantService
@@ -116,9 +67,19 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+@import 'https://use.fontawesome.com/releases/v5.13.0/css/all.css';
 
-#mainCard {
+.address {
+    margin: 2px 8px;
+}
+
+.cs {
+    display: inline-block;
+}
+
+
+    #mainCard {
     border-width: 10px;
     border-color: black;
     padding: 10px;
@@ -126,13 +87,15 @@ export default {
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    /* flex-direction: column; */
+    overflow-x: auto;
     justify-content: center;
     width: 20rem;
     margin: 0 .5rem 2.3rem .5rem;
+    
 }
 
-#name{
+  #name{
      text-decoration: underline;
      text-align: center;
 }
@@ -157,6 +120,6 @@ export default {
     display: block;
     margin: 0
 
-}
+}  
 
 </style>
