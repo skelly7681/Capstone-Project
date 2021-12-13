@@ -17,6 +17,8 @@
         <!-- this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
         <button type="button thumbsDown" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
 
+        <button type="call restaurant" id="call-btn" v-on:click="searchResults(restaurant.phoneNumber)">Call Restaurant</button>
+
             <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
             <!-- <div id="container">
                 <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
