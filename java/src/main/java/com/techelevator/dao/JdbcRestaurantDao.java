@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.model.Invite;
 import com.techelevator.model.Restaurant;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -66,7 +67,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
-                "JOIN invite i ON ir.invite_id = ir.invite_id " +
+                "JOIN invites i ON ir.invite_id = ir.invite_id " +
                 "WHERE invite_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         while (results.next()){
@@ -88,8 +89,8 @@ public class JdbcRestaurantDao implements RestaurantDao {
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
-                "JOIN invite i ON ir.invite_id = ir.invite_id " +
-                "WHERE invite_id = ? AND ir_vetoed = false";
+                "JOIN invites i ON ir.invite_id = ir.invite_id " +
+                "WHERE ir.invite_id = ? AND ir.vetoed = false";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         while (results.next()){
             Restaurant restaurant = mapRowToRestaurant(results);
@@ -115,12 +116,12 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
     }
 
-    @Override
+    @Override  // this SQL statement is broken
     public void thumbsDown(int restaurantId) {
 
-        String sql = "UPDATE invite_restaurant " +
+        String sql = "UPDATE invite_restaurant ir " +
                 "JOIN restaurants r ON ir.restaurant_id = r.restaurant_id " +
-                "SET vetoed = true WHERE restaurant_id = ?";
+                "SET vetoed = true WHERE ir.restaurant_id = ?";
 
         jdbcTemplate.update(sql, restaurantId);
     }

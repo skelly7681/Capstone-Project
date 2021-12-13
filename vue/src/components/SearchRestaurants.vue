@@ -2,10 +2,10 @@
     <div>
     
         <div id="searchbar">
-        <h2>SEARCH FOR SOMEWHERE TO EAT</h2>
-        <form>
-            <input type="text" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
-            <input type="button" v-on:click="search()"/>  // format this button
+        <h2 id="searchTitle" >SEARCH FOR SOMEWHERE TO EAT</h2>
+        <form ref="anyName" @submit="search">
+            <input type="text" class="form-control" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
+            <button type="button" id="searchButton" v-on:click="search()">SUBMIT</button>
         </form>
 
         <div class="loading" v-if="isLoading">
@@ -67,12 +67,13 @@ export default {
             this.searchResults = response.data;
             this.$store.commit('SET_SEARCH_RESULTS', this.searchResults);
             this.isLoading = false;
+            // this.$refs.anyName.reset();
         })
     }, 
 
     // put a method here to make sure search bar only sends what Yelp will accept
     // put a method to clear search bar after search is submitted
-    //yelp gives us limited options + also will return restaurants outside of the zipcode
+    // yelp gives us limited options + also will return restaurants outside of the zipcode
     
     
     }, 
@@ -94,6 +95,41 @@ export default {
 
 .cs {
     display: inline-block;
+}
+
+#searchTitle {
+    order: 1;
+    padding: 10px;
+    flex-basis: 67%;
+    color: white;
+    background-image: linear-gradient(to bottom right, rgb(114, 227, 241), rgb(235, 124, 235))
+}
+
+#searchButton {
+    border: none;
+    background-color: rgb(243, 214, 243);
+    font-size: 20px;
+    border-radius: 25px;
+    width: 250px;
+    padding: 12px 32px;
+}
+
+#searchButton:hover {
+  background-color: plum;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+input.form-control {
+  width: 15%;
+  padding: 10px 15px;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+input.form-control:focus {
+  border: 3px solid black;
 }
 
 

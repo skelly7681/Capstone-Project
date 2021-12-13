@@ -1,13 +1,9 @@
 // this will be the form to enter info needed to generate an invite - it will populate the home view
 <template>
 <div class="view-content">
-
-
-
-    
     <div class="invitation">
         <div class="nav">
-            <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp;
+            <router-link v-bind:to="{ name: 'home' }" id="home-button"> HOME </router-link>&nbsp;
         </div>
 
         <!-- this deadline box needs to be bound to an invite to send to the db -->
@@ -16,10 +12,6 @@
                 <label for="dueDate">deadline date: </label>
                 <input type="date" id="dueDate" name="dueDate" v-model="invite.closingDate"/> 
                 <input type="time" id="dueTime" name="dueTime" v-model="invite.closingTime"/>
-            </div>
-            <div>
-                <label for="userId">User ID: Enter number to track your Invite</label>
-                <input type="text" name="userId" id="userId" v-model="invite.senderUserId">
             </div>
         </form>
 
@@ -30,7 +22,6 @@
 
         <!-- all imported componets here -->
     
-
     </div>
 </div>
 </template>

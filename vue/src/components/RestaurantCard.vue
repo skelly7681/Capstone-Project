@@ -17,6 +17,10 @@
         <!-- this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
         <button type="button thumbsDown" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
 
+
+        <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
+        <button type="call to Order" id="call-btn" v-on:click="searchResults(restaurant.phoneNumber)">Call to Order</button>
+
             <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
             <!-- <div id="container">
                 <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
@@ -98,7 +102,7 @@ export default {
     #mainCard {
     border-width: 10px;
     border-color: black;
-    padding: 10px;
+    
     margin-bottom: 10px;
     border: 1px solid black;
     display: flex;
@@ -108,6 +112,7 @@ export default {
     justify-content: center;
     width: 20rem;
     margin: 0 .5rem 2.3rem .5rem;
+    height: 100%;
     
 }
 
