@@ -26,7 +26,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         Restaurant restaurant = null;
 
-        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, " +
+        String sql = "SELECT r.restaurant_id, r.restaurant_name, r.restaurant_type, r.restaurant_address, " +
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
@@ -63,12 +63,11 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         List<Restaurant> restaurants = new ArrayList<>();
 
-        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, " +
+        String sql = "SELECT r.restaurant_id, r.restaurant_name, r.restaurant_type, r.restaurant_address, " +
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
-                "JOIN invites i ON ir.invite_id = ir.invite_id " +
-                "WHERE invite_id = ?";
+                "WHERE ir.invite_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         while (results.next()){
             Restaurant restaurant = mapRowToRestaurant(results);
@@ -85,7 +84,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         List<Restaurant> restaurants = new ArrayList<>();
 
-        String sql = "SELECT r.restaurant_name, r.restaurant_type, r.restaurant_address, " +
+        String sql = "SELECT r.restaurant_id, r.restaurant_name, r.restaurant_type, r.restaurant_address, " +
                 "r.phone_number, r.thumbnail_img, r.star_rating, r.take_out, r.delivery, ir.vetoed " +
                 "FROM restaurants r " +
                 "JOIN invite_restaurant ir ON r.restaurant_id = ir.restaurant_id " +
@@ -119,6 +118,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
     @Override  // this SQL statement is broken
     public void thumbsDown(int restaurantId) {
 
+        //need to add invite_id and take out the join
         String sql = "UPDATE invite_restaurant ir " +
                 "JOIN restaurants r ON ir.restaurant_id = r.restaurant_id " +
                 "SET vetoed = true WHERE ir.restaurant_id = ?";
@@ -134,9 +134,12 @@ public class JdbcRestaurantDao implements RestaurantDao {
         restaurant.setRestaurantName(rs.getString("restaurant_name"));
         restaurant.setRestaurantType(rs.getString("restaurant_type"));
         restaurant.setRestaurantAddress(rs.getString("restaurant_address"));
-        restaurant.setPhoneNumber(rs.getNString("phone_number"));
+        restaurant.setPhoneNumber(rs.getString("phone_number"));
         restaurant.setThumbnailImage(rs.getString("thumbnail_img"));
-        restaurant.setStarRating(rs.getInt("star_rating"));
+
+        Double starValue = rs.getDouble("star_rating");
+        restaurant.setStarRating(starValue.intValue());
+
         restaurant.setTakeOut(rs.getBoolean("take_out"));
         restaurant.setDelivery(rs.getBoolean("delivery"));
 

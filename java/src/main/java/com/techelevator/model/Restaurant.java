@@ -120,4 +120,22 @@ public class Restaurant {
     public void setYelpKey(String yelpKey) {
         this.yelpKey = yelpKey;
     }
+
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "restaurantId=" + restaurantId +
+                ", yelpKey='" + yelpKey + '\'' +
+                ", restaurantName='" + restaurantName + '\'' +
+                ", restaurantType='" + restaurantType + '\'' +
+                ", restaurantAddress='" + restaurantAddress + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", thumbnailImage='" + thumbnailImage + '\'' +
+                ", starRating=" + starRating +
+                ", takeOut=" + takeOut +
+                ", delivery=" + delivery +
+                ", vetoed=" + vetoed +
+                '}';
+    }
 }

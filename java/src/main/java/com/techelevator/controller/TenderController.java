@@ -23,7 +23,7 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")   //need to figure this out non-users
 @RestController
 @CrossOrigin
 public class TenderController {
@@ -42,6 +42,7 @@ public class TenderController {
 
     }
 
+    //tested & works (postman call)
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path= "/restaurants/{restaurantId}", method = RequestMethod.GET)
     public Restaurant getRestaurantById(@PathVariable int restaurantId) {
@@ -49,17 +50,19 @@ public class TenderController {
         return restaurantDao.getRestaurantById(restaurantId);
     }
 
-    @PreAuthorize("hasRole('USER')") // needs to be refactored - can't pass a list
-    @RequestMapping(path = "/restaurants", method = RequestMethod.GET)
-    public List<Restaurant> getAllRestaurantsByInviteId(int inviteId) {
+    //tested & works (postman call)
+    @PreAuthorize("hasRole('USER')")
+    @RequestMapping(path = "/restaurants/all/{inviteId}", method = RequestMethod.GET)
+    public List<Restaurant> getAllRestaurantsByInviteId(@PathVariable int inviteId) {
         return restaurantDao.getAllRestaurantsByInviteId(inviteId);
     }
 
+    //tested & works (postman call)
     @PreAuthorize("hasRole('USER')") // returns an empty array with no objects inside of it
-    @RequestMapping(path = "/finalists", method = RequestMethod.POST)
-    public List<Restaurant> getFinalistsByInviteId(InviteIdDTO inviteId) {
+    @RequestMapping(path = "/finalists/{inviteId}", method = RequestMethod.GET)
+    public List<Restaurant> getFinalistsByInviteId(@PathVariable int inviteId) {
 
-        return restaurantDao.getFinalistsByInviteId(inviteId.getInviteId());
+        return restaurantDao.getFinalistsByInviteId(inviteId);
     }
 
     //this needs to be open to the public
@@ -71,6 +74,7 @@ public class TenderController {
 
     }
 
+    //tested & works (postman call)
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED) // this saves a restaurant to the db
     @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
@@ -100,13 +104,12 @@ public class TenderController {
 
     }
 
-    //TODO - this one is giving us issues testing on the front end. May need to rework
-    //this needs to be reworked or a new method needs to be made to pull an invite up by id in path
+    //tested & works (postman call)
 //    @PreAuthorize("hasRole('USER')") // this shouldn't be by user since this should be open to non users
-    @RequestMapping(path = "/invites", method = RequestMethod.POST)
-    public Invite getInviteByInviteId(@RequestBody InviteIdDTO invite) {
+    @RequestMapping(path = "/invites/{inviteId}", method = RequestMethod.GET)
+    public Invite getInviteByInviteId(@PathVariable int inviteId) {
 
-        return inviteDao.getInviteByInviteId(invite.getInviteId());
+        return inviteDao.getInviteByInviteId(inviteId);
     }
 
     //TODO - test this to pull an invite up
@@ -123,6 +126,7 @@ public class TenderController {
         return inviteDao.getAllInvitesBySenderId(senderUserId);
     }
 
+    //tested & works (postman call)
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)  // this is what is created when they make an invite, inviteId is returned to us
     @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
@@ -132,7 +136,7 @@ public class TenderController {
     }
 
 
-
+    //tested & works (postman call)
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/invites/add", method = RequestMethod.POST)
@@ -144,6 +148,7 @@ public class TenderController {
 
     //--------------------THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!------------------------
 
+    //tested & works (front to back)
     // BASIC RESTAURANT SEARCH ---------------------------------------
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/search", method = RequestMethod.POST)

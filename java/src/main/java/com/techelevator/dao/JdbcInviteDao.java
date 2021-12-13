@@ -22,12 +22,12 @@ public class JdbcInviteDao implements InviteDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override  //THIS METHOD IS GIVING US GRIEF. INVALID COLUMN NAME ERROR
+    @Override
     public Invite getInviteByInviteId(int inviteId) {
 
         Invite invite = null;
 
-        String sql = "SELECT sender_user_id, closing_date, closing_time, unique_link " +
+        String sql = "SELECT invite_id, sender_user_id, closing_date, closing_time, unique_link " +
                 "FROM invites WHERE invite_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
         while (results.next()){
