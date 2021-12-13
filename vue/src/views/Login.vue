@@ -106,7 +106,8 @@ body{
   padding: 10px;
   flex-basis: 67%;
   color: white;
-  background-image: linear-gradient(to bottom right, rgb(241, 82, 241), rgb(254,213,50));
+  background-image: linear-gradient(to bottom right, rgb(114, 227, 241), rgb(235, 124, 235))
+  /* background-image: linear-gradient(to bottom right, rgb(241, 82, 241), rgb(254,213,50)); */
 }
 
 .with-tender {
