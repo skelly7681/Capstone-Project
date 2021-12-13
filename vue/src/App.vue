@@ -4,12 +4,12 @@
 
     <header>
 
-      <img src="C:\Users\Student\final-capstone\phl-5-final-capstone-green-team2\vue\src\assets\tendericon.png" alt="TEnder logo" class="logo">
+      <img src=".\assets\tendericon.png" alt="TEnder logo" class="logo">
       <div id="tender">TEnder</div>
       <div class="filler"></div>
       <div id="nav">
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> logout </router-link>
-        <img src="C:\Users\Student\final-capstone\phl-5-final-capstone-green-team2\vue\src\assets\user.png" alt="User">
+        <img src=".\assets\user.png" alt="User">
       </div>
 
     </header>
