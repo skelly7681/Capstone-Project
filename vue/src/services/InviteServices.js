@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 export default {
+    // need to refactor all of these endpoints
 
     getFinalistsByInviteId(inviteId) {
         return axios.post('/finalists', inviteId)
     },
 
     getInviteByInviteId(inviteId) {
-        return axios.post('/invites', inviteId)
+        return axios.get(`/invites/${inviteId}`)
     },
 
     thumbsDown(restaurant) {

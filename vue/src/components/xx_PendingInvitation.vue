@@ -12,7 +12,7 @@
 
         <h2>SEARCH FOR INVITE</h2>
         <form @submit="findInviteById">
-            <input type="text" v-model="searchInviteId" placeholder="invite id" id="inviteSearch" />
+            <input type="text" v-model.number="searchInviteId" placeholder="invite id" id="inviteSearch" />
             <button type="button" v-on:click="findInviteById()">SUBMIT</button>  // format this button
         </form>
 
@@ -21,13 +21,12 @@
         
         <h2></h2>
 
-
 </div>
   
 </template>
 
 <script>
-import inviteService from '../services/InviteServices'
+import InviteService from '../services/InviteServices'
 
 export default {
     props: {
@@ -50,7 +49,7 @@ export default {
         }
     }, 
     created(){
-        inviteService.getInviteByInviteId(this.searchInviteId).then(response => {
+        InviteService.getInviteByInviteId(this.searchInviteId).then(response => {
             this.invite = response.data;
             this.isLoading = false;
         })
@@ -59,9 +58,9 @@ export default {
     methods: {
         addRestaurantsToVetoedList(){
             //TODO thumbs down click toggles veto to true
-            inviteService.thumbsDown(this.restaurant)
+            InviteService.thumbsDown(this.restaurant)
             .then(response => {
-                if(response.status === 201){
+                if(response.status === 200){
                     alert("This should have toggled false to true in the DB")
                 }
             })
@@ -72,15 +71,15 @@ export default {
 
         }, 
         findInviteById(){
-            inviteService.getInviteByInviteId(this.searchInviteId).then(response => {
+            InviteService.getInviteByInviteId(this.searchInviteId).then(response => {
             this.invite = response.data;
             this.$store.commit('SET_CURRENT_INVITE', this.invite);
             this.isLoading = false;
         })
         }, 
         getInvite(){
-            inviteService.findInviteById(this.searchedInviteId).then(response => {
-                if (response.status === 201){
+            InviteService.findInviteById(this.searchedInviteId).then(response => {
+                if (response.status === 200){
                     alert("IT WORKED!!!!! Check the db!")
                 }
             })
