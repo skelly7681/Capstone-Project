@@ -1,7 +1,18 @@
 <template>
-  <div id="register" class="text-center">
+  <!-- <div id="register" class="text-center"> -->
+  <body class="container">
+
+    <div class="tender-intro2">
+      <h1 class="with-tender">Find your next favorite restaurant, with TEnder</h1>
+      <br>
+      <h2>TEnder is your solution to the eternal question: "Where are we going for dinner?"</h2>
+      <h2>Browse restaurants. Pick your favorites. Send an invite to your friends so they can tell you where they do -- and don't -- want to go.</h2>
+      <h2>Your new favorite spot is an invite away.</h2>
+    </div>
+    
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Create Your Account</h1>
+      <br>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -15,6 +26,7 @@
         required
         autofocus
       />
+      <br>
       <label for="password" class="sr-only">Password</label>
       <input
         type="password"
@@ -24,6 +36,7 @@
         v-model="user.password"
         required
       />
+      <br>
       <input
         type="password"
         id="confirmPassword"
@@ -32,12 +45,15 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
+      <br>
+      <br>
+      <button class="submit" type="submit"> SIGN UP </button>
+      <br>
+      <div>Already have an account? <router-link :to="{ name: 'login' }">Sign in.</router-link></div>
     </form>
-  </div>
+
+  </body>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -121,3 +137,72 @@ export default {
   },
 };
 </script>
+
+<style>
+
+body{
+  background-color: rgb(255, 255, 235);
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 25px;
+  
+  /* original color: rgba(255, 255, 221, 0.867); */
+}
+
+.tender-intro2{
+  order: 1;
+  padding: 10px;
+  flex-basis: 67%;
+  color: white;
+  background-image: linear-gradient(to bottom right, rgb(235, 124, 235), rgb(114, 227, 241))
+  /* background-image: linear-gradient(to bottom right, rgb(241, 82, 241), rgb(254,213,50)); */
+}
+
+.with-tender {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 80px;
+}
+
+h2 {
+  font-weight: 300;
+}
+
+form.form-register {
+  order: 2;
+  flex-basis: 33%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input.form-control {
+  width: 80%;
+  padding: 10px 15px;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+input.form-control:focus {
+  border: 3px solid black;
+}
+
+button.submit {
+  border: none;
+  background-color: rgb(243, 214, 243);
+  font-size: 20px;
+  border-radius: 25px;
+  width: 250px;
+  padding: 12px 32px;
+}
+
+button.submit:hover {
+  background-color: plum;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+</style>

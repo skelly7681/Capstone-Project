@@ -12,7 +12,7 @@
     <form class="form-signin" @submit.prevent="login">
 
           <h1>Welcome to TEnder</h1>
-          
+          <br>
           <div
             class="alert_alert"
             role="alert"
@@ -42,6 +42,7 @@
             placeholder="Password"
             v-model="user.password"
             required />
+          <br>
           <br>
           <button class="submit" type="submit" id="sign-in" > SIGN IN </button> 
           <br>
