@@ -51,7 +51,6 @@ export default {
         })
 
     },
-
     methods: {
         addRestaurantsToVetoedList(){
             //TODO 
@@ -67,7 +66,13 @@ export default {
             this.$store.commit('SET_CURRENT_INVITE', this.invite);
             this.isLoading = false;
         })
-        }
+        }, 
+        getInvite(){
+            inviteService.findInviteById(this.searchedInviteId).then(response => {
+                if (response.status === 201){
+                    alert("IT WORKED!!!!! Check the db!")
+                }
+            })
      
     }, 
     computed:{
@@ -76,7 +81,7 @@ export default {
         }
 
     }
-
+    }
 }
 </script>
 

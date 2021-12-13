@@ -62,7 +62,8 @@ public class TenderController {
         return restaurantDao.getFinalistsByInviteId(inviteId);
     }
 
-    @PreAuthorize("hasRole('USER')")
+    //this needs to be open to the public
+//    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/vetoed", method = RequestMethod.PUT)
     public void thumbsDown(@RequestBody Restaurant restaurant) {
 
@@ -71,7 +72,7 @@ public class TenderController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED) // this saves a restaurant to the db
     @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
     public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
 
@@ -100,14 +101,22 @@ public class TenderController {
     }
 
     //TODO - this one is giving us issues testing on the front end. May need to rework
-    @PreAuthorize("hasRole('USER')")
+    //this needs to be reworked or a new method needs to be made to pull an invite up by id in path
+//    @PreAuthorize("hasRole('USER')") // this shouldn't be by user since this should be open to non users
     @RequestMapping(path = "/invites", method = RequestMethod.POST)
-    public Invite getInviteByInviteId(@RequestBody InviteIdDTO invite) {
+    public Invite getInviteByInviteId(@RequestBody int inviteId) {
 
-        return inviteDao.getInviteByInviteId(invite.getInviteId());
+        return inviteDao.getInviteByInviteId(inviteId);
     }
 
-    @PreAuthorize("hasRole('USER')")
+    //TODO - test this to pull an invite up
+    @RequestMapping(path = "/viewInvite/{inviteId}", method = RequestMethod.GET)
+    public Invite viewPendingInvite(@PathVariable int inviteId) {
+        return inviteDao.getInviteByInviteId(inviteId);
+    }
+
+
+    @PreAuthorize("hasRole('USER')") // this populates the "view invites" page
     @RequestMapping(path = "/UserInvites", method = RequestMethod.GET)
     public List<Invite> getAllInvitesBySenderId(int senderUserId) {
 
@@ -115,7 +124,7 @@ public class TenderController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)  // this is what is created when they make an invite, inviteId is returned to us
     @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
     public void createInvite(@RequestBody Invite invite) {
 

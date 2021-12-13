@@ -30,7 +30,7 @@ public class JdbcInviteDao implements InviteDao {
         String sql = "SELECT sender_user_id, closing_date, closing_time, unique_link " +
                 "FROM invites WHERE invite_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
-        if (results.next()){
+        while (results.next()){
             invite = mapRowToInvite(results);
         }
         return invite;

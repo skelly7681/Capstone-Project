@@ -1,11 +1,18 @@
 package com.techelevator.Service.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class InviteDTO {
 
+    @JsonProperty("invite_id")
     private int inviteId;
+    @JsonProperty("sender_user_id")
     private int senderUserId;
+    @JsonProperty("closing_date")
     private String closingDate;
+    @JsonProperty("closing_time")
     private String closingTime;
+
     private String uniqueLink;
 
     public int getInviteId() {

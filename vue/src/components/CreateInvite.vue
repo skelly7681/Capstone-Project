@@ -49,10 +49,10 @@ export default {
           isLoading: true,
           invite: {
               inviteId: "", //this is serial, so does it need to be here?
-              senderUserId: "",
+              senderUserId: "", //rip this from the current user object in the store
               closingDate: "",
               closingTime: "",
-              uniqueLink: "" //how tf do we make a unique link
+              uniqueLink: "" //how tf do we make a unique link --> http://localhost8081/
         }
       }
   },
