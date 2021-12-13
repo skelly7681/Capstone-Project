@@ -9,6 +9,15 @@
 
     <restaurant-list/>
 
+    <body v-if="isSelectionListEmpty">
+        <div class="oops-message">
+            <h1 class="bad-news">We've got bad news!</h1>
+            <br>
+            <h2>For all you and your friends have in common, you can't agree on a place to eat.</h2>
+            <h2>Luckily, we've got your back. You can make a new invite and pick some new restaurants you think they might love.</h2>
+            <h2>Try to make them count this time.</h2>
+        </div>
+    </body>
 
 </div>
   
@@ -42,5 +51,31 @@ export default {
 </script>
 
 <style>
+
+body{
+  background-color: rgb(255, 255, 235);
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+
+.oops-message {
+  padding: 10px;
+  flex-basis: 100%;
+  color: white;
+  background-image: linear-gradient(to bottom right, rgb(114, 227, 241), rgb(235, 124, 235))
+}
+
+.bad-news {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 80px;
+}
+
+h2 {
+  font-weight: 300;
+}
 
 </style>

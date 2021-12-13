@@ -85,14 +85,14 @@ public class JdbcInviteDao implements InviteDao {
         jdbcTemplate.update(sql, senderUserId, closingDate, closingTime, uniqueLink);
     }
 
-    public void addRestaurantToInvite(int restaurantId, int inviteId) {
+    public void addRestaurantToInvite(int restaurantId, int inviteId, boolean veto) {
 
-        boolean defaultVeto = false;
+        boolean defaultVeto = false; // do this on the front end??
 
         String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id, vetoed) " +
                 "VALUES (?, ?, ?)";
 
-        jdbcTemplate.update(sql, inviteId, restaurantId, defaultVeto);
+        jdbcTemplate.update(sql, inviteId, restaurantId, veto);
     }
 
     private Invite mapRowToInvite(SqlRowSet rs) {

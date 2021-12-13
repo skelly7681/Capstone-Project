@@ -9,7 +9,7 @@
       <div class="filler"></div>
       <div id="nav">
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> logout </router-link>
-        <img src=".\assets\user.png" alt="User">
+        <img src=".\assets\user.png" alt="User" class="user-icon">
       </div>
 
     </header>
@@ -55,6 +55,7 @@
     padding: 5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0px;
   }
 
@@ -81,6 +82,16 @@
   
   input {
     font-family: 'Rubik', sans-serif;
+  }
+
+  .logo {
+    width: 75px;
+    height: 75px;
+  }
+
+  .user-icon {
+    width: 50px;
+    height: 50px;
   }
 
 </style>
