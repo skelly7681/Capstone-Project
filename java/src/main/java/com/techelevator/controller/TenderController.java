@@ -2,6 +2,8 @@
 package com.techelevator.controller;
 
 import com.techelevator.Service.DTO.ExtModels.ApiCategories;
+import com.techelevator.Service.DTO.ExtModels.InviteIdDTO;
+import com.techelevator.Service.DTO.InviteDTO;
 import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.Service.RestaurantService;
 import com.techelevator.dao.*;
@@ -97,15 +99,16 @@ public class TenderController {
 
     }
 
+    //TODO - this one is giving us issues testing on the front end. May need to rework
     @PreAuthorize("hasRole('USER')")
-    @RequestMapping(path = "/invites/{inviteId}", method = RequestMethod.GET)
-    public Invite getInviteByInviteId(@PathVariable int inviteId) {
+    @RequestMapping(path = "/invites", method = RequestMethod.POST)
+    public Invite getInviteByInviteId(@RequestBody InviteIdDTO invite) {
 
-        return inviteDao.getInviteByInviteId(inviteId);
+        return inviteDao.getInviteByInviteId(invite.getInviteId());
     }
 
     @PreAuthorize("hasRole('USER')")
-    @RequestMapping(path = "/invites", method = RequestMethod.GET)
+    @RequestMapping(path = "/UserInvites", method = RequestMethod.GET)
     public List<Invite> getAllInvitesBySenderId(int senderUserId) {
 
         return inviteDao.getAllInvitesBySenderId(senderUserId);
@@ -120,7 +123,7 @@ public class TenderController {
     }
 
 
-//TODO - this one is giving us issues testing on the back end. May need to rework
+
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/invites/add", method = RequestMethod.POST)

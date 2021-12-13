@@ -1,13 +1,14 @@
 // this will be the form to enter info needed to generate an invite - it will populate the home view
 <template>
 <div class="view-content">
-    <search-restaurants/>
-    <restaurant-list/>
+
+
+
+    
     <div class="invitation">
         <div class="nav">
             <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp;
         </div>
-
 
         <!-- this deadline box needs to be bound to an invite to send to the db -->
         <form v-on:submit.prevent="submitInvite" class="inviteForm">
@@ -21,6 +22,11 @@
                 <input type="text" name="userId" id="userId" v-model="invite.senderUserId">
             </div>
         </form>
+
+        <!-- hide this until invite dates are picked -->
+        <search-restaurants/>
+        
+        <restaurant-list/>
 
         <!-- all imported componets here -->
     

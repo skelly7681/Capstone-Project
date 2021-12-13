@@ -5,19 +5,26 @@
         <!-- Below is implemented in Restaurant Card but it is not showing up -->
         <div id="mainCard">
         <h1 id="name">{{restaurant.name}}</h1>
-        <h2 >Restaurant Category: {{restaurant.categories[0].title}}</h2>
-        
-        <p v-if="restaurant.location.address1" class="address">Address {{restaurant.location.address1}}</p>
+        <br>
+        <h2 >{{restaurant.categories[0].title}}</h2>
+        <br>
+        <p v-if="restaurant.location.address1" class="address">{{restaurant.location.address1}}</p>
         <p v-if="restaurant.location.address2" class="address">{{ restaurant.location.address2}}</p>
         <p v-if="restaurant.location.address3" class="address">{{ restaurant.location.address3}}</p>
         <span class="address cs" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
         <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
-            <div id="container">
-                <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><i class="far fa-grin-stars fa-3x"/>
-</button>
-                <button type="button thumbsDown" id="button2"><i class="far fa-dizzy fa-3x"/>
-</button>
-            </div>
+        
+        <!-- this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
+        <button type="button thumbsDown" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
+
+            <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
+            <!-- <div id="container">
+                <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
+                <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
+            </div> -->
+
+
+
         </div>
         
     </div>
@@ -55,7 +62,16 @@ export default {
                 this.$router.push('/')
                 }
             }) 
-          }
+          }, 
+
+        saveRestaurant(){
+            RestaurantService.saveRestaurant(this.restaurant).then(response => {
+                if (response.status === 201){
+                    alert("IT WORKED!!!!! Check the db!")
+                }
+            })
+
+        }
       },
     computed: {
         foundRestaurants(){

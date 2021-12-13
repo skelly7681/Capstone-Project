@@ -2,19 +2,20 @@
     <div>
     
         <div id="searchbar">
-        <h1>SEARCH BAR</h1>
+        <h2>SEARCH FOR SOMEWHERE TO EAT</h2>
         <form>
-            <input type="text" v-model="searchLocation" placeholder="City/Zip Code" id="location" />
-            <input type="button" v-on:click="search()"/> 
+            <input type="text" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
+            <input type="button" v-on:click="search()"/>  // format this button
         </form>
 
         <div class="loading" v-if="isLoading">
             <img src="../assets/loading.gif" alt="HELP!!!">
         </div>
 
-
             <!-- This is the API vomit -->
         <!-- <p>{{ foundRestaurants }}</p> -->
+
+
         </div>
 
     </div>
@@ -71,6 +72,8 @@ export default {
 
     // put a method here to make sure search bar only sends what Yelp will accept
     // put a method to clear search bar after search is submitted
+    //yelp gives us limited options + also will return restaurants outside of the zipcode
+    
     
     }, 
     computed: {
@@ -78,13 +81,8 @@ export default {
             return this.$store.state.searchResults;
             
         }
-        // foundRestaurants(){
-        //     parseData = JSON.parse(this.$store.state.searchResults)
-        //     return parseData;
-    
-
     }
-//end of export default block  
+
 };
 </script>
 
