@@ -2,11 +2,11 @@
   <body class="container">
 
     <div class="tender-intro">
-      <h1 class="with-tender">Find your next great dinner spot, with TEnder</h1>
+      <h1 class="with-tender">Find your next favorite restaurant, with TEnder</h1>
       <br>
       <h2>TEnder is your solution to the eternal question: "Where are we going for dinner?"</h2>
       <h2>Browse restaurants. Pick your favorites. Send an invite to your friends so they can tell you where they do -- and don't -- want to go.</h2>
-      <h2>Your next favorite spot is an invite away.</h2>
+      <h2>Your new favorite spot is an invite away.</h2>
     </div>
 
     <form class="form-signin" @submit.prevent="login">
@@ -94,6 +94,7 @@ export default {
 body{
   background-color: rgb(255, 255, 235);
   display: flex;
+  flex-grow: 1;
   justify-content: space-between;
   gap: 25px;
   
@@ -114,6 +115,10 @@ body{
   font-weight: 600;
   font-style: italic;
   font-size: 80px;
+}
+
+h2 {
+  font-weight: 300;
 }
 
 form.form-signin{
