@@ -11,9 +11,9 @@
     <!--THIS IS A TEST!!! TESTING PULLING INVITE INFO FROM DB USING INVITE ID-->
 
         <h2>SEARCH FOR INVITE</h2>
-        <form>
+        <form @submit="findInviteById">
             <input type="text" v-model="searchInviteId" placeholder="invite id" id="inviteSearch" />
-            <input type="button" v-on:click="findInviteById()"/>  // format this button
+            <button type="button" v-on:click="findInviteById()">SUBMIT</button>  // format this button
         </form>
 
     <h2>DB API VOMIT</h2>
