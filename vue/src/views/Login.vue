@@ -1,7 +1,7 @@
 <template>
   <body class="container">
 
-    <div class="tender-intro">
+    <div class="tender-intro" id="left-panel">
       <h1 class="with-tender">Find your next favorite restaurant, with TEnder</h1>
       <br>
       <h2>TEnder is your solution to the eternal question: "Where are we going for dinner?"</h2>
@@ -9,7 +9,7 @@
       <h2>Your new favorite spot is an invite away.</h2>
     </div>
 
-    <form class="form-signin" @submit.prevent="login">
+    <form class="form-signin" id="right-panel" @submit.prevent="login">
 
           <h1>Welcome to TEnder</h1>
           <br>
@@ -118,6 +118,10 @@ body{
   font-size: 80px;
 }
 
+h1 {
+  text-align: center;
+}
+
 h2 {
   font-weight: 300;
 }
@@ -156,6 +160,23 @@ button.submit:hover {
   background-color: plum;
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/* SCREEN DIFFERENCES */
+
+@media screen and (max-width: 800px) {
+
+  body {
+    display:flex;
+    flex-direction: column;
+  }
+
+  .with-tender {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 50px;
+}
+
 }
 
 </style>
