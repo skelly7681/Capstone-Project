@@ -5,6 +5,21 @@
 <template>
 <div>
     <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp;
+
+
+
+    <!--THIS IS A TEST!!! TESTING PULLING INVITE INFO FROM DB USING INVITE ID-->
+
+          <h2>SEARCH FOR INVITE</h2>
+        <form>
+            <input type="text" v-model="searchInviteId" placeholder="invite id" id="inviteSearch" />
+            <input type="button" v-on:click="findInviteById()"/>  // format this button
+        </form>
+
+    <h2>DB API VOMIT</h2>
+    <p>{{ currentInvite }}</p>
+
+
 </div>
   
 </template>
@@ -19,6 +34,7 @@ export default {
             rejectedRestaurants: [], //an array?
             approvedRestaurants: [],
             isLoading: true,
+            searchInviteId: 0,
             invite: {
               inviteId: "", //this value here will come from the db 
               senderUserId: "",
@@ -29,13 +45,12 @@ export default {
         }
     }, 
     created(){
-        inviteService.search(this.inviteId).then(response => {
+        inviteService.getInviteByInviteId(this.searchInviteId).then(response => {
             this.invite = response.data;
             this.isLoading = false;
         })
 
     },
-
     methods: {
         addRestaurantsToVetoedList(){
             //TODO 
@@ -44,17 +59,29 @@ export default {
         addRestaurantsToApprovedList(){
             //TODO 
 
-        }
+        }, 
+        findInviteById(){
+            inviteService.getInviteByInviteId(this.searchInviteId).then(response => {
+            this.invite = response.data;
+            this.$store.commit('SET_CURRENT_INVITE', this.invite);
+            this.isLoading = false;
+        })
+        }, 
+        getInvite(){
+            inviteService.findInviteById(this.searchedInviteId).then(response => {
+                if (response.status === 201){
+                    alert("IT WORKED!!!!! Check the db!")
+                }
+            })
+     
     }, 
-
     computed:{
         foundInvitation(){
             return this.$store.state.currentInvite;
-
         }
 
     }
-
+    }
 }
 </script>
 

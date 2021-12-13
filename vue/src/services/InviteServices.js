@@ -7,7 +7,7 @@ export default {
     },
 
     getInviteByInviteId(inviteId) {
-        return axios.put('/invites/${inviteId}', inviteId)
+        return axios.post('/invites', inviteId)
     },
 
     thumbsDown(restaurant) {
@@ -15,7 +15,7 @@ export default {
     },
 
     getAllInvitesBySenderId(senderUserId) {
-        return axios.post('/invites', senderUserId)
+        return axios.post('/UserInvites', senderUserId)
     },
     
     createInvite(senderUserId) {

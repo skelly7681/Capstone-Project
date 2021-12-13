@@ -22,15 +22,15 @@ public class JdbcInviteDao implements InviteDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
+    @Override  //THIS METHOD IS GIVING US GRIEF. INVALID COLUMN NAME ERROR
     public Invite getInviteByInviteId(int inviteId) {
 
         Invite invite = null;
 
         String sql = "SELECT sender_user_id, closing_date, closing_time, unique_link " +
-                " FROM invite WHERE invite_id = ? ";
+                "FROM invites WHERE invite_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, inviteId);
-        if (results.next()){
+        while (results.next()){
             invite = mapRowToInvite(results);
         }
         return invite;
@@ -41,7 +41,7 @@ public class JdbcInviteDao implements InviteDao {
         Invite invite = null;
 
         String sql = "SELECT invite_id, closing_date, closing_time, unique_link " +
-                "FROM invite WHERE sender_user_id = ? ";
+                "FROM invites WHERE sender_user_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderUserId);
         if (results.next()){
             invite = mapRowToInvite(results);
@@ -54,7 +54,7 @@ public class JdbcInviteDao implements InviteDao {
         List<Invite> invites = new ArrayList<>();
 
         String sql = "SELECT invite_id, closing_date, closing_time, unique_link " +
-                "FROM invite WHERE sender_user_id = ? ";
+                "FROM invites WHERE sender_user_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderUserId);
         while (results.next()){
             Invite invite = mapRowToInvite(results);
@@ -68,7 +68,7 @@ public class JdbcInviteDao implements InviteDao {
         Invite invite = null;
 
         String sql = "SELECT invite_id, sender_user_id, closing_date, closing_time " +
-                "FROM invite WHERE unique_link = ? ";
+                "FROM invites WHERE unique_link = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, uniqueLink);
         if (results.next()){
             invite = mapRowToInvite(results);
@@ -84,8 +84,6 @@ public class JdbcInviteDao implements InviteDao {
 
         jdbcTemplate.update(sql, senderUserId, closingDate, closingTime, uniqueLink);
     }
-
-    // POST (or PUT?) method to establish the connection in the associative table
 
     public void addRestaurantToInvite(int restaurantId, int inviteId) {
 
