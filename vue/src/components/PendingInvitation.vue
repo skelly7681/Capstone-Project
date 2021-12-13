@@ -17,7 +17,7 @@
         </form>
 
     <h2>DB API VOMIT</h2>
-    <p>{{ currentInvite }}</p>
+    <p>{{ foundInvitation }}</p>
         
         <h2></h2>
 
