@@ -7,7 +7,9 @@
       </div>
 
       <display-finalist/>
-      <pending-invitation/>
+      <!-- <pending-invitation/> -->
+      <open-invites/>
+
       
 
   </div>
@@ -15,20 +17,19 @@
 
 <script>
 import DisplayFinalist from '../components/DisplayFinalist.vue'
-import PendingInvitation from '../components/PendingInvitation.vue'
+//import PendingInvitation from '../components/PendingInvitation.vue'
+import OpenInvites from '../components/OpenInvites'
 
 export default {
     components :{
         DisplayFinalist, 
-        PendingInvitation
+        OpenInvites
+         // PendingInvitation
     }
 
 }
 </script>
 
-<s
-        PendingInvitationtyle>
-
+<style>
+        
 </style>
-D
-DisplayFinalistisplayFinalist
