@@ -94,6 +94,7 @@ export default {
 body{
   background-color: rgb(255, 255, 235);
   display: flex;
+  flex-grow: 1;
   justify-content: space-between;
   gap: 25px;
   

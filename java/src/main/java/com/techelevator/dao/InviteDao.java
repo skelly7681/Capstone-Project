@@ -18,6 +18,6 @@ public interface InviteDao {
 
     void createInvite(int senderUserId, Date closingDate, Time closingTime, String uniqueLink);
 
-    void addRestaurantToInvite(int inviteId, int restaurantId);
+    void addRestaurantToInvite(int inviteId, int restaurantId, boolean isVetoed);
 
 }
