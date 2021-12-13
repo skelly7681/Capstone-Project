@@ -11,7 +11,9 @@
             <div id="deadlineDate">
                 <label for="dueDate">deadline date: </label>
                 <input type="date" id="dueDate" name="dueDate" v-model="invite.closingDate"/> 
-                <input type="time" id="dueTime" name="dueTime" v-model="invite.closingTime"/>
+                <!-- The time format below does not work with the DB -->
+                <!-- <input type="time" id="dueTime" name="dueTime" v-model="invite.closingTime"/> -->
+                <button type="button" id="searchButton" v-on:click="submitInvite()">SUBMIT</button>
             </div>
         </form>
 
@@ -42,6 +44,7 @@ export default {
               inviteId: "", //this is serial, so does it need to be here?
               senderUserId: "", //rip this from the current user object in the store
               closingDate: "",
+            //   The time format below does not work with the DB
               closingTime: "",
               uniqueLink: "" //how tf do we make a unique link --> http://localhost8081/
         }
@@ -54,16 +57,21 @@ export default {
       submitInvite(){
           const newInvite = {
               inviteId: "",
-              senderUserId: this.invite.senderUserId,
+            //   WE NEED TO PULL THE USERID OR HAVE THEM ENTER IT
+              senderUserId: 3,  
               closingDate: this.invite.closingDate,
-              closingTime: this.invite.closingTime,
-              uniqueLink: this.invite.uniqueLink
+              closingTime: "12:00:00",
+              uniqueLink: "23323"
+            //   senderUserId: this.invite.senderUserId,
+            //   closingDate: this.invite.closingDate,
+            //   closingTime: this.invite.closingTime,
+            //   uniqueLink: this.invite.uniqueLink
           }
           inviteService
             .createInvite(newInvite)
             .then(response => {
                 if(response.status === 201){
-                this.$router.push('/')
+                alert("invite created")
                 }
             }) 
           }, 
