@@ -72,7 +72,7 @@ export default {
 
     // put a method here to make sure search bar only sends what Yelp will accept
     // put a method to clear search bar after search is submitted
-    //yelp gives us limited options + also will return restaurants outside of the zipcode
+    // yelp gives us limited options + also will return restaurants outside of the zipcode
     
     
     }, 
