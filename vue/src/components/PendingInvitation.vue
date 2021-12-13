@@ -9,7 +9,6 @@
 
 
     <!--THIS IS A TEST!!! TESTING PULLING INVITE INFO FROM DB USING INVITE ID-->
-
           <h2>SEARCH FOR INVITE</h2>
         <form>
             <input type="text" v-model="searchInviteId" placeholder="invite id" id="inviteSearch" />
@@ -34,7 +33,9 @@ export default {
             rejectedRestaurants: [], //an array?
             approvedRestaurants: [],
             isLoading: true,
-            searchInviteId: 0,
+            searchInviteId: {
+                inviteid: 0
+            },
             invite: {
               inviteId: "", //this value here will come from the db 
               senderUserId: "",
