@@ -1,32 +1,30 @@
 <template>
   <body class="container">
 
-    <div class="Master-row">
-            <div class="row-3">
-        <!-- insert and image here  -->
-        <!-- <img src="https://cdn.vox-cdn.com/thumbor/SvWuEief9dPa4fwMGLa7BR8NkzA=/0x0:5472x3648/1200x800/filters:focal(2299x1387:3173x2261)/cdn.vox-cdn.com/uploads/chorus_image/image/63216998/2017.08.30_DAF_Pizza_Photos_0909.0.jpg" alt="IMAGE HERE" id="pizza"> -->
-      </div>
-      <div class="row-1">
-        <!-- insert an image here -->
-        <!-- <img src="https://external-preview.redd.it/XgYORZehSDLoH1VZb6cVwy-JX7DTNF5zgU8VpyRIJaM.jpg?auto=webp&s=1aa6c764ac6c2cf15ff4abe14a3e03791ab3e845" alt="IMAGE HERE" id="mac"> -->
-      </div>
-      <div id="login" class="row-2">
-      
-        <form class="form-signin" @submit.prevent="login">
-          <h1 class="h3 mb-3 font-weight-normal">Welcome to TEnder</h1>
+    <div class="tender-intro">
+      <h1 class="with-tender">Find your next great dinner spot, with TEnder</h1>
+      <br>
+      <h2>TEnder is your solution to the eternal question: "Where are we going for dinner?"</h2>
+      <h2>Browse restaurants. Pick your favorites. Send an invite to your friends so they can tell you where they do -- and don't -- want to go.</h2>
+      <h2>Your next favorite spot is an invite away.</h2>
+    </div>
+
+    <form class="form-signin" @submit.prevent="login">
+
+          <h1>Welcome to TEnder</h1>
+          
           <div
             class="alert_alert"
             role="alert"
             v-if="invalidCredentials"
           >Invalid username and password!</div>
+
           <div
             class="alert_alert"
             role="alert"
             v-if="this.$route.query.registration"
           >Thank you for registering, please sign in.</div>
           
-
-
           <!-- THIS IS THE LOG IN FORM - USED <BR> AS A TEMP SOLUTION -->
           <input
             type="text"
@@ -35,8 +33,7 @@
             placeholder="Username"
             v-model="user.username"
             required
-            autofocus
-          />
+            autofocus />
           <br>
           <input
             type="password"
@@ -44,16 +41,13 @@
             class="form-control"
             placeholder="Password"
             v-model="user.password"
-            required
-          />
+            required />
           <br>
-            <button class="submit" type="submit" id="sign-in" > SIGN IN </button> 
+          <button class="submit" type="submit" id="sign-in" > SIGN IN </button> 
           <br>
           <div>New to TEnder? <router-link :to="{ name: 'register' }">Sign up.</router-link></div>
           
         </form>
-      </div>
-    </div>
   </body>
 </template>
 
@@ -97,55 +91,37 @@ export default {
 </script>
 <style>
 
-#top-bar{
-  height: 80px;
-  font-size: 50px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  
-  
-}
-
 body{
-  background-color:white;
+  background-color: rgb(255, 255, 235);
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
   
   /* original color: rgba(255, 255, 221, 0.867); */
 }
-.Master-row{
-  
-  height: 650px;
-
-  display: flex;
-  flex-direction: row;
-
-}
-
-/* #mac{
-  width: 100%;
-  height: 100%;
-}
-
-#pizza{
-  width: 100%;
-  height: 100%;
-} */
 
 
-.row-1{
+.tender-intro{
   order: 1;
-  flex-basis: 33%;
-
+  padding: 10px;
+  flex-basis: 67%;
+  color: white;
+  background-image: linear-gradient(to bottom right, rgb(241, 82, 241), rgb(254,213,50));
 }
 
-.row-2{
+.with-tender {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 80px;
+}
+
+form.form-signin{
   order: 2;
   flex-basis: 33%;
-
-}
-
-.row-3{
-  order: 3;
-  flex-basis: 33%;
-
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 input.form-control {

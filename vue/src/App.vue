@@ -18,7 +18,7 @@
 
     <footer>
 
-      <div id="tenderco">TEnder Co. 2021</div>
+      <div id="tenderco">© TEnder Co. 2021</div>
       <div id="garydanko">With special thanks to Gary Danko</div>
 
     </footer>
@@ -47,10 +47,11 @@
 
   #app{
     font-family: 'Rubik', sans-serif;
+    background-color: rgb(255, 255, 235);
   }
 
   header {
-    background-color: rgb(255, 255, 205);
+    background-color:  rgb(255, 255, 235);
     padding: 5px;
     display: flex;
     justify-content: space-between;
@@ -58,7 +59,7 @@
   }
 
   footer {
-    background-color: rgb(255, 255, 205);
+    background-color:  rgb(255, 255, 235);
     padding: 10px;
     display: flex;
     justify-content: space-between;
