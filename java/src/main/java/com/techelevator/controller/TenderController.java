@@ -49,17 +49,17 @@ public class TenderController {
         return restaurantDao.getRestaurantById(restaurantId);
     }
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')") // needs to be refactored - can't pass a list
     @RequestMapping(path = "/restaurants", method = RequestMethod.GET)
     public List<Restaurant> getAllRestaurantsByInviteId(int inviteId) {
         return restaurantDao.getAllRestaurantsByInviteId(inviteId);
     }
 
-    @PreAuthorize("hasRole('USER')")
-    @RequestMapping(path = "/finalists", method = RequestMethod.GET)
-    public List<Restaurant> getFinalistsByInviteId(int inviteId) {
+    @PreAuthorize("hasRole('USER')") // returns an empty array with no objects inside of it
+    @RequestMapping(path = "/finalists", method = RequestMethod.POST)
+    public List<Restaurant> getFinalistsByInviteId(InviteIdDTO inviteId) {
 
-        return restaurantDao.getFinalistsByInviteId(inviteId);
+        return restaurantDao.getFinalistsByInviteId(inviteId.getInviteId());
     }
 
     //this needs to be open to the public
@@ -104,19 +104,19 @@ public class TenderController {
     //this needs to be reworked or a new method needs to be made to pull an invite up by id in path
 //    @PreAuthorize("hasRole('USER')") // this shouldn't be by user since this should be open to non users
     @RequestMapping(path = "/invites", method = RequestMethod.POST)
-    public Invite getInviteByInviteId(@RequestBody int inviteId) {
+    public Invite getInviteByInviteId(@RequestBody InviteIdDTO invite) {
 
-        return inviteDao.getInviteByInviteId(inviteId);
+        return inviteDao.getInviteByInviteId(invite.getInviteId());
     }
 
     //TODO - test this to pull an invite up
-    @RequestMapping(path = "/viewInvite/{inviteId}", method = RequestMethod.GET)
-    public Invite viewPendingInvite(@PathVariable int inviteId) {
-        return inviteDao.getInviteByInviteId(inviteId);
+    @RequestMapping(path = "/viewInvite", method = RequestMethod.POST)
+    public Invite viewPendingInvite(@RequestBody InviteIdDTO invite) {
+        return inviteDao.getInviteByInviteId(invite.getInviteId());
     }
 
 
-    @PreAuthorize("hasRole('USER')") // this populates the "view invites" page
+    @PreAuthorize("hasRole('USER')") // this populates the "view invites" page // this cannot be a list
     @RequestMapping(path = "/UserInvites", method = RequestMethod.GET)
     public List<Invite> getAllInvitesBySenderId(int senderUserId) {
 
@@ -138,7 +138,7 @@ public class TenderController {
     @RequestMapping(path = "/invites/add", method = RequestMethod.POST)
     public void addRestaurantToInvite(@RequestBody RestaurantInviteDTO restaurantInvite) {
 
-        inviteDao.addRestaurantToInvite(restaurantInvite.getRestaurantId(), restaurantInvite.getInviteId());
+        inviteDao.addRestaurantToInvite(restaurantInvite.getRestaurantId(), restaurantInvite.getInviteId(), restaurantInvite.isVetoed());
 
     }
 
