@@ -94,4 +94,42 @@
     height: 50px;
   }
 
+  /* SCREEN DIFFERENCES */
+
+  @media screen and (max-width: 450px) {
+
+    #tender {
+      font-size: 40px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
+
+    .user-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+  }
+
+  @media screen and (max-width: 800px) and (min-width: 450px) {
+
+    #tender {
+      font-size: 60px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+    }
+
+    .user-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+  }
+
 </style>
