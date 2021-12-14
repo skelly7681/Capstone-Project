@@ -16,9 +16,8 @@ public class Restaurant {
     private boolean takeOut;
     private boolean delivery;
 
-    private boolean vetoed;
 
-    public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery, boolean vetoed) {
+    public Restaurant(int restaurantId, String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, int starRating, boolean takeOut, boolean delivery) {
         this.restaurantId = restaurantId;
         this.restaurantName = restaurantName;
         this.restaurantType = restaurantType;
@@ -28,7 +27,6 @@ public class Restaurant {
         this.starRating = starRating;
         this.takeOut = takeOut;
         this.delivery = delivery;
-        this.vetoed = vetoed;
     }
 
     public Restaurant() {}
@@ -105,14 +103,6 @@ public class Restaurant {
         this.delivery = delivery;
     }
 
-    public boolean isVetoed() {
-        return vetoed;
-    }
-
-    public void setVetoed(boolean vetoed) {
-        this.vetoed = vetoed;
-    }
-
     public String getYelpKey() {
         return yelpKey;
     }
@@ -135,7 +125,6 @@ public class Restaurant {
                 ", starRating=" + starRating +
                 ", takeOut=" + takeOut +
                 ", delivery=" + delivery +
-                ", vetoed=" + vetoed +
                 '}';
     }
 }

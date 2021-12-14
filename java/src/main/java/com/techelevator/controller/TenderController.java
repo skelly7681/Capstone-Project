@@ -23,7 +23,7 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
-//@PreAuthorize("isAuthenticated()")   //need to figure this out non-users
+@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 public class TenderController {
@@ -65,16 +65,16 @@ public class TenderController {
         return restaurantDao.getFinalistsByInviteId(inviteId);
     }
 
-    //this needs to be open to the public
-//    @PreAuthorize("hasRole('USER')")
+    //tested & works (postman call)
+    @PreAuthorize("permitAll()")
     @RequestMapping(path = "/vetoed", method = RequestMethod.PUT)
-    public void thumbsDown(@RequestBody Restaurant restaurant) {
+    public void thumbsDown(@RequestBody RestaurantInviteDTO restaurantInvite) {
 
-        restaurantDao.thumbsDown(restaurant.getRestaurantId());
+        restaurantDao.thumbsDown(restaurantInvite.getInviteId(), restaurantInvite.getRestaurantId());
 
     }
 
-    //tested & works (postman call)
+    //tested & works (front to back)
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED) // this saves a restaurant to the db
     @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
@@ -104,24 +104,18 @@ public class TenderController {
 
     }
 
-    //tested & works (postman call)
-//    @PreAuthorize("hasRole('USER')") // this shouldn't be by user since this should be open to non users
+    //tested & works (front to back)
+    @PreAuthorize("permitAll()")
     @RequestMapping(path = "/invites/{inviteId}", method = RequestMethod.GET)
     public Invite getInviteByInviteId(@PathVariable int inviteId) {
 
         return inviteDao.getInviteByInviteId(inviteId);
     }
 
-    //TODO - test this to pull an invite up
-    @RequestMapping(path = "/viewInvite", method = RequestMethod.POST)
-    public Invite viewPendingInvite(@RequestBody InviteIdDTO invite) {
-        return inviteDao.getInviteByInviteId(invite.getInviteId());
-    }
-
-
+    //tested & works (postman call)
     @PreAuthorize("hasRole('USER')") // this populates the "view invites" page // this cannot be a list
-    @RequestMapping(path = "/UserInvites", method = RequestMethod.GET)
-    public List<Invite> getAllInvitesBySenderId(int senderUserId) {
+    @RequestMapping(path = "/UserInvites/{senderUserId}", method = RequestMethod.GET)
+    public List<Invite> getAllInvitesBySenderId(@PathVariable int senderUserId) {
 
         return inviteDao.getAllInvitesBySenderId(senderUserId);
     }
@@ -136,6 +130,7 @@ public class TenderController {
     }
 
 
+    // this needs to bundle creating a restaurant and a link in the db to an invite
     //tested & works (postman call)
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)

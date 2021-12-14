@@ -53,7 +53,7 @@ public class JdbcInviteDao implements InviteDao {
     public List<Invite> getAllInvitesBySenderId(int senderUserId) {
         List<Invite> invites = new ArrayList<>();
 
-        String sql = "SELECT invite_id, closing_date, closing_time, unique_link " +
+        String sql = "SELECT invite_id, sender_user_id, closing_date, closing_time, unique_link " +
                 "FROM invites WHERE sender_user_id = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, senderUserId);
         while (results.next()){
@@ -79,6 +79,9 @@ public class JdbcInviteDao implements InviteDao {
     @Override
     public void createInvite(int senderUserId, Date closingDate, Time closingTime, String uniqueLink) {
 
+        //get restaurant ID
+
+
         String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link)\n" +
                 "VALUES (?, ?, ?, ?)";
 
@@ -86,6 +89,8 @@ public class JdbcInviteDao implements InviteDao {
     }
 
     public void addRestaurantToInvite(int restaurantId, int inviteId, boolean veto) {
+
+//        Restaurant test = restaurantDao.createRestaurant();
 
         boolean defaultVeto = false; // do this on the front end??
 

@@ -18,6 +18,6 @@ public interface RestaurantDao {
     void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, double starRating, boolean takeOut,
                           boolean delivery, String yelpKey);
 
-    void thumbsDown(int restaurantId);
+    void thumbsDown(int restaurantId, int inviteId);
 
 }
