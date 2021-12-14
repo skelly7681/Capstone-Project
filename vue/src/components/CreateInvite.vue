@@ -60,8 +60,10 @@ export default {
             //   WE NEED TO PULL THE USERID OR HAVE THEM ENTER IT
               senderUserId: 3,  
               closingDate: this.invite.closingDate,
+              //hard coded time - bad
               closingTime: "12:00:00",
-              uniqueLink: "23323"
+              //hard coded link - bad
+              uniqueLink: "www.invites.com"
             //   senderUserId: this.invite.senderUserId,
             //   closingDate: this.invite.closingDate,
             //   closingTime: this.invite.closingTime,
