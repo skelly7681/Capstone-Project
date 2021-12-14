@@ -131,6 +131,15 @@ public class TenderController {
         return userDao.findByUsername(username).getId();
     }
 
+    //this is giving me grief
+    @PreAuthorize("permitAll()")
+    @RequestMapping(path = "/invites/{link}", method = RequestMethod.GET)
+    public List<Restaurant> getRestaurantsByInviteId(@PathVariable String link) {
+
+        return restaurantDao.getAllRestaurantsByInviteId(inviteDao.getInviteByUniqueLink(link).getInviteId());
+
+    }
+
     //--------------------THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!------------------------
 
     //tested & works (front to back)
