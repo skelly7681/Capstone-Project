@@ -112,8 +112,8 @@ export default {
     background-color: rgb(243, 214, 243);
     font-size: 20px;
     border-radius: 25px;
-    width: 250px;
-    padding: 12px 32px;
+    width: 25%;
+    padding: 12px 12px;
 }
 
 #searchButton:hover {
@@ -123,7 +123,7 @@ export default {
 }
 
 input.form-control {
-  width: 40%;
+  width: 45%;
   padding: 10px 15px;
   border: 3px solid lightgray;
   border-radius: 10px;
@@ -152,5 +152,42 @@ form.search-form {
     height: auto;
 }
 
+
+/* SCREEN DIFFERENCES */
+
+@media screen and (max-width: 350px) {
+
+
+    #searchButton {
+        font-size: 14px;
+    }
+
+    #searchTitle {
+        font-size: 15px;
+    }
+
+    .pizza-gif {
+        width: 70vw;
+        height: auto;
+    }
+    
+}
+
+@media screen and (max-width: 450px) and (min-width: 350px) {
+
+    #searchButton {
+        font-size: 14px;
+    }
+
+    #searchTitle {
+        font-size: 18px;
+    }
+
+    .pizza-gif {
+        width: 60vw;
+        height: auto;
+    }
+
+}
 
 </style>
