@@ -3,31 +3,45 @@
     <div id="cards">
 
         <!-- Below is implemented in Restaurant Card but it is not showing up -->
-        <div id="mainCard">
-        <h1 id="name">{{restaurant.name}}</h1>
-        <br>
-        <h2 >{{restaurant.categories[0].title}}</h2>
-        <br>
-        <p v-if="restaurant.location.address1" class="address">{{restaurant.location.address1}}</p>
-        <p v-if="restaurant.location.address2" class="address">{{ restaurant.location.address2}}</p>
-        <p v-if="restaurant.location.address3" class="address">{{ restaurant.location.address3}}</p>
-        <span class="address cs" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
-        <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
-        <div>{{restaurant.image_url}}</div>
+        <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
+            <div id="restaurant-details">
+                <br>
+                <br>
+                <h1 id="name" class ="display">{{restaurant.name}}</h1>
+                <br>
+                <h2 class ="display">{{restaurant.categories[0].title}}</h2>
+                <br>
+                <p v-if="restaurant.location.address1" class="address display">{{restaurant.location.address1}}</p>
+                <p v-if="restaurant.location.address2" class="address display">{{ restaurant.location.address2}}</p>
+                <p v-if="restaurant.location.address3" class="address display">{{ restaurant.location.address3}}</p>
+                <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
+                <br>
+                <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
+                    
 
-       <!-- <img src="https://s3-media2.fl.yelpcdn.com/bphoto/FGEGryFJJVWcn6T7AZfdkg/o.jpg" alt=""> -->
-        <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
-        <button type="button thumbsDown" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
+                <!-- thumbnail image -->
+                <!-- <div>
+                    <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
+                </div> -->
+                
+
+                <!-- toggle these depending on the view (create, pending, finalist)-->
+                <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
+                <button type="button thumbsDown" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
 
 
-        <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
-        <button type="call to Order" id="call-btn" v-on:click="searchResults(restaurant.phoneNumber)">Call to Order</button>
+                <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
+                
+                <!-- create a pop up frame for browsers -->
+                <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><i class="fas fa-phone-volume fa-3x"></i></a>
 
-            <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
-            <!-- <div id="container">
-                <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
-                <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
-            </div> -->
+                    <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
+                    <!-- <div id="container">
+                        <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
+                        <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
+                    </div> -->
+
+            </div>
 
 
 
@@ -66,13 +80,15 @@ export default {
                     alert("IT WORKED!!!!! Check the db!")
                 }
             })
-
         }
       },
     computed: {
         foundRestaurants(){
             return this.$store.state.searchResults;
         }
+    }, 
+    revealNumber(restaurant){
+        return restaurant.displayPhoneNumber;
     }
 
   }
@@ -134,5 +150,23 @@ export default {
     margin: 0
 
 }  
+
+.thumbnail {
+    width: 40%;
+    height: 40%;
+}
+
+#restaurant-details{
+    opacity: 0.6;
+    background-color: #ffffff;
+
+   
+}
+
+.display {
+    font-weight: bold;
+    color: black;
+    width: 100%;
+}
 
 </style>

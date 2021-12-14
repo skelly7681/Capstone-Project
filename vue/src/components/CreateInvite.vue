@@ -6,16 +6,21 @@
             <router-link v-bind:to="{ name: 'home' }" id="home-button"> HOME </router-link>&nbsp;
         </div>
 
+        <!-- do not show search until invite is created and invite ID is returned -->
         <!-- this deadline box needs to be bound to an invite to send to the db -->
         <form v-on:submit.prevent="submitInvite" class="inviteForm">
             <div id="deadlineDate">
                 <label for="dueDate">Deadline Date: </label>
                 <input type="date" id="dueDate" name="dueDate" v-model="invite.closing_date"/>
-                <label for="time">Enter Time in HH:MM:SS format: </label> 
-                <input type="text" name="timetrial" id="time" v-model="invite.closing_time">
+                <!-- <label for="time" > </label> -->
+                <input type="text" name="timetrial" id="time" v-model="invite.closing_time" placeholder="enter time (HH:MM:SS)">
                 <!-- The time format below does not work with the DB -->
                 <!-- <input type="time" id="dueTime" name="dueTime" v-model="invite.closingTime"/> -->
+                
+
+                <input type="text" id="uniqueUrl" name="uniqueUrl" v-model="invite.unique_url" placeholder="name your invite"/>
                 <button type="button" id="searchButton" v-on:click="submitInvite()">SUBMIT</button>
+
             </div>
         </form>
 
@@ -43,7 +48,7 @@ export default {
           newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
           invite: {
-              inviteId: "", //this is serial, so does it need to be here?
+              inviteId: "", //rip this from an axios call when we create an invite.
               senderUserId: "", //rip this from the current user object in the store
               closing_date: "",
             //   The time format below does not work with the DB
