@@ -79,21 +79,6 @@ public class JdbcInviteDao implements InviteDao {
         return invite;
     };
 
-//    @Override
-//    public int createInvite(InviteDTO invite) {
-//
-//        int inviteId = 0;
-//
-//        String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link) " +
-//                "VALUES (?, ?, ?, ?)";
-//
-//        jdbcTemplate.update(sql, invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
-//
-//        inviteId = getInviteByUniqueLink(invite.getUniqueLink()).getInviteId();
-//
-//        return inviteId;
-//    }
-
     @Override
     public Invite createInvite(Invite invite) {
 
@@ -113,7 +98,7 @@ public class JdbcInviteDao implements InviteDao {
 
         int restaurantId = restaurantDao.createRestaurant(restaurantInviteBundle.getRestaurant());
 
-        boolean defaultVeto = false; // do this on the front end??
+        boolean defaultVeto = false;
 
         String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id, vetoed) " +
                 "VALUES (?, ?, ?)";

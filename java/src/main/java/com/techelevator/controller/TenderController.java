@@ -101,7 +101,8 @@ public class TenderController {
     }
 
 
-    //THIS DOESNT WORK ANYMORE???? -- having issues with foreign key constraints
+    // this returns an invite ID that we can then use on the FE for subsequent calls
+    //tested & works (postman call)
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)  // this is what is created when they make an invite, inviteId is returned to us
     @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
