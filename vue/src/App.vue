@@ -8,7 +8,7 @@
       <div id="tender">TEnder</div>
       <div class="filler"></div>
       <div id="nav">
-        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> logout </router-link>
+        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
       </div>
 
     </header>
