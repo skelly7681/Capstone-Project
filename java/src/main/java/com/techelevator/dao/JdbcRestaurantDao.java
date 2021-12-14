@@ -148,7 +148,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
         //need to add invite_id and take out the join
         String sql = "UPDATE invite_restaurant " +
-                "SET vetoed = false " +
+                "SET vetoed = true " +
                 "WHERE invite_id = ? AND restaurant_id = ?";
 
 

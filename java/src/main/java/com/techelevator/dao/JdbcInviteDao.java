@@ -70,7 +70,7 @@ public class JdbcInviteDao implements InviteDao {
     public Invite getInviteByUniqueLink(String uniqueLink) {
         Invite invite = null;
 
-        String sql = "SELECT invite_id, sender_user_id, closing_date, closing_time " +
+        String sql = "SELECT invite_id, sender_user_id, closing_date, closing_time, unique_link " +
                 "FROM invites WHERE unique_link = ? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, uniqueLink);
         if (results.next()){
@@ -95,14 +95,16 @@ public class JdbcInviteDao implements InviteDao {
 //    }
 
     @Override
-    public void createInvite(InviteDTO invite) {
+    public Invite createInvite(Invite invite) {
 
         String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link) " +
                 "VALUES (?, ?, ?, ?)";
 
         jdbcTemplate.update(sql, invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
 
-        //use unique link to get the id out?
+        Invite createdInvite = getInviteByUniqueLink(invite.getUniqueLink());
+
+        return createdInvite;
 
     }
 
