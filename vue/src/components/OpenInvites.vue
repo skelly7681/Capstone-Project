@@ -7,11 +7,16 @@
     </div>
     <div id="inviteCard">
         <h2>Pending Invites</h2>
-        <h3>Invite ID: {{this.invite.inviteId}}</h3>
-        <h3>This Invite will expire on: {{ this.invite.closingDate}}</h3>
+        <h3>Invite ID: {{this.invite.invite_id}}</h3>
+        <h3>This Invite will expire on: {{ this.invite.closing_date}} @ {{this.invite.closing_time}}</h3>
+        <h3>Your Invitation Link is: {{this.invite.unique_link}}</h3>
         {{ this.invite.closingDate}}
         <!-- below can be removed, this is just to remeber  -->
         {{this.invite}}
+
+        <br>
+
+        Populate List of Restuarants with Invites and Thumbs Up vs Thumbs Down
     </div>
 
 </div> 
