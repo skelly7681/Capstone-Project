@@ -92,9 +92,10 @@ export default {
 </script>
 <style>
 
-body{
+body.container{
   background-color: rgb(255, 255, 235);
   display: flex;
+  flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
   gap: 25px;
