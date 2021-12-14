@@ -1,13 +1,17 @@
 <template>
 <div>
-    <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>
-
+    <div>
     <input type="text" v-model.number="inviteId"/>
-    <div>
-        <input type="button" :value="inviteId" v-on:click="findInviteById()"/>
+    
+        <button type="button" :value="inviteId" v-on:click="findInviteById()">SUBMIT</button>
     </div>
-    <div>
-        {{ this.invite}}
+    <div id="inviteCard">
+        <h2>Pending Invites</h2>
+        <h3>Invite ID: {{this.invite.inviteId}}</h3>
+        <h3>This Invite will expire on: {{ this.invite.closingDate}}</h3>
+        {{ this.invite.closingDate}}
+        <!-- below can be removed, this is just to remeber  -->
+        {{this.invite}}
     </div>
 
 </div> 
@@ -39,5 +43,11 @@ export default {
 </script>
 
 <style>
+
+#inviteCard{
+    border-width: 10px;
+    border-color: black;
+    border: 1px solid black;
+}
 
 </style>

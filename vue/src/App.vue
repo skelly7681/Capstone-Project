@@ -9,7 +9,6 @@
       <div class="filler"></div>
       <div id="nav">
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> logout </router-link>
-        <img src=".\assets\user.png" alt="User" class="user-icon">
       </div>
 
     </header>
@@ -40,7 +39,7 @@
    font-family: 'Rubik', sans-serif;
    font-weight: 1000;
    font-style: italic;
-   font-size: 75px;
+   font-size: 10vh;
    color: plum;
    text-shadow: 1px 5px purple;
   }
@@ -85,49 +84,38 @@
   }
 
   .logo {
-    width: 75px;
-    height: 75px;
-  }
-
-  .user-icon {
-    width: 50px;
-    height: 50px;
+    width: 10vh;
+    height: 10vh;
   }
 
   /* SCREEN DIFFERENCES */
 
-  @media screen and (max-width: 450px) {
-
-    #tender {
-      font-size: 40px;
-    }
+  @media screen and (max-width: 400px) {
 
     .logo {
-      width: 40px;
-      height: 40px;
+      width: 12vw;
+      height: 12vw;
     }
 
-    .user-icon {
-      width: 30px;
-      height: 30px;
+    #tender {
+      font-size: 12vw;
     }
 
+    #garydanko {
+      display: none;
+    }
+    
   }
 
-  @media screen and (max-width: 800px) and (min-width: 450px) {
-
-    #tender {
-      font-size: 60px;
-    }
+  @media screen and (max-width: 600px) and (min-width: 400px) {
 
     .logo {
-      width: 60px;
-      height: 60px;
+      width: 14vw;
+      height: 14vw;
     }
 
-    .user-icon {
-      width: 40px;
-      height: 40px;
+    #tender {
+      font-size: 14vw;
     }
 
   }

@@ -212,7 +212,22 @@ button.submit:hover {
 
 /* SCREEN DIFFERENCES */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 400px) {
+
+  body {
+      display:flex;
+      flex-direction: column;
+    }
+
+  .with-tender {
+    font-weight: 600;
+    font-style: italic;
+    font-size: 30px;
+  }
+    
+}
+
+@media screen and (max-width: 800px) and (min-width: 400px) {
 
   body {
     display:flex;
