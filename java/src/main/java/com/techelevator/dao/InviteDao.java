@@ -19,7 +19,7 @@ public interface InviteDao {
 
     Invite getInviteByUniqueLink(String uniqueLink);
 
-    void createInvite(int senderUserId, Date closingDate, Time closingTime, String uniqueLink);
+    void createInvite(InviteDTO invite);
 
     void addRestaurantToInvite(RestaurantInviteDTO restaurantInviteBundle);
 

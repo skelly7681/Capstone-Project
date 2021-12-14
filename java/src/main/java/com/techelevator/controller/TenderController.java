@@ -105,9 +105,9 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)  // this is what is created when they make an invite, inviteId is returned to us
     @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
-    public void createInvite(@RequestBody Invite invite) {
+    public void createInvite(@RequestBody InviteDTO invite) {
 
-        inviteDao.createInvite(invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
+        inviteDao.createInvite(invite);
     }
 
 
@@ -120,6 +120,14 @@ public class TenderController {
 
         inviteDao.addRestaurantToInvite(restaurantInviteBundle);
 
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/userInfo/{username}", method = RequestMethod.POST)
+    public long getUserId(@PathVariable String username) {
+
+        return userDao.findByUsername(username).getId();
     }
 
     //--------------------THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!------------------------

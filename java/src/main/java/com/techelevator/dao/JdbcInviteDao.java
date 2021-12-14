@@ -95,15 +95,15 @@ public class JdbcInviteDao implements InviteDao {
 //    }
 
     @Override
-    public void createInvite(int senderUserId, Date closingDate, Time closingTime, String uniqueLink) {
+    public void createInvite(InviteDTO invite) {
 
-        //get restaurant ID
-
-
-        String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link)\n" +
+        String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link) " +
                 "VALUES (?, ?, ?, ?)";
 
-        jdbcTemplate.update(sql, senderUserId, closingDate, closingTime, uniqueLink);
+        jdbcTemplate.update(sql, invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
+
+        //use unique link to get the id out?
+
     }
 
 
