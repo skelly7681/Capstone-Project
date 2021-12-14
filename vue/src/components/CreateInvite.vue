@@ -18,6 +18,7 @@
                 <!-- <input type="time" id="dueTime" name="dueTime" v-model="invite.closingTime"/> -->
                 
 
+                <!-- use the username registration logic here to make sure the link is truly unique -->
                 <input type="text" id="uniqueUrl" name="uniqueUrl" v-model="invite.unique_url" placeholder="name your invite"/>
                 <button type="button" id="searchButton" v-on:click="submitInvite()">SUBMIT</button>
 
@@ -25,9 +26,11 @@
         </form>
 
         <!-- hide this until invite dates are picked -->
-        <search-restaurants/>
+        <!-- <div v-bind:class="[showSearchOptions ? ] "> -->
+          <search-restaurants/>
+          <restaurant-list/>
+        <!-- </div> -->
         
-        <restaurant-list/>
 
         <!-- all imported componets here -->
     
@@ -45,6 +48,7 @@ export default {
   components: { SearchRestaurants, RestaurantList },
   data(){
       return{
+          showSearchOption: false,
           newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
           invite: {
@@ -75,6 +79,7 @@ export default {
             //   closingDate: this.invite.closingDate,
             //   closingTime: this.invite.closingTime,
             //   uniqueLink: this.invite.uniqueLink
+            //    also need to toggle searchbar visibility
           }
           inviteService
             .createInvite(newInvite)

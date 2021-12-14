@@ -17,23 +17,22 @@
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
                 <br>
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
-                    
+
+                 <!-- create a pop up frame for browsers -->
+                 <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
+                <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><button type="button call">Call to Order</button></a>
+                <!--  <i class="fas fa-phone fa-3x"></i>-->
 
                 <!-- thumbnail image -->
-                <!-- <div>
+                <div>
                     <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
-                </div> -->
+                </div>
                 
 
                 <!-- toggle these depending on the view (create, pending, finalist)-->
                 <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
                 <button type="button thumbsDown" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
-
-
-                <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
                 
-                <!-- create a pop up frame for browsers -->
-                <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><i class="fas fa-phone-volume fa-3x"></i></a>
 
                     <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
                     <!-- <div id="container">

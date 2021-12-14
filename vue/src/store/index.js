@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {}, 
     searchResults: [], 
     currentInvite: {},
+    resInvite: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
