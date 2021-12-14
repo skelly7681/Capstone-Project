@@ -105,7 +105,7 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)  // this is what is created when they make an invite, inviteId is returned to us
     @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
-    public void createInvite(@RequestBody InviteDTO invite) {
+    public void createInvite(@RequestBody Invite invite) {
 
         inviteDao.createInvite(invite);
     }

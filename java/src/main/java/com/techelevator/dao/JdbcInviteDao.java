@@ -95,7 +95,7 @@ public class JdbcInviteDao implements InviteDao {
 //    }
 
     @Override
-    public void createInvite(InviteDTO invite) {
+    public void createInvite(Invite invite) {
 
         String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link) " +
                 "VALUES (?, ?, ?, ?)";
