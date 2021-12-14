@@ -11,11 +11,16 @@
                 <br>
                 <h2 class ="display">{{restaurant.categories[0].title}}</h2>
                 <br>
+                <span class="rating"></span>
+                <br>
                 <p v-if="restaurant.location.address1" class="address display">{{restaurant.location.address1}}</p>
                 <p v-if="restaurant.location.address2" class="address display">{{ restaurant.location.address2}}</p>
                 <p v-if="restaurant.location.address3" class="address display">{{ restaurant.location.address3}}</p>
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
                 <br>
+
+
+
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
                  <!-- create a pop up frame for browsers -->

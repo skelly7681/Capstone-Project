@@ -27,9 +27,7 @@
           <search-restaurants/>
           <restaurant-list/>
         <!-- </div> -->
-        
-
-        <!-- all imported componets here -->
+      
     
     </div>
 </div>
