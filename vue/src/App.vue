@@ -9,6 +9,7 @@
       <div class="filler"></div>
       <div id="nav">
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
+        <router-link v-bind:to="{ name: 'home' }" id="home-button"> Home </router-link>&nbsp;
       </div>
 
     </header>
@@ -86,6 +87,10 @@
   .logo {
     width: 10vh;
     height: 10vh;
+  }
+
+  #home-button {
+    margin-left: 8px;
   }
 
   /* SCREEN DIFFERENCES */

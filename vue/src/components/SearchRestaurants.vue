@@ -150,6 +150,7 @@ form.search-form {
 .pizza-gif {
     width: 50vw;
     height: auto;
+    margin-top: 15px;
 }
 
 

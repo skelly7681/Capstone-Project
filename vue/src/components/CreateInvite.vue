@@ -2,9 +2,6 @@
 <template>
 <div class="view-content">
     <div class="invitation">
-        <div class="nav">
-            <router-link v-bind:to="{ name: 'home' }" id="home-button"> HOME </router-link>&nbsp;
-        </div>
 
         <!-- do not show search until invite is created and invite ID is returned -->
         <!-- this deadline box needs to be bound to an invite to send to the db -->
