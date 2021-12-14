@@ -13,8 +13,10 @@
         <p v-if="restaurant.location.address3" class="address">{{ restaurant.location.address3}}</p>
         <span class="address cs" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
         <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
-        
-        <!-- this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
+        <div>{{restaurant.image_url}}</div>
+
+       <!-- <img src="https://s3-media2.fl.yelpcdn.com/bphoto/FGEGryFJJVWcn6T7AZfdkg/o.jpg" alt=""> -->
+        <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
         <button type="button thumbsDown" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
 
 
@@ -94,7 +96,7 @@ export default {
     border-color: black;
     
     margin-bottom: 10px;
-    border: 1px solid black;
+    
     display: flex;
     flex-wrap: wrap;
     /* flex-direction: column; */
