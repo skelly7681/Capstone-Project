@@ -9,8 +9,10 @@
         <!-- this deadline box needs to be bound to an invite to send to the db -->
         <form v-on:submit.prevent="submitInvite" class="inviteForm">
             <div id="deadlineDate">
-                <label for="dueDate">deadline date: </label>
-                <input type="date" id="dueDate" name="dueDate" v-model="invite.closingDate"/> 
+                <label for="dueDate">Deadline Date: </label>
+                <input type="date" id="dueDate" name="dueDate" v-model="invite.closing_date"/>
+                <label for="time">Enter Time in HH:MM:SS format: </label> 
+                <input type="text" name="timetrial" id="time" v-model="invite.closing_time">
                 <!-- The time format below does not work with the DB -->
                 <!-- <input type="time" id="dueTime" name="dueTime" v-model="invite.closingTime"/> -->
                 <button type="button" id="searchButton" v-on:click="submitInvite()">SUBMIT</button>
@@ -43,9 +45,9 @@ export default {
           invite: {
               inviteId: "", //this is serial, so does it need to be here?
               senderUserId: "", //rip this from the current user object in the store
-              closingDate: "",
+              closing_date: "",
             //   The time format below does not work with the DB
-              closingTime: "",
+              closing_time: "",
               uniqueLink: "" //how tf do we make a unique link --> http://localhost8081/
         }
       }
@@ -59,9 +61,9 @@ export default {
               inviteId: "",
             //   WE NEED TO PULL THE USERID OR HAVE THEM ENTER IT
               senderUserId: 3,  
-              closingDate: this.invite.closingDate,
+              closing_date: this.invite.closing_date,
               //hard coded time - bad
-              closingTime: "12:00:00",
+              closing_time: this.invite.closing_time,
               //hard coded link - bad
               uniqueLink: "www.invites.com"
             //   senderUserId: this.invite.senderUserId,
@@ -85,5 +87,7 @@ export default {
 </script>
 
 <style>
+
+
 
 </style>

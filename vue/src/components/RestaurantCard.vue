@@ -58,16 +58,6 @@ export default {
        //UNKNOWN NEED: LifeCycle Hook
        },      
     methods: {
-      submitRestaurant(){
-          RestaurantService
-            .saveRestaurant(this.restaurant.name)
-            .then(response => {
-                if(response.status === 201){
-                this.$router.push('/')
-                }
-            }) 
-          }, 
-
         saveRestaurant(){
             RestaurantService.saveRestaurant(this.restaurant).then(response => {
                 if (response.status === 201){
