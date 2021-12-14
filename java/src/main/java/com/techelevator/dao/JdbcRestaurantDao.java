@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.Service.DTO.ExtModels.ApiCategories;
 import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.model.Invite;
 import com.techelevator.model.Restaurant;
@@ -100,19 +101,46 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
 
     @Override
-    public void createRestaurant(String restaurantName, String restaurantType, String restaurantAddress, String phoneNumber, String thumbnailImage, double starRating, boolean takeOut,
-                                 boolean delivery, String yelpKey) {
+    public int createRestaurant(RestaurantDTO restaurant) {
 
-        Restaurant checkerRestaurant = getRestaurantByName(restaurantName);
+        Restaurant checkerRestaurant = getRestaurantByName(restaurant.getName()); //not great but it works
+        int restaurantId = 0;
+
+        //for-loop to take-out / delivery
+        boolean hasTakeOut = false;
+        boolean hasDelivery = false;
+
+        String[] transactions = restaurant.getTransactions();
+        for (String transaction : transactions){
+            if (transaction.equalsIgnoreCase("pickup")){
+                hasTakeOut = true;
+            }
+
+            if(transaction.equalsIgnoreCase("delivery")){
+                hasDelivery = true;
+            }
+        }
+
+        //for-loop to get get type
+        ApiCategories[] categories = restaurant.getCategories();
+        String type = categories[0].getTitle();
 
         if(checkerRestaurant == null){
             String sql = "INSERT INTO restaurants (restaurant_name, restaurant_type, restaurant_address, " +
                     "phone_number, thumbnail_img, star_rating, take_out, delivery, yelp_key) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            jdbcTemplate.update(sql, restaurantName, restaurantType, restaurantAddress, phoneNumber,
-                    thumbnailImage, starRating, takeOut, delivery, yelpKey);
+            jdbcTemplate.update(sql, restaurant.getName(), type,  restaurant.getLocation().toString(), restaurant.getDisplayPhoneNumber(),
+                    restaurant.getImageUrl(), restaurant.getRating(), hasTakeOut, hasDelivery, restaurant.getId());
+
+            restaurantId = getRestaurantByName(restaurant.getName()).getRestaurantId();
+
+        } else {
+            restaurantId = checkerRestaurant.getRestaurantId();
         }
+
+        return restaurantId;
+
     }
 
     @Override  // this SQL statement is broken

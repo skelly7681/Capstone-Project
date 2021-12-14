@@ -1,10 +1,13 @@
 package com.techelevator.model;
 
+import com.techelevator.Service.DTO.RestaurantDTO;
+
 public class RestaurantInviteDTO {
 
     private int restaurantId;
     private int inviteId;
     private boolean vetoed;
+    RestaurantDTO restaurant;
 
     public int getRestaurantId() {
         return restaurantId;
@@ -28,6 +31,14 @@ public class RestaurantInviteDTO {
 
     public void setVetoed(boolean vetoed) {
         this.vetoed = vetoed;
+    }
+
+    public RestaurantDTO getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(RestaurantDTO restaurant) {
+        this.restaurant = restaurant;
     }
 
     public RestaurantInviteDTO() {

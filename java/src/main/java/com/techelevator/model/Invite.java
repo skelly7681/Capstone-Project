@@ -1,14 +1,21 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Date;
 import java.sql.Time;
 
 public class Invite {
 
+    @JsonProperty("invite_id")
     private int inviteId;
+    @JsonProperty("sender_user_id")
     private int senderUserId;
+    @JsonProperty("closing_date")
     private Date closingDate;
+    @JsonProperty("closing_time")
     private Time closingTime;
+    @JsonProperty("unique_link")
     private String uniqueLink;
 
     public Invite(int inviteId, int senderUserId, Date closingDate, Time closingTime, String uniqueLink) {

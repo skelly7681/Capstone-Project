@@ -1,7 +1,10 @@
 package com.techelevator.dao;
 
+import com.techelevator.Service.DTO.InviteDTO;
+import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.model.Invite;
 import com.techelevator.model.Restaurant;
+import com.techelevator.model.RestaurantInviteDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -76,6 +79,21 @@ public class JdbcInviteDao implements InviteDao {
         return invite;
     };
 
+//    @Override
+//    public int createInvite(InviteDTO invite) {
+//
+//        int inviteId = 0;
+//
+//        String sql = "INSERT INTO invites (sender_user_id, closing_date, closing_time, unique_link) " +
+//                "VALUES (?, ?, ?, ?)";
+//
+//        jdbcTemplate.update(sql, invite.getSenderUserId(), invite.getClosingDate(), invite.getClosingTime(), invite.getUniqueLink());
+//
+//        inviteId = getInviteByUniqueLink(invite.getUniqueLink()).getInviteId();
+//
+//        return inviteId;
+//    }
+
     @Override
     public void createInvite(int senderUserId, Date closingDate, Time closingTime, String uniqueLink) {
 
@@ -88,16 +106,17 @@ public class JdbcInviteDao implements InviteDao {
         jdbcTemplate.update(sql, senderUserId, closingDate, closingTime, uniqueLink);
     }
 
-    public void addRestaurantToInvite(int restaurantId, int inviteId, boolean veto) {
 
-//        Restaurant test = restaurantDao.createRestaurant();
+    public void addRestaurantToInvite(RestaurantInviteDTO restaurantInviteBundle) {
+
+        int restaurantId = restaurantDao.createRestaurant(restaurantInviteBundle.getRestaurant());
 
         boolean defaultVeto = false; // do this on the front end??
 
         String sql = "INSERT INTO invite_restaurant (invite_id, restaurant_id, vetoed) " +
                 "VALUES (?, ?, ?)";
 
-        jdbcTemplate.update(sql, inviteId, restaurantId, veto);
+        jdbcTemplate.update(sql, restaurantInviteBundle.getInviteId(), restaurantId, defaultVeto);
     }
 
     private Invite mapRowToInvite(SqlRowSet rs) {

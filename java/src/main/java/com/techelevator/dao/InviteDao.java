@@ -1,6 +1,9 @@
 package com.techelevator.dao;
 
+import com.techelevator.Service.DTO.InviteDTO;
+import com.techelevator.Service.DTO.RestaurantDTO;
 import com.techelevator.model.Invite;
+import com.techelevator.model.RestaurantInviteDTO;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -18,6 +21,6 @@ public interface InviteDao {
 
     void createInvite(int senderUserId, Date closingDate, Time closingTime, String uniqueLink);
 
-    void addRestaurantToInvite(int inviteId, int restaurantId, boolean isVetoed);
+    void addRestaurantToInvite(RestaurantInviteDTO restaurantInviteBundle);
 
 }

@@ -80,27 +80,7 @@ public class TenderController {
     @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
     public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
 
-        //for-loop to take-out / delivery
-        boolean hasTakeOut = false;
-        boolean hasDelivery = false;
-
-        String[] transactions = restaurant.getTransactions();
-        for (String transaction : transactions){
-            if (transaction.equalsIgnoreCase("pickup")){
-                hasTakeOut = true;
-            }
-
-            if(transaction.equalsIgnoreCase("delivery")){
-                hasDelivery = true;
-            }
-        }
-
-        //for-loop to get get type
-        ApiCategories[] categories = restaurant.getCategories();
-        String type = categories[0].getTitle();
-
-        restaurantDao.createRestaurant(restaurant.getName(), type, restaurant.getLocation().toString(), restaurant.getDisplayPhoneNumber(),restaurant.getImageUrl(),
-                restaurant.getRating(), hasTakeOut, hasDelivery, restaurant.getId());
+        restaurantDao.createRestaurant(restaurant);
 
     }
 
@@ -120,7 +100,8 @@ public class TenderController {
         return inviteDao.getAllInvitesBySenderId(senderUserId);
     }
 
-    //tested & works (postman call)
+
+    //THIS DOESNT WORK ANYMORE???? -- having issues with foreign key constraints
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)  // this is what is created when they make an invite, inviteId is returned to us
     @RequestMapping(path = "/invites/create", method = RequestMethod.POST)
@@ -135,9 +116,9 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/invites/add", method = RequestMethod.POST)
-    public void addRestaurantToInvite(@RequestBody RestaurantInviteDTO restaurantInvite) {
+    public void addRestaurantToInvite(@RequestBody RestaurantInviteDTO restaurantInviteBundle) {
 
-        inviteDao.addRestaurantToInvite(restaurantInvite.getRestaurantId(), restaurantInvite.getInviteId(), restaurantInvite.isVetoed());
+        inviteDao.addRestaurantToInvite(restaurantInviteBundle);
 
     }
 
