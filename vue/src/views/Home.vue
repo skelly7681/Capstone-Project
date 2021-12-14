@@ -93,7 +93,7 @@ button.createButton, button.viewButton {
   height: 100px;
   width: 350px;
   padding: 12px 32px;
-  border: 5px solid purple;
+  border: 5px solid plum;
 }
 
 button.createButton:hover, button.viewButton:hover {
