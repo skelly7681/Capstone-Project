@@ -3,20 +3,29 @@
 <div class="view-content">
     <div class="invitation">
 
+      <h2 id="inviteTitle" >CREATE YOUR INVITE</h2>
+
         <!-- do not show search until invite is created and invite ID is returned -->
         <!-- this deadline box needs to be bound to an invite to send to the db -->
         <form v-on:submit.prevent="submitInvite" class="inviteForm">
             <div id="deadlineDate">
-                <label for="dueDate">Deadline Date: </label>
+
+                <h3>Enter closing date:</h3>
                 <input type="date" id="dueDate" name="dueDate" v-model="invite.closing_date"/>
+                <br>
                 <!-- <label for="time" > </label> -->
-                <input type="text" name="timetrial" id="time" v-model="invite.closing_time" placeholder="enter time (HH:MM:SS)">
+                <h3>Enter closing time:</h3>
+                <input type="text" name="timetrial" id="time" v-model="invite.closing_time" placeholder="(hh:mm:ss)">
+                <br>
                 <!-- The time format below does not work with the DB -->
                 <!-- <input type="time" id="dueTime" name="dueTime" v-model="invite.closingTime"/> -->
                 
 
                 <!-- use the username registration logic here to make sure the link is truly unique -->
-                <input type="text" id="uniqueUrl" name="uniqueUrl" v-model="invite.uniqueLink" placeholder="name your invite"/>
+                <h3>Enter invite name:</h3>
+                <input type="text" id="uniqueUrl" name="uniqueUrl" v-model="invite.uniqueLink" placeholder="name"/>
+                <br>
+                <br>
                 <button type="button" id="searchButton" v-on:click="submitInvite()">SUBMIT</button>
 
             </div>
@@ -91,6 +100,49 @@ export default {
 
 <style>
 
+form.inviteForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
+#inviteTitle {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 1;
+    padding: 10px;
+    color: white;
+    background-image: linear-gradient(to bottom right, rgb(114, 227, 241), rgb(235, 124, 235));
+    font-weight: 600;
+    font-style: italic;
+}
+
+input {
+  width: 215px;
+  padding: 10px 15px;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-right: 15px;
+}
+
+input:focus {
+  border: 3px solid black;
+}
+
+#searchButton {
+  border: none;
+  background-color: rgb(243, 214, 243);
+  font-size: 20px;
+  border-radius: 25px;
+  width: 250px;
+  padding: 12px 32px;
+}
+
+#searchButton:hover {
+  background-color: plum;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 </style>
