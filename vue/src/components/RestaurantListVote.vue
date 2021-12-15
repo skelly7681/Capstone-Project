@@ -1,9 +1,11 @@
 <template>
-  <div>
-     
-    <button type="view-pending" class="display" id="button2" v-on:click="populateChoices()"> Do it you beast. </button>
+  <div class ="restaurant-container">
+      <restaurant-card-vote class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant" />
+      <h1>TEST</h1>
+      
+      <!-- API vomit -->
+      {{restaurants}}
 
-    <restaurant-card-vote class="card" v-for="restaurant in inviteRestaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant"/>
   </div>
 </template>
 
@@ -11,46 +13,41 @@
 import RestaurantCardVote from './RestaurantCardVote.vue';
 import RestaurantService from "../services/RestaurantService";
 
-
 export default {
-    name: 'restaurant-list-vote',
-    inviteRestaurants: [],
-    date(){
-        return{
-            inviteRestaurants: []
-        }
-    },
-    props: {
-        RestaurantCardVote,
-
-    },
-    components: {RestaurantCardVote},
-    methods: {
-        populateChoices(){
-            alert("Looking for " + this.$route.params.inviteId);
-            RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response => {
-                this.inviteRestaurants = response.data;
-                alert("restaurants may be in the store")
-                this.$store.commit('SET_CURRENT_INVITE_ID', this.$route.params.inviteId);
-                this.$store.commit('SET_PENDING_RESTAURANTS', this.inviteRestaurants);
-                this.isLoading = false; 
-            })
-
-        }
-    }, 
-    created() {
-        this.$store.subscribe(mutatation => {
-            if(mutatation.type === "SET_PENDING_RESTAURANTS") {
-                this.inviteRestaurants = this.$store.state.inviteRestaurants;
-            }
-
-        })
-
+  name: 'restaurant-list-vote',
+  data() {
+    return{
+      restaurants: []
     }
-        
+  },
+  components: { 
+      RestaurantCardVote 
+  },
+
+  computed: {
+   
+  },
+
+  created() {
+    RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response =>{
+        this.restaurants = response.data;
+        alert("checkpoint1")
+    })
+  }
 }
 </script>
 
 <style>
+.restaurant-container {
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
 
+.card {
+  display: inline-block;
+  border: 2px solid purple;
+  border-radius: 8px;
+  margin: 4px;
+}
 </style>

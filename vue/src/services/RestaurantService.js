@@ -27,7 +27,7 @@ export default {
   },
 
   getAllRestaurantsByInviteId(inviteId){
-    return axios.get(`/restaurants/all/${inviteId}`, inviteId);
+    return axios.get(`/restaurants/all/${inviteId}`);
   }
 
 

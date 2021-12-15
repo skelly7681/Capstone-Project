@@ -1,6 +1,8 @@
 <template>
-      <div id="cards">
-    
+    <div id="cards">
+
+        <button type="view-pending" class="display" id="button2" v-on:click="populateChoices()"> Do it you beast. </button>
+
         <!-- Below is implemented in Restaurant Card but it is not showing up -->
         <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
             <div id="restaurant-details">
@@ -18,6 +20,8 @@
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
                 <br>
 
+
+
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
                  <!-- create a pop up frame for browsers -->
@@ -32,60 +36,73 @@
                 
 
                     <div id="container">
-                        <button type="button thumbsUp" id="button1" v-on:click="thumbsDown()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
+                        <button type="button thumbsUp" id="button1" v-on:click="submitVote()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
                         <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
                     </div>
+
             </div>
+
+
+
         </div>
         
     </div>
 </template>
 
 <script>
-import RestaurantService from '../services/RestaurantService';
+import RestaurantService from "../services/RestaurantService";
+
+
 export default {
-    name: 'restaurant-card-vote', 
+    name: 'restaurant-card-vote',
+
     props: {
         restaurant: {}
     },
+
+
+
     data(){
         return{
             inviteRestaurants: [],
+            savedToInvite: false,
             isLoading: true,
             restaurantInv: {
-                restaurantId : '',
-                inviteId: '', 
-                isVetoed: '',
+                restaurantId: "",
+                inviteId: "",
+                vetoed: "false",
             }
         }
-    }, 
+    },
+    created(){
+       //UNKNOWN NEED: LifeCycle Hook
+       },      
     methods: {
-        thumbsDown(){
-            this.restaurantInv.restaurant = this.restaurant;
-            this.restaurantInv.inviteId = this.$store.state.currentInvite; 
-            this.restaurantInv.vetoed = true;
-            RestaurantService.thumbsDown(this.restaurantInv).then()
-        }
- 
-    }, 
-    created() {
-        alert("Looking for " + this.$route.params.inviteId);
-        RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response => {
-            this.inviteRestaurants = response.data;
-            this.$store.commit('SET_CURRENT_INVITE_ID', this.$route.params.inviteId);
-            this.$store.commit('SET_PENDING_RESTAURANTS', this.inviteRestaurants);
-            this.isLoading = false; 
-        })
-    }, 
+        submitVote(){    
+                    this.restaurantInv.restaurant = this.restaurant;
+                    this.restaurantInv.inviteId = this.$store.state.currentInvite;
+                    this.restaurantInv.vetoed = true;
+                    RestaurantService.thumbsDown(this.restaurantInv).then(                      
+                    )
+                }, 
+        populateChoices(){
+                RestaurantService.getAllRestaurantsByInviteId(this.$store.state.currentInvite.inviteId).then(response => {
+                this.inviteRestaurants = response.data;
+                this.$store.commit('SET_PENDING_RESTAURANTS', this.inviteRestaurants);
+                this.isLoading = false;
+            })
+        }   
+
+      },
     computed: {
-        dbRestaurants(){
-            return this.$store.state.inviteRestaurants;
-        }
-    }
-}
+
+    }, 
+  }
+
 </script>
 
 <style scoped>
+@import 'https://use.fontawesome.com/releases/v5.13.0/css/all.css';
 
 .address {
     margin: 2px 8px;
