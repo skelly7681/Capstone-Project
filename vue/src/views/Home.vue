@@ -16,11 +16,13 @@
         <br>
         <br>
         <br>
+        <br>
         <router-link to="/invite" class="createButton" tag="button">CREATE AN INVITE</router-link>
         <br>
         <br>
         <br>
         <router-link to="/viewInvites" class="viewButton" tag="button">VIEW ALL INVITES</router-link>
+        <br>
         <br>
         <br>
         <br>
