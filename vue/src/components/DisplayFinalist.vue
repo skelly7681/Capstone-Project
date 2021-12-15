@@ -6,11 +6,16 @@
 <div>
     <!-- <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp; -->
     <h1>THIS IS THE COMPONENT</h1>
+    <restaurant-card-finalists class="card" v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant"/>
 
     <!-- API vomit -->
     {{finalSelectionRestaurants}}
 
-
+    <!-- TEST -->
+    <div v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId" > 
+      {{restaurant.restaurantName}}
+    </div>
+    
     <restaurant-list-vote/>
 
     <body v-if="isSelectionListEmpty">
@@ -28,15 +33,21 @@
 </template>
 
 <script>
-import RestaurantListVote from './RestaurantList.vue'
+import RestaurantCardFinalists from './RestaurantCardFinalists';
 import InviteServices from '../services/InviteServices';
 
 export default {
   name: 'display-finalist',
+  components: {
+    RestaurantCardFinalists
+  },
   data(){
       return{
           finalSelectionRestaurants: [],
-          isSelectionListEmpty: false
+          isSelectionListEmpty: false,
+          currentRestaurant: {
+            restaurantName: ''
+          }
       }
   }, 
   methods: {
