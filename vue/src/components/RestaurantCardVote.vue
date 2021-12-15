@@ -72,13 +72,11 @@ export default {
        },      
     methods: {
         submitVote(){ 
-            alert("checkpoint")   
-                    this.restaurantInv.restaurantId = this.restaurant.restaurantId;
-                    this.restaurantInv.restaurant = this.restaurant;
-                    this.restaurantInv.inviteId = this.$route.params.inviteId;
-                    this.restaurantInv.vetoed = true;
-                    InviteServices.thumbsDown(this.restaurantInv).then(
-                        alert("check the db")                      
+                 this.restaurantInv.restaurantId = this.restaurant.restaurantId;
+                 this.restaurantInv.restaurant = this.restaurant;
+                 this.restaurantInv.inviteId = this.$route.params.inviteId;
+                 this.restaurantInv.vetoed = true;
+                 InviteServices.thumbsDown(this.restaurantInv).then(                    
                     )
                 }, 
         populateChoices(){
