@@ -5,6 +5,10 @@
 <template>
 <div>
     <!-- <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp; -->
+    <h1>THIS IS THE COMPONENT</h1>
+
+    <!-- API vomit -->
+    {{finalSelectionRestaurants}}
 
 
     <restaurant-list-vote/>
@@ -25,8 +29,10 @@
 
 <script>
 import RestaurantListVote from './RestaurantList.vue'
+import InviteServices from '../services/InviteServices';
+
 export default {
-  components: { RestaurantListVote },
+  name: 'display-finalist',
   data(){
       return{
           finalSelectionRestaurants: [],
@@ -41,6 +47,10 @@ export default {
 
   }, 
   created(){
+        InviteServices.getFinalistsByInviteId(this.$route.params.inviteId).then(response =>{
+        this.finalSelectionRestaurants = response.data;
+        alert("checkpoint2")
+    })
 
   },
   computed: {

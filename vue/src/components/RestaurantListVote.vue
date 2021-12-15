@@ -2,7 +2,7 @@
   <div class ="restaurant-container">
       <restaurant-card-vote class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant" />
       <h1>TEST</h1>
-      
+
       <!-- API vomit -->
       {{restaurants}}
 
@@ -12,6 +12,7 @@
 <script>
 import RestaurantCardVote from './RestaurantCardVote.vue';
 import RestaurantService from "../services/RestaurantService";
+
 
 export default {
   name: 'restaurant-list-vote',

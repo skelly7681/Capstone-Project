@@ -8,6 +8,7 @@ import store from '../store/index'
 import CreateInvite from '../views/CreateInvite.vue'
 import ViewUserInvites from '../views/ViewUserInvites.vue'
 import Vote from '../views/Vote.vue'
+import DisplayFinalists from '../views/DisplayFinalists.vue'
 
 
 Vue.use(Router)
@@ -88,6 +89,14 @@ const router = new Router({
       component: Vote,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/finalist/:inviteId",
+      name: "finalists",
+      component: DisplayFinalists,
+      meta: {
+        requiresAuth: true
       }
     }
 
