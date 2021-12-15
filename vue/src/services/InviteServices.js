@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+axios.create({
+    baseURL: 'http://localhost:8080'
+  })
+
 export default {
 
     getFinalistsByInviteId(inviteId) {
@@ -11,7 +15,7 @@ export default {
     },
 
     thumbsDown(restaurantInviteDTO) {
-        return axios.post('/vetoed', restaurantInviteDTO)
+        return axios.put(`/vetoed`, restaurantInviteDTO)
     },
 
     getAllInvitesBySenderId(senderUserId) {
@@ -19,7 +23,7 @@ export default {
     },
     
     createInvite(invite) {
-        return axios.post('/invites/create', invite)
+        return axios.post(`/invites/create`, invite)
     },
 
     

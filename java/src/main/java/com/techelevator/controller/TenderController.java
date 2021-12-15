@@ -126,8 +126,8 @@ public class TenderController {
 
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/userInfo/{username}", method = RequestMethod.POST)
-    public long getUserId(@PathVariable String username) {
+    @RequestMapping(path = "/user", method = RequestMethod.POST)
+    public long getUserId(@RequestBody String username) {
 
         return userDao.findByUsername(username).getId();
     }

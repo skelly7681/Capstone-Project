@@ -1,12 +1,15 @@
 <template>
-  <div class ="restaurant-container">
-      <restaurant-card-vote class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant" />
-      <h1>TEST</h1>
+<div>
+ 
+    <div class ="restaurant-container">
+      <restaurant-card-vote class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant" />
 
       <!-- API vomit -->
-      {{restaurants}}
+      <!-- {{restaurants}} -->
 
   </div>
+</div>
+
 </template>
 
 <script>
@@ -32,7 +35,6 @@ export default {
   created() {
     RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response =>{
         this.restaurants = response.data;
-        alert("checkpoint1")
     })
   }
 }
@@ -47,7 +49,6 @@ export default {
 
 .card {
   display: inline-block;
-  border: 2px solid purple;
   border-radius: 8px;
   margin: 4px;
 }

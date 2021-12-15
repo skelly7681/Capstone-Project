@@ -58,7 +58,7 @@ export default {
           isLoading: true,
           invite: {
               inviteId: "", 
-              senderUserId: "", 
+              senderUserId: 3, 
               closing_date: "",
             //   The time format below does not work with the DB
               closing_time: "",
@@ -73,27 +73,20 @@ export default {
       submitInvite(){
           const newInvite = {
               inviteId: "",
-            //   WE NEED TO PULL THE USERID OR HAVE THEM ENTER IT
-              senderUserId: 3,  
+              senderUserId: "", //   WE NEED TO PULL THE USERID OR HAVE THEM ENTER IT
               closing_date: this.invite.closing_date,
-              //hard coded time - bad
               closing_time: this.invite.closing_time,
-              //hard coded link - bad
               uniqueLink: this.invite.uniqueLink
           }
-
           inviteService
             .createInvite(newInvite)
             .then(response => {
                 if(response.status === 201){
-                alert("invite created")
                 this.$store.commit("SET_CURRENT_INVITE", response.data);
                 }
             }) 
           }, 
-
-          //deal with the $Store here?
-      }
+        }
   }
   
 </script>

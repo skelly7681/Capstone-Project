@@ -12,10 +12,6 @@
       <br>
       <br>
       
-      <div>TESTING VOTING DISPLAY: <router-link :to="{ name: 'vote' }">vote.</router-link></div>
-
-      
-
   </div>
 </template>
 
@@ -28,8 +24,6 @@ export default {
     components :{
         DisplayFinalist, 
         OpenInvites,
-        
-         // PendingInvitation
     }
 
 }
