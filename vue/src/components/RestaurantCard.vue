@@ -4,41 +4,33 @@
 
         <div id="mainCard">
             <div id="restaurant-details">
-                <br>
-                <div>
-                    <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
+                <img v-if="restaurant.image_url" :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
+
+                <div class="rest-name">
+                    <h1 id="name">{{restaurant.name}}</h1>
                 </div>
-                <h1 id="name">{{restaurant.name}}</h1>
                 
-                <h2>{{restaurant.categories[0].title}}</h2>
-                
-                <span class="rating"></span>
-                
+                <div class="rest-title">
+                    <h1 id="title">{{restaurant.categories[0].title}}</h1>
+                </div>
+
                 <p v-if="restaurant.location.address1" class="address display">{{restaurant.location.address1}}</p>
                 <p v-if="restaurant.location.address2" class="address display">{{ restaurant.location.address2}}</p>
                 <p v-if="restaurant.location.address3" class="address display">{{ restaurant.location.address3}}</p>
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
 
                 <br>
-                <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
-
-                 <!-- create a pop up frame for browsers -->
-                 <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
-                <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><button type="button call">Call to Order</button></a>
-                <!--  <i class="fas fa-phone fa-3x"></i>-->
+                <br>
                 
-                <!-- toggle these depending on the view (create, pending, finalist)-->
-                <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
+                <div class="phone-div">
+                    <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
+                </div>
+
+                <br>
 
                 <div class="plusButton">
                     <button type="save" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" class="plusButtonImg" alt="plus"/></button>
                 </div>
-
-                    <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
-                    <!-- <div id="container">
-                        <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
-                        <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
-                    </div> -->
 
             </div>
 
@@ -103,58 +95,54 @@ export default {
     margin: 2px 8px;
 }
 
-.cs {
-    display: inline-block;
-}
-
-
-    #mainCard {
-    border-width: 10px;
-    border-color: lightgray;
+#mainCard {
     background-color: white;
 
-    padding: 10px 15px;
     border: 3px solid lightgray;
     border-radius: 10px;
 
     width: 300px;
-    height: 500px;
+    height: 575px;
     
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
+
     overflow-x: auto;
-    justify-content: center;
-    padding: 5px;
-    margin: 10px;
-    
+    justify-content: flex-start;
+    margin: 10px; 
+}
+
+.thumbnail {
+    width: 300px;
+    height: 125px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.thumbnail:hover {
+    opacity: 1.0;
 }
 
   #name{
-     text-decoration: underline;
-     text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    font-style: italic;
 }
 
-#container{
-    text-align: center;
-}
-
-#address{
+.rest-name {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-#phoneNumber{
-    display: block;
-    margin: 0
-
-}  
-
-.thumbnail {
-    width: 40%;
-    height: 40%;
+#title {
+    font-size: 20px;
 }
 
-
+.rest-title {
+    display: flex;
+    justify-content: space-around;
+}
 
 .plusButton {
     display: flex;
@@ -163,9 +151,30 @@ export default {
     padding: 15px;
 }
 
+.call-button {
+    border: none;
+    background-color: rgb(243, 214, 243);
+    font-size: 20px;
+    border-radius: 25px;
+    width: 200px;
+    padding: 12px 32px;
+}
+
+.call-button:hover {
+    background-color: plum;
+    color: white;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 10px 8px 0 rgba(0,0,0,0.19);
+}
+
+.phone-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #button2 {
-    height: 150px;
-    width: 150px;
+    height: 125px;
+    width: 125px;
     border: 0px;
     background: white;
 }

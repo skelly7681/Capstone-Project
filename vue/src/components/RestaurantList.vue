@@ -45,4 +45,5 @@ export default {
 .card {
   display: inline-block;
 }
+
 </style>
