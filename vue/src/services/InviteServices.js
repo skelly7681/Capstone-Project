@@ -22,6 +22,8 @@ export default {
         return axios.post('/invites/create', invite)
     },
 
+    
+
 
 
 

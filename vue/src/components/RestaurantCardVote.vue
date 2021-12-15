@@ -1,6 +1,7 @@
-
 <template>
     <div id="cards">
+
+        <button type="view-pending" class="display" id="button2" v-on:click="populateChoices()"> Do it you beast. </button>
 
         <!-- Below is implemented in Restaurant Card but it is not showing up -->
         <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
@@ -34,16 +35,10 @@
                 </div>
                 
 
-                <!-- toggle these depending on the view (create, pending, finalist)-->
-                <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
-                <button type="save" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
-                
-
-                    <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
-                    <!-- <div id="container">
-                        <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
+                    <div id="container">
+                        <button type="button thumbsUp" id="button1" v-on:click="submitVote()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
                         <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
-                    </div> -->
+                    </div>
 
             </div>
 
@@ -59,7 +54,7 @@ import RestaurantService from "../services/RestaurantService";
 
 
 export default {
-    name: 'restaurant-card',
+    name: 'restaurant-card-vote',
 
     props: {
         restaurant: {}
@@ -69,16 +64,13 @@ export default {
 
     data(){
         return{
-            searchLocation: "",
-            searchResults: [],
+            inviteRestaurants: [],
             savedToInvite: false,
-            vetoed: false,
             isLoading: true,
             restaurantInv: {
                 restaurantId: "",
                 inviteId: "",
                 vetoed: "false",
-                restaurant: {}
             }
         }
     },
@@ -86,22 +78,25 @@ export default {
        //UNKNOWN NEED: LifeCycle Hook
        },      
     methods: {
-        saveRestaurant(){    
+        submitVote(){    
                     this.restaurantInv.restaurant = this.restaurant;
                     this.restaurantInv.inviteId = this.$store.state.currentInvite;
-                    RestaurantService.saveRestaurantInvite(this.restaurantInv).then(                      
+                    this.restaurantInv.vetoed = true;
+                    RestaurantService.thumbsDown(this.restaurantInv).then(                      
                     )
-                }
+                }, 
+        populateChoices(){
+                RestaurantService.getAllRestaurantsByInviteId(this.$store.state.currentInvite.inviteId).then(response => {
+                this.inviteRestaurants = response.data;
+                this.$store.commit('SET_PENDING_RESTAURANTS', this.inviteRestaurants);
+                this.isLoading = false;
+            })
+        }   
+
       },
     computed: {
-        foundRestaurants(){
-            return this.$store.state.searchResults;
-        }
-    }, 
-    revealNumber(restaurant){
-        return restaurant.displayPhoneNumber;
-    }
 
+    }, 
   }
 
 </script>

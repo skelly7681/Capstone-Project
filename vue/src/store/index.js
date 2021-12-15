@@ -23,7 +23,8 @@ export default new Vuex.Store({
     searchResults: [], 
     currentInvite: {},
     resInvite: {},
-
+    pendingInviteRestaurants: [],
+    finalistRestaurants: []
 
   },
   mutations: {
@@ -49,8 +50,12 @@ export default new Vuex.Store({
     SET_CURRENT_INVITE(state, invite){
       state.currentInvite = invite;
     }, 
-    
-    
+    SET_PENDING_RESTAURANTS(state, pendingList){
+      state.finalistRestaurants = pendingList;
+    },
+    SET_FINALIST_RESTAURANTS(state, finalistList){
+      state.finalistRestaurants = finalistList;
+    }
 
   }
 })

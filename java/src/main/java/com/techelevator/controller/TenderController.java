@@ -132,13 +132,13 @@ public class TenderController {
     }
 
     //this is giving me grief
-    @PreAuthorize("permitAll()")
-    @RequestMapping(path = "/invites/{link}", method = RequestMethod.GET)
-    public List<Restaurant> getRestaurantsByInviteId(@PathVariable String link) {
-
-        return restaurantDao.getAllRestaurantsByInviteId(inviteDao.getInviteByUniqueLink(link).getInviteId());
-
-    }
+//    @PreAuthorize("permitAll()")
+//    @RequestMapping(path = "/invites/{link}", method = RequestMethod.GET)
+//    public List<Restaurant> getRestaurantsByInviteId(@PathVariable String link) {
+//
+//        return restaurantDao.getAllRestaurantsByInviteId(inviteDao.getInviteByUniqueLink(link).getInviteId());
+//
+//    }
 
     //--------------------THIRD PARTY API!!!!!!!!!!!!!!!!!!!!!!!!!!!------------------------
 

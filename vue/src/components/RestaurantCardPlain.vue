@@ -1,4 +1,3 @@
-
 <template>
     <div id="cards">
 
@@ -32,18 +31,7 @@
                 <div>
                     <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
                 </div>
-                
-
-                <!-- toggle these depending on the view (create, pending, finalist)-->
-                <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
-                <button type="save" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
-                
-
-                    <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
-                    <!-- <div id="container">
-                        <button type="button thumbsUp" id="button1" v-on:click="submitRestaurant()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
-                        <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
-                    </div> -->
+            
 
             </div>
 
@@ -59,7 +47,7 @@ import RestaurantService from "../services/RestaurantService";
 
 
 export default {
-    name: 'restaurant-card',
+    name: 'restaurant-card-plain',
 
     props: {
         restaurant: {}

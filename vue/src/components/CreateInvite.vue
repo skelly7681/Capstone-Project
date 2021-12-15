@@ -47,8 +47,8 @@ export default {
           newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
           invite: {
-              inviteId: "", //rip this from an axios call when we create an invite.
-              senderUserId: "", //rip this from the current user object in the store
+              inviteId: "", 
+              senderUserId: "", 
               closing_date: "",
             //   The time format below does not work with the DB
               closing_time: "",

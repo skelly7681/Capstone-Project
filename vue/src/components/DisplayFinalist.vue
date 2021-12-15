@@ -4,10 +4,10 @@
 
 <template>
 <div>
-    <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp;
+    <!-- <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp; -->
 
 
-    <restaurant-list/>
+    <restaurant-list-vote/>
 
     <body v-if="isSelectionListEmpty">
         <div class="oops-message">
@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import RestaurantList from './RestaurantList.vue'
+import RestaurantListVote from './RestaurantList.vue'
 export default {
-  components: { RestaurantList },
+  components: { RestaurantListVote },
   data(){
       return{
           finalSelectionRestaurants: [],

@@ -7,8 +7,11 @@
       </div>
 
       <display-finalist/>
-      <!-- <pending-invitation/> -->
       <open-invites/>
+      <br>
+      <br>
+      <br>
+      <restaurant-list-vote/>
 
       
 
@@ -17,13 +20,14 @@
 
 <script>
 import DisplayFinalist from '../components/DisplayFinalist.vue'
-//import PendingInvitation from '../components/PendingInvitation.vue'
 import OpenInvites from '../components/OpenInvites'
+import RestaurantListVote from '../components/RestaurantListVote.vue'
 
 export default {
     components :{
         DisplayFinalist, 
-        OpenInvites
+        OpenInvites,
+        RestaurantListVote
          // PendingInvitation
     }
 

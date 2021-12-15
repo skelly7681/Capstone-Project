@@ -24,5 +24,15 @@ export default {
 
   addRestaurantToInvite(inviteId, restaurantId) {
     return axios.post('/invites/add/restaurant', inviteId, restaurantId)
+  },
+
+  getAllRestaurantsByInviteId(inviteId){
+    return axios.get(`/restaurants/all/${inviteId}`, inviteId);
   }
+
+
+
+
+
+
 }
