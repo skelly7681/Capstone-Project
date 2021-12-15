@@ -19,8 +19,6 @@
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
                 <br>
 
-
-
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
                  <!-- create a pop up frame for browsers -->
@@ -33,7 +31,6 @@
                     <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
                 </div>
                 
-
                 <!-- toggle these depending on the view (create, pending, finalist)-->
                 <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
                 <button type="save" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
@@ -79,7 +76,8 @@ export default {
                 inviteId: "",
                 vetoed: "false",
                 restaurant: {}
-            }
+            }, 
+            hasTakeOut: "false"
         }
     },
     created(){

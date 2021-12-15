@@ -15,7 +15,7 @@ export default {
     },
 
     getAllInvitesBySenderId(senderUserId) {
-        return axios.post('/UserInvites/${senderUserId}', senderUserId)
+        return axios.post(`/UserInvites/${senderUserId}`, senderUserId)
     },
     
     createInvite(invite) {

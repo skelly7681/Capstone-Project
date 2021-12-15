@@ -44,6 +44,7 @@ export default {
   data(){
       return{
           showSearchOption: false,
+          generatedLink: "",
           newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
           invite: {
@@ -70,8 +71,8 @@ export default {
               closing_time: this.invite.closing_time,
               //hard coded link - bad
               uniqueLink: this.invite.uniqueLink
-        
           }
+
           inviteService
             .createInvite(newInvite)
             .then(response => {
