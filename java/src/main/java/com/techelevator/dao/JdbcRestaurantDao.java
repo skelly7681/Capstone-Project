@@ -143,7 +143,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
     }
 
-    @Override  // this SQL statement is broken
+    @Override
     public void thumbsDown(int inviteId, int restaurantId) {
 
         //need to add invite_id and take out the join

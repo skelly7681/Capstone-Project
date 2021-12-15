@@ -9,12 +9,12 @@
     <restaurant-card-finalists class="card" v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant"/>
 
     <!-- API vomit -->
-    {{finalSelectionRestaurants}}
+    <!-- {{finalSelectionRestaurants}} -->
 
     <!-- TEST -->
-    <div v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId" > 
+    <!-- <div v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId" > 
       {{restaurant.restaurantName}}
-    </div>
+    </div> -->
     
     <restaurant-list-vote/>
 

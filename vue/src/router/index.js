@@ -76,14 +76,6 @@ const router = new Router({
       }
     },
     {
-      path: "/viewInvites",
-      name: "viewInvites",
-      component: ViewUserInvites,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
       path: "/vote/:inviteId",
       name: "vote",
       component: Vote,

@@ -1,49 +1,40 @@
 <template>
     <div id="cards">
 
-        <button type="view-pending" class="display" id="button2" v-on:click="populateChoices()"> Do it you beast. </button>
-
         <!-- Below is implemented in Restaurant Card but it is not showing up -->
         <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
+                   <div id="mainCard" v-bind:style='{ background: `url("${restaurant.thumbnailImage}")` }'>
             <div id="restaurant-details">
                 <br>
                 <br>
-                <h1 id="name" class ="display">{{restaurant.name}}</h1>
+                <h1 id="name" class ="display">{{restaurant.restaurantName}}</h1>
                 <br>
-                <h2 class ="display">{{restaurant.categories[0].title}}</h2>
+                <h2 class ="display">{{restaurant.restaurantType}}</h2>
                 <br>
                 <span class="rating"></span>
                 <br>
-                <p v-if="restaurant.location.address1" class="address display">{{restaurant.location.address1}}</p>
-                <p v-if="restaurant.location.address2" class="address display">{{ restaurant.location.address2}}</p>
-                <p v-if="restaurant.location.address3" class="address display">{{ restaurant.location.address3}}</p>
-                <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
+                <p v-if="restaurant.restaurantAddress" class="address display">{{restaurant.restaurantAddress}}</p>
+        
                 <br>
-
-
-
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
                  <!-- create a pop up frame for browsers -->
                  <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
-                <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><button type="button call">Call to Order</button></a>
+                <a href="tel:${restaurant.phoneNumber}" target="_blank"><button type="button call">Call to Order</button></a>
                 <!--  <i class="fas fa-phone fa-3x"></i>-->
 
                 <!-- thumbnail image -->
                 <div>
-                    <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
+                    <img :src="restaurant.thumbnailImage" alt="restaurant.restaurantName" class="thumbnail">
+                </div>
+            
                 </div>
                 
-
                     <div id="container">
-                        <button type="button thumbsUp" id="button1" v-on:click="submitVote()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
-                        <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
+                        <button type="button thumbsUp" id="button1" ><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
+                        <button type="button thumbsDown" id="button2" v-on:click="submitVote()"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
                     </div>
-
             </div>
-
-
-
         </div>
         
     </div>
@@ -51,6 +42,7 @@
 
 <script>
 import RestaurantService from "../services/RestaurantService";
+import InviteServices from "../services/InviteServices";
 
 
 export default {
@@ -70,7 +62,8 @@ export default {
             restaurantInv: {
                 restaurantId: "",
                 inviteId: "",
-                vetoed: "false",
+                vetoed: "true",
+                restaurant: {}
             }
         }
     },
@@ -78,11 +71,14 @@ export default {
        //UNKNOWN NEED: LifeCycle Hook
        },      
     methods: {
-        submitVote(){    
+        submitVote(){ 
+            alert("checkpoint")   
+                    this.restaurantInv.restaurantId = this.restaurant.restaurantId;
                     this.restaurantInv.restaurant = this.restaurant;
-                    this.restaurantInv.inviteId = this.$store.state.currentInvite;
+                    this.restaurantInv.inviteId = this.$route.params.inviteId;
                     this.restaurantInv.vetoed = true;
-                    RestaurantService.thumbsDown(this.restaurantInv).then(                      
+                    InviteServices.thumbsDown(this.restaurantInv).then(
+                        alert("check the db")                      
                     )
                 }, 
         populateChoices(){

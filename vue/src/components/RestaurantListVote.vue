@@ -1,12 +1,15 @@
 <template>
-  <div class ="restaurant-container">
-      <restaurant-card-vote class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant" />
-      <h1>TEST</h1>
+<div>
+ 
+    <div class ="restaurant-container">
+      <restaurant-card-vote class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant" />
 
       <!-- API vomit -->
-      {{restaurants}}
+      <!-- {{restaurants}} -->
 
   </div>
+</div>
+
 </template>
 
 <script>
