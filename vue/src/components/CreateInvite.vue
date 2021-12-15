@@ -5,7 +5,7 @@
       <h2 id="inviteTitle" >CREATE YOUR INVITE</h2>
         <!-- do not show search until invite is created and invite ID is returned -->
         <!-- this deadline box needs to be bound to an invite to send to the db -->
-        <form v-on:submit.prevent="submitInvite" class="inviteForm">
+        <form v-on:submit.prevent="submitInvite" class="inviteForm" v-if="inProcess">
             <div id="deadlineDate">
                 <h3>Enter closing date:</h3>
                 <input type="date" id="dueDate" name="dueDate" v-model="invite.closing_date"/>
@@ -24,9 +24,16 @@
                 <button type="button" id="searchButton" v-on:click="submitInvite()">SUBMIT</button>
             </div>
         </form>
+
+        <div id="invite-info" v-if="!inProcess">
+          <p> Your friends must pick by {{this.invite.closing_date}} at {{this.invite.closing_time}}</p>
+          <p> send them this link: http://localhost:8081/{{this.invite.inviteId}} </p>
+        </div>
+
         <!-- hide this until invite dates are picked -->
         <!-- <div v-bind:class="[showSearchOptions ? ] "> -->
-          <search-restaurants/>
+
+          <search-restaurants v-if="!inProcess"/>
           <restaurant-list/>
         <!-- </div> -->
     </div>
@@ -41,6 +48,8 @@ export default {
   data(){
       return{
           showSearchOption: false,
+          searchCompleted: true,
+          inProcess: true,
           newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
           invite: {
@@ -57,6 +66,8 @@ export default {
   },
   methods: {
       submitInvite(){
+          this.inProcess = false;
+          this.showSearchOption = true;
           const newInvite = {
               inviteId: "",
             //   WE NEED TO PULL THE USERID OR HAVE THEM ENTER IT
@@ -71,8 +82,8 @@ export default {
             .createInvite(newInvite)
             .then(response => {
                 if(response.status === 201){
-                alert("invite created")
                 this.$store.commit("SET_CURRENT_INVITE", response.data);
+                this.invite.inviteId = response.data;
                 }
             }) 
           }, 
