@@ -1,26 +1,25 @@
 import axios from 'axios';
 
 export default {
-    // need to refactor all of these endpoints
 
     getFinalistsByInviteId(inviteId) {
-        return axios.post('/finalists', inviteId)
+        return axios.post('/finalists/${inviteId}', inviteId)
     },
 
     getInviteByInviteId(inviteId) {
-        return axios.get(`/invites/${inviteId}`)
+        return axios.get(`/invites/${inviteId}`, inviteId)
     },
 
-    thumbsDown(restaurant) {
-        return axios.put('/vetoed', restaurant)
+    thumbsDown(restaurantInviteDTO) {
+        return axios.post('/vetoed', restaurantInviteDTO)
     },
 
     getAllInvitesBySenderId(senderUserId) {
-        return axios.post('/UserInvites', senderUserId)
+        return axios.post('/UserInvites/${senderUserId}', senderUserId)
     },
     
-    createInvite(senderUserId) {
-        return axios.post('/invites/create', senderUserId)
+    createInvite(invite) {
+        return axios.post('/invites/create', invite)
     },
 
 
