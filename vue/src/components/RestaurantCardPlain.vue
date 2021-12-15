@@ -1,62 +1,40 @@
 <template>
-   <div id="cards">
+<div id="cards">
+    <div id="mainCard">
+        <div id="restaurant-details">
+            <br>
+            <br>
+            <h1 id="name">{{restaurant.name}}</h1>
 
-        <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
-            <div id="restaurant-details">
-                <br>
-                <br>
-                <h1 id="name" class ="display">{{restaurant.name}}</h1>
-                <br>
-                <h2 class ="display">{{restaurant.categories[0].title}}</h2>
-                <br>
-                <span class="rating"></span>
-                <br>
-                <p v-if="restaurant.location.address1" class="address display">{{restaurant.location.address1}}</p>
-                <p v-if="restaurant.location.address2" class="address display">{{ restaurant.location.address2}}</p>
-                <p v-if="restaurant.location.address3" class="address display">{{ restaurant.location.address3}}</p>
-                <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
-                <br>
+        </div>
+    </div>
 
-                <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
-                 <!-- create a pop up frame for browsers -->
-                 <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
-                <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><button type="button call">Call to Order</button></a>
-                <!--  <i class="fas fa-phone fa-3x"></i>-->
-
-                <!-- thumbnail image -->
-                <div>
-                    <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
-                </div>
-
-  </div>
+</div>
 </template>
 
 <script>
-// import RestaurantService from "../services/RestaurantService";
+import RestaurantService from "../services/RestaurantService";
 
 export default {
     name: 'restaurant-card-plain',
-
+    inviteRestaurants: [],
     props: {
         restaurant: {}
     },
 
     data(){
         return{
-            searchLocation: "",
-            searchResults: [],
-            savedToInvite: false,
-            vetoed: false,
-            isLoading: true,
-            restaurantInv: {
-                restaurantId: "",
-                inviteId: "",
-                vetoed: "false",
-                restaurant: {}
-            }, 
-            hasTakeOut: "false"
+            
         }
+    }, 
+    created(){{
+        RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response => {
+            this.inviteRestaurants = response.data;
+            this.isLoading = false;
+        })
+    }
+
     }
 }
 </script>
