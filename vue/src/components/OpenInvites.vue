@@ -34,7 +34,6 @@ export default {
     },
     methods: {
          findInviteById() {
-            alert("Looking for " + this.inviteId);
             InviteServices.getInviteByInviteId(this.inviteId).then(response => {
             this.invite = response.data;
             this.$store.commit('SET_CURRENT_INVITE', this.invite);

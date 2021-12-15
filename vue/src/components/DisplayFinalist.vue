@@ -60,7 +60,6 @@ export default {
   created(){
         InviteServices.getFinalistsByInviteId(this.$route.params.inviteId).then(response =>{
         this.finalSelectionRestaurants = response.data;
-        alert("checkpoint2")
     })
 
   },

@@ -25,7 +25,9 @@ export default new Vuex.Store({
     currentInvite: {},
     resInvite: {},
     pendingInviteRestaurants: [],
-    finalistRestaurants: []
+    finalistRestaurants: [],
+    currentUserId: '',
+
 
   },
   mutations: {

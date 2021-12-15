@@ -35,7 +35,6 @@ export default {
   created() {
     RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response =>{
         this.restaurants = response.data;
-        alert("checkpoint1")
     })
   }
 }
@@ -50,7 +49,6 @@ export default {
 
 .card {
   display: inline-block;
-  border: 2px solid purple;
   border-radius: 8px;
   margin: 4px;
 }

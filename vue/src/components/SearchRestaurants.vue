@@ -7,7 +7,7 @@
             <input type="text" class="form-control" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
             <!-- disable this button if a invite id is not active -->
             <!-- create isempty property, if current invite is empty, button is disabled -->
-            <button type="button" id="searchButton" v-on:click="search()">SUBMIT</button>
+            <button type="button" id="searchButton" v-on:click="search()" >SUBMIT</button>
         </form>
 
         <div class="loading" v-if="isLoading">
@@ -54,7 +54,7 @@ export default {
                 }
             },
             savedToInvite: false, 
-            isLoading: true
+            isLoading: false
         };
     },
     created(){
@@ -65,6 +65,7 @@ export default {
     }, 
     methods: {
         search(){
+            this.isLoading = true;
             RestaurantService.search(this.searchLocation).then(response => {
             this.searchResults = response.data;
             this.$store.commit('SET_SEARCH_RESULTS', this.searchResults);
@@ -82,7 +83,6 @@ export default {
     computed: {
         foundRestaurants(){
             return this.$store.state.searchResults;
-            
         }
     }
 
