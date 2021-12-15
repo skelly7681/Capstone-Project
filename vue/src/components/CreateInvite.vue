@@ -19,7 +19,7 @@
                 
 
                 <!-- use the username registration logic here to make sure the link is truly unique -->
-                <input type="text" id="uniqueUrl" name="uniqueUrl" v-model="invite.unique_url" placeholder="name your invite"/>
+                <input type="text" id="uniqueUrl" name="uniqueUrl" v-model="invite.uniqueLink" placeholder="name your invite"/>
                 <button type="button" id="searchButton" v-on:click="submitInvite()">SUBMIT</button>
 
             </div>
@@ -74,18 +74,15 @@ export default {
               //hard coded time - bad
               closing_time: this.invite.closing_time,
               //hard coded link - bad
-              uniqueLink: "www.invites.com"
-            //   senderUserId: this.invite.senderUserId,
-            //   closingDate: this.invite.closingDate,
-            //   closingTime: this.invite.closingTime,
-            //   uniqueLink: this.invite.uniqueLink
-            //    also need to toggle searchbar visibility
+              uniqueLink: this.invite.uniqueLink
+        
           }
           inviteService
             .createInvite(newInvite)
             .then(response => {
                 if(response.status === 201){
                 alert("invite created")
+                this.$store.commit("SET_CURRENT_INVITE", response.data);
                 }
             }) 
           }, 

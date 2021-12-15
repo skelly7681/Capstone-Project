@@ -60,26 +60,33 @@ export default {
         restaurant: {}
     },
 
+
+
     data(){
         return{
             searchLocation: "",
             searchResults: [],
             savedToInvite: false,
             vetoed: false,
-            isLoading: true
+            isLoading: true,
+            restaurantInv: {
+                restaurantId: "",
+                inviteId: "",
+                vetoed: "false",
+                restaurant: {}
+            }
         }
     },
     created(){
        //UNKNOWN NEED: LifeCycle Hook
        },      
     methods: {
-        saveRestaurant(){
-            RestaurantService.saveRestaurant(this.restaurant).then(response => {
-                if (response.status === 201){
-                    alert("IT WORKED!!!!! Check the db!")
+        saveRestaurant(){    
+                    this.restaurantInv.restaurant = this.restaurant;
+                    this.restaurantInv.inviteId = this.$store.state.currentInvite;
+                    RestaurantService.saveRestaurantInvite(this.restaurantInv).then(                      
+                    )
                 }
-            })
-        }
       },
     computed: {
         foundRestaurants(){

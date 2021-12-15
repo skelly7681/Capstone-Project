@@ -18,6 +18,10 @@ export default {
     return axios.post('/restaurants/save', restaurant)
   },
 
+  saveRestaurantInvite(restaurantInv) {
+    return axios.post('/invites/add', restaurantInv)
+  },
+
   addRestaurantToInvite(inviteId, restaurantId) {
     return axios.post('/invites/add/restaurant', inviteId, restaurantId)
   }

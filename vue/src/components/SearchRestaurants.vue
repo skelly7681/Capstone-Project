@@ -5,6 +5,8 @@
         <h2 id="searchTitle" >SEARCH FOR SOMEWHERE TO EAT</h2>
         <form ref="anyName" @submit="search">
             <input type="text" class="form-control" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
+            <!-- disable this button if a invite id is not active -->
+            <!-- create isempty property, if current invite is empty, button is disabled -->
             <button type="button" id="searchButton" v-on:click="search()">SUBMIT</button>
         </form>
 
