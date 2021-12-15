@@ -27,7 +27,7 @@
 
         <div id="invite-info" v-if="!inProcess">
           <p> Your friends must pick by {{this.invite.closing_date}} at {{this.invite.closing_time}}</p>
-          <p> send them this link: http://localhost:8081/{{this.invite.inviteId}} </p>
+          <p> send them this link: http://localhost:8081/vote/{{this.invite.inviteId}} </p>
         </div>
 
         <!-- hide this until invite dates are picked -->
@@ -58,7 +58,7 @@ export default {
               closing_date: "",
             //   The time format below does not work with the DB
               closing_time: "",
-              uniqueLink: "" //how tf do we make a unique link --> http://localhost8081/
+              uniqueLink: "" 
         }
       }
   },

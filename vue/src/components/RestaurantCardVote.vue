@@ -1,42 +1,41 @@
 <template>
     <div id="cards">
 
-        <!-- Below is implemented in Restaurant Card but it is not showing up -->
-        <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
-                   <div id="mainCard" v-bind:style='{ background: `url("${restaurant.thumbnailImage}")` }'>
+        
+        <div id="mainCard">
             <div id="restaurant-details">
-                <br>
-                <br>
-                <h1 id="name" class ="display">{{restaurant.restaurantName}}</h1>
-                <br>
-                <h2 class ="display">{{restaurant.restaurantType}}</h2>
-                <br>
-                <span class="rating"></span>
-                <br>
+                <img v-if="restaurant.thumbnailImage" :src="restaurant.thumbnailImage" alt="restaurant.restaurantName" class="thumbnail">
+               
+                <div class="rest-name">
+                    <h1 id="name" class ="display">{{restaurant.restaurantName}}</h1>
+                </div>
+                
+                <div class="rest-title">
+                    <h2 class ="display">{{restaurant.restaurantType}}</h2>
+                </div>
+
+                
                 <p v-if="restaurant.restaurantAddress" class="address display">{{restaurant.restaurantAddress}}</p>
         
                 <br>
-                <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
+                <br>
+            
+                <div class="phone-div">
+                <a href="tel:${restaurant.phoneNumber}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
+                </div>
 
-                 <!-- create a pop up frame for browsers -->
-                 <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
-                <a href="tel:${restaurant.phoneNumber}" target="_blank"><button type="button call">Call to Order</button></a>
-                <!--  <i class="fas fa-phone fa-3x"></i>-->
 
-                <!-- thumbnail image -->
                 <div>
-                    <img :src="restaurant.thumbnailImage" alt="restaurant.restaurantName" class="thumbnail">
+                    
                 </div>
             
                 </div>
                 
                     <div id="container">
-                        <button type="button thumbsUp" id="button1" ><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
-                        <button type="button thumbsDown" id="button2" v-on:click="submitVote()"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
+                        <button type="button" class="button" ><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
+                        <button type="button" class="button" v-on:click="submitVote()"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
                     </div>
             </div>
-        </div>
-        
     </div>
 </template>
 
@@ -102,70 +101,92 @@ export default {
     margin: 2px 8px;
 }
 
-.cs {
-    display: inline-block;
-}
+#mainCard {
+    background-color: white;
 
+    border: 3px solid lightgray;
+    border-radius: 10px;
 
-    #mainCard {
-    border-width: 10px;
-    border-color: black;
-    
-    margin-bottom: 10px;
+    width: 300px;
+    height: 575px;
     
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
+
     overflow-x: auto;
-    justify-content: center;
-    width: 20rem;
-    margin: 0 .5rem 2.3rem .5rem;
-    height: 100%;
-    
+    justify-content: flex-start;
+    margin: 10px; 
+}
+
+.thumbnail {
+    width: 300px;
+    height: 125px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.thumbnail:hover {
+    opacity: 1.0;
 }
 
   #name{
-     text-decoration: underline;
-     text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    font-style: italic;
 }
 
-#thumbsUp{
-    width: 300px;
-    height: 40px;
-}
-#thumbsDown{
-    width: 300px;
-    height: 40px;
-}
-#container{
-    text-align: center;
-}
-
-#address{
+.rest-name {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-#phoneNumber{
-    display: block;
-    margin: 0
-
-}  
-
-.thumbnail {
-    width: 40%;
-    height: 40%;
+#title {
+    font-size: 20px;
 }
 
-#restaurant-details{
-    opacity: 0.6;
-    background-color: #ffffff;
-
-   
+.rest-title {
+    display: flex;
+    justify-content: space-around;
 }
 
-.display {
-    font-weight: bold;
-    color: black;
+.plusButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+.call-button {
+    border: none;
+    background-color: rgb(243, 214, 243);
+    font-size: 20px;
+    border-radius: 25px;
+    width: 200px;
+    padding: 12px 32px;
+}
+
+.call-button:hover {
+    background-color: plum;
+    color: white;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 10px 8px 0 rgba(0,0,0,0.19);
+}
+
+.phone-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#button2 {
+    height: 125px;
+    width: 125px;
+    border: 0px;
+    background: white;
+}
+
+.plusButtonImg {
+    height: 95%;
     width: 100%;
 }
 
