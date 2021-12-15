@@ -83,7 +83,7 @@ const router = new Router({
       }
     },
     {
-      path: "/vote",
+      path: "/vote/:inviteId",
       name: "vote",
       component: Vote,
       meta: {

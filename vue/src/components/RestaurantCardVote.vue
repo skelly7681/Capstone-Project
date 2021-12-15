@@ -1,5 +1,6 @@
 <template>
       <div id="cards">
+          <h1> TEST!</h1>
 
         <button type="view-pending" class="display" id="button2" v-on:click="populateChoices()"> Do it you beast. </button>
 
@@ -74,6 +75,12 @@ export default {
             RestaurantService.thumbsDown(this.restaurantInv).then()
         }
  
+    }, 
+    created() {
+        RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response => {
+            this.inviteRestaurants = response.data;
+            this.isLoading = false;
+        })
     }
 
 
