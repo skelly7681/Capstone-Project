@@ -21,8 +21,6 @@
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
                 <br>
 
-
-
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
                  <!-- create a pop up frame for browsers -->
@@ -40,10 +38,7 @@
                         <button type="button thumbsUp" id="button1" v-on:click="thumbsDown()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
                         <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
                     </div>
-
             </div>
-
-
         </div>
         
     </div>
