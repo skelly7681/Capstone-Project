@@ -28,8 +28,8 @@
 
                 <br>
 
-                <div class="plusButton">
-                    <button type="save" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" class="plusButtonImg" alt="plus"/></button>
+                <div class="plusButton" v-show="isShow">
+                    <button type="save" @click="isShow = !isShow" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" class="plusButtonImg" alt="plus"/></button>
                 </div>
 
             </div>
@@ -50,6 +50,7 @@ export default {
     },
     data(){
         return{
+            isShow: true,
             searchLocation: "",
             searchResults: [],
             savedToInvite: false,
