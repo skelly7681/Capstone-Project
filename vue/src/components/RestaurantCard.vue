@@ -2,7 +2,6 @@
 <template>
     <div id="cards">
 
-        <!-- Below is implemented in Restaurant Card but it is not showing up -->
         <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
             <div id="restaurant-details">
                 <br>

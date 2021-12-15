@@ -1,7 +1,6 @@
 <template>
-    <div id="cards">
+   <div id="cards">
 
-        <!-- Below is implemented in Restaurant Card but it is not showing up -->
         <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
             <div id="restaurant-details">
                 <br>
@@ -18,8 +17,6 @@
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
                 <br>
 
-
-
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
                  <!-- create a pop up frame for browsers -->
@@ -31,20 +28,12 @@
                 <div>
                     <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
                 </div>
-            
 
-            </div>
-
-
-
-        </div>
-        
-    </div>
+  </div>
 </template>
 
 <script>
-import RestaurantService from "../services/RestaurantService";
-
+// import RestaurantService from "../services/RestaurantService";
 
 export default {
     name: 'restaurant-card-plain',
@@ -52,8 +41,6 @@ export default {
     props: {
         restaurant: {}
     },
-
-
 
     data(){
         return{
@@ -67,31 +54,11 @@ export default {
                 inviteId: "",
                 vetoed: "false",
                 restaurant: {}
-            }
+            }, 
+            hasTakeOut: "false"
         }
-    },
-    created(){
-       //UNKNOWN NEED: LifeCycle Hook
-       },      
-    methods: {
-        saveRestaurant(){    
-                    this.restaurantInv.restaurant = this.restaurant;
-                    this.restaurantInv.inviteId = this.$store.state.currentInvite;
-                    RestaurantService.saveRestaurantInvite(this.restaurantInv).then(                      
-                    )
-                }
-      },
-    computed: {
-        foundRestaurants(){
-            return this.$store.state.searchResults;
-        }
-    }, 
-    revealNumber(restaurant){
-        return restaurant.displayPhoneNumber;
     }
-
-  }
-
+}
 </script>
 
 <style scoped>

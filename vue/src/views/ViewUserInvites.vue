@@ -11,7 +11,8 @@
       <br>
       <br>
       <br>
-      <restaurant-list-vote/>
+      
+      <div>TESTING VOTING DISPLAY: <router-link :to="{ name: 'vote' }">vote.</router-link></div>
 
       
 
@@ -21,13 +22,13 @@
 <script>
 import DisplayFinalist from '../components/DisplayFinalist.vue'
 import OpenInvites from '../components/OpenInvites'
-import RestaurantListVote from '../components/RestaurantListVote.vue'
+
 
 export default {
     components :{
         DisplayFinalist, 
         OpenInvites,
-        RestaurantListVote
+        
          // PendingInvitation
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <div id="cards">
+      <div id="cards">
 
         <button type="view-pending" class="display" id="button2" v-on:click="populateChoices()"> Do it you beast. </button>
 
@@ -36,12 +36,11 @@
                 
 
                     <div id="container">
-                        <button type="button thumbsUp" id="button1" v-on:click="submitVote()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
+                        <button type="button thumbsUp" id="button1" v-on:click="thumbsDown()"><img src="..\assets\thumbsup.png" alt="like" height="60px"/></button>
                         <button type="button thumbsDown" id="button2"><img src="..\assets\thumbsdown.png" alt="like" height="60px"/></button>
                     </div>
 
             </div>
-
 
 
         </div>
@@ -50,59 +49,38 @@
 </template>
 
 <script>
-import RestaurantService from "../services/RestaurantService";
-
-
+import RestaurantService from '../services/RestaurantService';
 export default {
-    name: 'restaurant-card-vote',
-
+    name: 'restaurant-card-vote', 
     props: {
         restaurant: {}
     },
-
-
-
     data(){
         return{
             inviteRestaurants: [],
-            savedToInvite: false,
             isLoading: true,
             restaurantInv: {
-                restaurantId: "",
-                inviteId: "",
-                vetoed: "false",
+                restaurantId : '',
+                inviteId: '', 
+                isVetoed: '',
             }
         }
-    },
-    created(){
-       //UNKNOWN NEED: LifeCycle Hook
-       },      
-    methods: {
-        submitVote(){    
-                    this.restaurantInv.restaurant = this.restaurant;
-                    this.restaurantInv.inviteId = this.$store.state.currentInvite;
-                    this.restaurantInv.vetoed = true;
-                    RestaurantService.thumbsDown(this.restaurantInv).then(                      
-                    )
-                }, 
-        populateChoices(){
-                RestaurantService.getAllRestaurantsByInviteId(this.$store.state.currentInvite.inviteId).then(response => {
-                this.inviteRestaurants = response.data;
-                this.$store.commit('SET_PENDING_RESTAURANTS', this.inviteRestaurants);
-                this.isLoading = false;
-            })
-        }   
-
-      },
-    computed: {
-
     }, 
-  }
+    methods: {
+        thumbsDown(){
+            this.restaurantInv.restaurant = this.restaurant;
+            this.restaurantInv.inviteId = this.$store.state.currentInvite; 
+            this.restaurantInv.vetoed = true;
+            RestaurantService.thumbsDown(this.restaurantInv).then()
+        }
+ 
+    }
 
+
+}
 </script>
 
 <style scoped>
-@import 'https://use.fontawesome.com/releases/v5.13.0/css/all.css';
 
 .address {
     margin: 2px 8px;

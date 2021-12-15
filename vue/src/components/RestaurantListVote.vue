@@ -1,50 +1,41 @@
 <template>
-  <div class ="restaurant-container">
-      <restaurant-card-vote class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant" />
+  <div>
+    <restaurant-card-vote/>
+    <input type="text" v-model.number="inviteId"/>
+    
+    <div>
+        <button type="button" :value="inviteId" v-on:click="populateChoices()">SEE SELECTION</button>
+    </div>
 
   </div>
 </template>
 
 <script>
-import RestaurantCardVote from './RestaurantCardVote.vue';
+import RestaurantCardVote from './RestaurantCardVote.vue'
+import RestaurantService from "../services/RestaurantService";
+
 
 export default {
-  name: 'restaurant-list-vote',
-  data() {
-    return{
-      restaurants: []
+  components: { RestaurantCardVote },
+  methods: {
+        populateChoices(){
+            RestaurantService.getAllRestaurantsByInviteId(this.$store.state.currentInvite.inviteId).then(response =>{
+                this.inviteRestaurants = response.data;
+                this.$store.commit('SET_PENDING RESTAURANTS', this.inviteRestaurants);
+                this.isLoading = false;
+            })
+        }
+    }, 
+    created() {
+        this.$store.subscribe(mutatation => { 
+            if(mutatation.type === 'SET_PENDING RESTAURANTS')
+                { this.restaurants =  this.$store.state.inviteRestaurants; }
+            }
+        )
     }
-  },
-  components: { 
-      RestaurantCardVote 
-  },
-
-  computed: {
-   
-  },
-
-  created() {
-    this.$store.subscribe(mutatation => 
-      { 
-          if(mutatation.type === 'SET_PENDING_RESTAURANTS')
-            { this.restaurants =  this.$store.state.pendingInviteRestaurants; }
-         }
-      )
-  }
 }
 </script>
 
 <style>
-.restaurant-container {
-    display:flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
 
-.card {
-  display: inline-block;
-  border: 2px solid purple;
-  border-radius: 8px;
-  margin: 4px;
-}
 </style>

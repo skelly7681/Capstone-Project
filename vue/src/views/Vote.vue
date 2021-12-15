@@ -1,15 +1,14 @@
 <template>
-  <div class="vote" id="vote">
-      <restaurant-card-vote/>
+  <div>
+      <h1>MAKE YOUR SELECTION</h1>
+      <restaurant-list-vote/>
   </div>
 </template>
 
 <script>
-import RestaurantCardVote from '../components/RestaurantCardVote.vue'
-
+import RestaurantListVote from '../components/RestaurantListVote.vue'
 export default {
-  name: "vote",
-  components: { RestaurantCardVote },
+  components: { RestaurantListVote },
 
 }
 </script>
