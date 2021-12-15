@@ -2,13 +2,13 @@
 <template>
     <div id="cards">
 
-        <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
+        <div id="mainCard">
             <div id="restaurant-details">
                 <br>
                 <br>
-                <h1 id="name" class ="display">{{restaurant.name}}</h1>
+                <h1 id="name">{{restaurant.name}}</h1>
                 <br>
-                <h2 class ="display">{{restaurant.categories[0].title}}</h2>
+                <h2>{{restaurant.categories[0].title}}</h2>
                 <br>
                 <span class="rating"></span>
                 <br>
@@ -32,8 +32,10 @@
                 
                 <!-- toggle these depending on the view (create, pending, finalist)-->
                 <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
-                <button type="save" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" alt="like" height="60px"/></button>
-                
+
+                <div class="plusButton">
+                    <button type="save" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" class="plusButtonImg" alt="plus"/></button>
+                </div>
 
                     <!-- toggle this if this is a pending invite being viewed by a non logged in user -->
                     <!-- <div id="container">
@@ -111,8 +113,10 @@ export default {
 
     #mainCard {
     border-width: 10px;
-    border-color: black;
+    border-color: lightgray;
+    background-color: white;
     
+    margin-top: 10px;
     margin-bottom: 10px;
     
     display: flex;
@@ -121,7 +125,7 @@ export default {
     overflow-x: auto;
     justify-content: center;
     width: 20rem;
-    margin: 0 .5rem 2.3rem .5rem;
+    margin: 0rem .5rem 2.3rem .5rem;
     height: 100%;
     
 }
@@ -131,14 +135,6 @@ export default {
      text-align: center;
 }
 
-#thumbsUp{
-    width: 300px;
-    height: 40px;
-}
-#thumbsDown{
-    width: 300px;
-    height: 40px;
-}
 #container{
     text-align: center;
 }
@@ -158,16 +154,24 @@ export default {
     height: 40%;
 }
 
-#restaurant-details{
-    opacity: 0.6;
-    background-color: #ffffff;
 
-   
+
+.plusButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
 }
 
-.display {
-    font-weight: bold;
-    color: black;
+#button2 {
+    height: 150px;
+    width: 150px;
+    border: 0px;
+    background: white;
+}
+
+.plusButtonImg {
+    height: 95%;
     width: 100%;
 }
 

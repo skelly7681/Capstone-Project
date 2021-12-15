@@ -44,8 +44,5 @@ export default {
 
 .card {
   display: inline-block;
-  border: 2px solid purple;
-  border-radius: 8px;
-  margin: 4px;
 }
 </style>
