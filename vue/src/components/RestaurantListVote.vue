@@ -14,6 +14,7 @@ import RestaurantService from "../services/RestaurantService";
 
 export default {
     name: 'restaurant-list-vote',
+    inviteRestaurants: [],
     date(){
         return{
             inviteRestaurants: []

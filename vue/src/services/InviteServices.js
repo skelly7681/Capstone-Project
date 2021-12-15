@@ -7,7 +7,7 @@ export default {
     },
 
     getInviteByInviteId(inviteId) {
-        return axios.get(`/invites/${inviteId}`, inviteId)
+        return axios.get(`/invites/${inviteId}`)
     },
 
     thumbsDown(restaurantInviteDTO) {
