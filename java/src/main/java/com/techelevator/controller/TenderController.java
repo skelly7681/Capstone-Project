@@ -78,9 +78,10 @@ public class TenderController {
     @PreAuthorize("hasRole('USER')")
     @ResponseStatus(HttpStatus.CREATED) // this saves a restaurant to the db
     @RequestMapping(path = "/restaurants/save", method = RequestMethod.POST)
-    public void createRestaurant(@RequestBody RestaurantDTO restaurant) {
+    public Restaurant createRestaurant(@RequestBody RestaurantDTO restaurant) {
 
-        restaurantDao.createRestaurant(restaurant);
+        int restaurantId = restaurantDao.createRestaurant(restaurant);
+        return restaurantDao.getRestaurantById(restaurantId);
 
     }
 
