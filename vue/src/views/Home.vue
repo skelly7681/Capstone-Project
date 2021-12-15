@@ -16,11 +16,13 @@
         <br>
         <br>
         <br>
+        <br>
         <router-link to="/invite" class="createButton" tag="button">CREATE AN INVITE</router-link>
         <br>
         <br>
         <br>
         <router-link to="/viewInvites" class="viewButton" tag="button">VIEW ALL INVITES</router-link>
+        <br>
         <br>
         <br>
         <br>
@@ -93,7 +95,7 @@ button.createButton, button.viewButton {
   height: 100px;
   width: 350px;
   padding: 12px 32px;
-  border: 5px solid purple;
+  border: 5px solid plum;
 }
 
 button.createButton:hover, button.viewButton:hover {

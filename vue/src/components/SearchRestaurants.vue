@@ -3,7 +3,7 @@
     
         <div id="searchbar">
         <h2 id="searchTitle" >SEARCH FOR SOMEWHERE TO EAT</h2>
-        <form ref="anyName" @submit="search">
+        <form class="search-form" ref="anyName" @submit="search">
             <input type="text" class="form-control" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
             <!-- disable this button if a invite id is not active -->
             <!-- create isempty property, if current invite is empty, button is disabled -->
@@ -11,7 +11,7 @@
         </form>
 
         <div class="loading" v-if="isLoading">
-            <img src="../assets/loading.gif" alt="HELP!!!">
+            <img class="pizza-gif" src="../assets/loading.gif" alt="HELP!!!">
         </div>
 
             <!-- This is the API vomit -->
@@ -104,7 +104,9 @@ export default {
     padding: 10px;
     flex-basis: 67%;
     color: white;
-    background-image: linear-gradient(to bottom right, rgb(114, 227, 241), rgb(235, 124, 235))
+    background-image: linear-gradient(to bottom right, rgb(114, 227, 241), rgb(235, 124, 235));
+    font-weight: 600;
+    font-style: italic;
 }
 
 #searchButton {
@@ -112,8 +114,8 @@ export default {
     background-color: rgb(243, 214, 243);
     font-size: 20px;
     border-radius: 25px;
-    width: 250px;
-    padding: 12px 32px;
+    width: 25%;
+    padding: 12px 12px;
 }
 
 #searchButton:hover {
@@ -123,17 +125,72 @@ export default {
 }
 
 input.form-control {
-  width: 15%;
+  width: 45%;
   padding: 10px 15px;
   border: 3px solid lightgray;
   border-radius: 10px;
   font-size: 16px;
+  margin-right: 15px;
 }
 
 input.form-control:focus {
   border: 3px solid black;
 }
 
+form.search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
+.loading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pizza-gif {
+    width: 50vw;
+    height: auto;
+    margin-top: 15px;
+}
+
+
+/* SCREEN DIFFERENCES */
+
+@media screen and (max-width: 350px) {
+
+
+    #searchButton {
+        font-size: 14px;
+    }
+
+    #searchTitle {
+        font-size: 15px;
+    }
+
+    .pizza-gif {
+        width: 70vw;
+        height: auto;
+    }
+    
+}
+
+@media screen and (max-width: 450px) and (min-width: 350px) {
+
+    #searchButton {
+        font-size: 14px;
+    }
+
+    #searchTitle {
+        font-size: 18px;
+    }
+
+    .pizza-gif {
+        width: 60vw;
+        height: auto;
+    }
+
+}
 
 </style>

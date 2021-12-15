@@ -95,7 +95,7 @@ public class JdbcInviteDao implements InviteDao {
 
 
     public void addRestaurantToInvite(RestaurantInviteDTO restaurantInviteBundle) {
-        
+
         //process a for loop of an array of these to bulk process
 
         int restaurantId = restaurantDao.createRestaurant(restaurantInviteBundle.getRestaurant());
