@@ -5,30 +5,27 @@
         <div id="mainCard">
             <div id="restaurant-details">
                 <br>
-                <br>
+                <div>
+                    <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
+                </div>
                 <h1 id="name">{{restaurant.name}}</h1>
-                <br>
+                
                 <h2>{{restaurant.categories[0].title}}</h2>
-                <br>
+                
                 <span class="rating"></span>
-                <br>
+                
                 <p v-if="restaurant.location.address1" class="address display">{{restaurant.location.address1}}</p>
                 <p v-if="restaurant.location.address2" class="address display">{{ restaurant.location.address2}}</p>
                 <p v-if="restaurant.location.address3" class="address display">{{ restaurant.location.address3}}</p>
                 <span class="address cs display" >{{ restaurant.location.city}}, {{ restaurant.location.state}} {{ restaurant.location.zip_code}}</span>
-                <br>
 
+                <br>
                 <!-- <h2>Is Closed: {{restaurant.closed}}</h2> -->
 
                  <!-- create a pop up frame for browsers -->
                  <!-- Functional if we call the phone number to the alert and your phone will do the rest -->
                 <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><button type="button call">Call to Order</button></a>
                 <!--  <i class="fas fa-phone fa-3x"></i>-->
-
-                <!-- thumbnail image -->
-                <div>
-                    <img :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
-                </div>
                 
                 <!-- toggle these depending on the view (create, pending, finalist)-->
                 <!--this adds a restaurant to an invite  // TESTING: using this to save a restaurant to BE db -->
@@ -115,18 +112,21 @@ export default {
     border-width: 10px;
     border-color: lightgray;
     background-color: white;
-    
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+    padding: 10px 15px;
+    border: 3px solid lightgray;
+    border-radius: 10px;
+
+    width: 300px;
+    height: 500px;
     
     display: flex;
     flex-wrap: wrap;
     /* flex-direction: column; */
     overflow-x: auto;
     justify-content: center;
-    width: 20rem;
-    margin: 0rem .5rem 2.3rem .5rem;
-    height: 100%;
+    padding: 5px;
+    margin: 10px;
     
 }
 
