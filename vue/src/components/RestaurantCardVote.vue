@@ -1,9 +1,6 @@
 <template>
       <div id="cards">
-          <h1> TEST!</h1>
-
-        <button type="view-pending" class="display" id="button2" v-on:click="populateChoices()"> Do it you beast. </button>
-
+    
         <!-- Below is implemented in Restaurant Card but it is not showing up -->
         <div id="mainCard" v-bind:style='{ background: `url("${restaurant.image_url}")` }'>
             <div id="restaurant-details">
@@ -72,13 +69,19 @@ export default {
  
     }, 
     created() {
+        alert("Looking for " + this.$route.params.inviteId);
         RestaurantService.getAllRestaurantsByInviteId(this.$route.params.inviteId).then(response => {
             this.inviteRestaurants = response.data;
-            this.isLoading = false;
+            this.$store.commit('SET_CURRENT_INVITE_ID', this.$route.params.inviteId);
+            this.$store.commit('SET_PENDING_RESTAURANTS', this.inviteRestaurants);
+            this.isLoading = false; 
         })
+    }, 
+    computed: {
+        dbRestaurants(){
+            return this.$store.state.inviteRestaurants;
+        }
     }
-
-
 }
 </script>
 

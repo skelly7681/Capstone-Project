@@ -52,17 +52,11 @@
 
 <script>
 import RestaurantService from "../services/RestaurantService";
-
-
 export default {
     name: 'restaurant-card',
-
     props: {
         restaurant: {}
     },
-
-
-
     data(){
         return{
             searchLocation: "",

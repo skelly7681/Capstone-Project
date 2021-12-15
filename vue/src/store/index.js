@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {}, 
     searchResults: [], 
+    currentInviteId: '',
     currentInvite: {},
     resInvite: {},
     pendingInviteRestaurants: [],
@@ -55,6 +56,9 @@ export default new Vuex.Store({
     },
     SET_FINALIST_RESTAURANTS(state, finalistList){
       state.finalistRestaurants = finalistList;
+    },
+    SET_CURRENT_INVITE_ID(state, inviteId){
+      state.currentInviteId = inviteId;
     }
 
   }
