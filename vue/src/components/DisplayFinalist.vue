@@ -1,21 +1,8 @@
-
-// this is what will be displayed when all selections are made -- only pulls restaurants that have not been vetoes from
-//invite_restaurant table in DB.
-
 <template>
 <div>
-    <!-- <router-link v-bind:to="{ name: 'home' }" id="home-button"> home </router-link>&nbsp; -->
-    <h1>THIS IS THE COMPONENT</h1>
+  
     <restaurant-card-finalists class="card" v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant"/>
 
-    <!-- API vomit -->
-    <!-- {{finalSelectionRestaurants}} -->
-
-    <!-- TEST -->
-    <!-- <div v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId" > 
-      {{restaurant.restaurantName}}
-    </div> -->
-    
     <restaurant-list-vote/>
 
     <body v-if="isSelectionListEmpty">
