@@ -18,9 +18,9 @@
                 <div>
                 </div>
                 </div>
-                    <div class="button-container">
-                        <button type="button" class="button" ><img src="..\assets\thumbsup.png" alt="like" class="thumb-button"/></button>
-                        <button type="button" class="button" v-on:click="submitVote()"><img src="..\assets\thumbsdown.png" alt="like" class="thumb-button"/></button>
+                    <div class="button-container" v-show="isShow">
+                        <button type="button" @click="isShow = !isShow" class="button" ><img src="..\assets\thumbsup.png" alt="like" class="thumb-button"/></button>
+                        <button type="button" @click="isShow = !isShow" class="button" v-on:click="submitVote()"><img src="..\assets\thumbsdown.png" alt="like" class="thumb-button"/></button>
                     </div>
             </div>
     </div>
@@ -35,6 +35,7 @@ export default {
     },
     data(){
         return{
+            isShow: true,
             inviteRestaurants: [],
             savedToInvite: false,
             isLoading: true,
