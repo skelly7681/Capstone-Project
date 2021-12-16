@@ -1,7 +1,7 @@
 <template>
     <div id="cards">
         <div id="mainCard">
-            <div id="restaurant-details">
+            <div id="restaurant-details" :class="{red:!isShow}">
                 <img v-if="restaurant.thumbnailImage" :src="restaurant.thumbnailImage" alt="restaurant.restaurantName" class="thumbnail">
                 <div class="rest-name">
                     <h1 id="name" class ="display">{{restaurant.restaurantName}}</h1>
@@ -85,6 +85,10 @@ export default {
 .address {
     margin: 2px 8px;
 }
+
+.red{
+      background-color:#e6e6e6;
+  }
 #mainCard {
     background-color: white;
     border: 3px solid lightgray;
