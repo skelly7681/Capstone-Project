@@ -1,15 +1,15 @@
 <template>
 <div>
-    <div>
-    <input type="text" v-model.number="inviteId"/>
+    <div class="home-container" id="home">
+    <input type="text"  placeholder="ENTER INVITE ID" v-model.number="inviteId"/>
     
-        <button type="button" :value="inviteId" v-on:click="findInviteById()">SUBMIT</button>
+        <button type="button" :value="inviteId" @click="isShow = !isShow" id="searchB"  v-on:click="findInviteById()">SUBMIT INVITE ID</button>
     </div>
-    <div id="inviteCard">
-        <h2>Pending Invites</h2>
+    <div id="inviteCard" v-show="!isShow" class="home-container">
+        <h1>Pending Invites</h1>
         <h3>Invite ID: {{this.invite.inviteId}}</h3>
-        <h3>This Invite will expire on: {{ this.invite.closing_date}} @ {{this.invite.closing_time}}</h3>
-        <h3>Your Invitation Link is: {{this.invite.uniqueLink}}</h3>
+        <h3>This Invite will expire on: {{ this.invite.closingDate}} @ {{this.invite.closing_time}}</h3>
+        <h3>Your Link to View Finalists is: http://localhost:8081/finalist/{{this.invite.inviteId}}</h3>
         {{ this.invite.closingDate}}
         <!-- below can be removed, this is just to remeber  -->
        
@@ -28,6 +28,7 @@ export default {
    
     data() {
         return {
+            isShow: true,
             inviteId: 0,
             invite: {}
         }
@@ -50,6 +51,122 @@ export default {
     border-width: 10px;
     border-color: black;
     border: 1px solid black;
+    width: 33%;
+    background-color: white;
+    
+}
+
+#searchB {
+    border: none;
+    background-color: rgb(243, 214, 243);
+    font-size: 20px;
+    border-radius: 25px;
+    width: 20%;
+    padding: 12px 12px;
+    ;
+}
+
+
+
+#searchButton:hover {
+  background-color: plum;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+@import 'https://use.fontawesome.com/releases/v5.13.0/css/all.css';
+
+.address {
+    margin: 2px 8px;
+}
+
+#mainCard {
+    background-color: white;
+
+    border: 3px solid lightgray;
+    border-radius: 10px;
+
+    width: 300px;
+    height: 575px;
+    
+    display: flex;
+    flex-wrap: wrap;
+
+    overflow-x: auto;
+    justify-content: flex-start;
+    margin: 10px; 
+}
+
+.thumbnail {
+    width: 300px;
+    height: 125px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.thumbnail:hover {
+    opacity: 1.0;
+}
+
+  #name{
+    font-size: 25px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.rest-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#title {
+    font-size: 20px;
+}
+
+.rest-title {
+    display: flex;
+    justify-content: space-around;
+}
+
+.plusButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+.call-button {
+    border: none;
+    background-color: rgb(243, 214, 243);
+    font-size: 20px;
+    border-radius: 25px;
+    width: 200px;
+    padding: 12px 32px;
+}
+
+.call-button:hover {
+    background-color: plum;
+    color: white;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 10px 8px 0 rgba(0,0,0,0.19);
+}
+
+.phone-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#button2 {
+    height: 125px;
+    width: 125px;
+    border: 0px;
+    background: white;
+}
+
+.plusButtonImg {
+    height: 95%;
+    width: 100%;
 }
 
 </style>
