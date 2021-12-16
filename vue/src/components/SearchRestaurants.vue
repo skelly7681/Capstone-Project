@@ -1,6 +1,5 @@
 <template>
     <div>
-    
         <div id="searchbar">
             <h2 id="searchTitle" >SEARCH FOR SOMEWHERE TO EAT</h2>
             <form class="search-form" ref="anyName" @submit="search" v-if="!searchSent">
@@ -12,23 +11,22 @@
             <div class="search-text" v-if="searchSent">
                 <h1> {{this.searchLocation}} </h1>
             </div>
-
             <div class="loading" v-if="isLoading">
                 <img class="pizza-gif" src="../assets/loading.gif" alt="HELP!!!">
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
 import RestaurantService from "../services/RestaurantService";
 
+
 export default {
     name: "searchRestaurants",
+    props:{ },
     data(){
         return{
-            searchSent: false,
             searchLocation: "",
             searchResults: [],
             resturant: {

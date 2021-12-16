@@ -33,7 +33,7 @@ public class RestaurantService {
         List<RestaurantDTO> searchResults = new ArrayList<>();
 
         //the "open_now" search param will default to false. how can we use Yelp to help us toggle open on the front end?
-        String restaurantByLocationEndpoint = String.format("/businesses/search?location=%s&categories=restaurants&limit=49&offset=49", location);
+        String restaurantByLocationEndpoint = String.format("/businesses/search?location=%s&categories=restaurants&limit=48&offset=48", location);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + API_KEY);

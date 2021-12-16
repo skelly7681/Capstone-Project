@@ -1,11 +1,16 @@
 <template>
 <div>
   
-  <div class ="restaurant-container" v-if="!noRestaurants">
+  <div class ="restaurant-container">
+
+     <div class="loading" v-if="isLoading">
+                <img class="pizza-gif" src="../assets/loading.gif" alt="HELP!!!">
+     </div>
+
     <restaurant-card-finalists class="card" v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant" />
   </div>
 
-    <restaurant-list-vote/>
+    <restaurant-list-vote  v-if="!noRestaurants"/>
 
     <body v-if="noRestaurants">
         <div class="oops-message">
@@ -14,6 +19,9 @@
             <h2>For all you and your friends have in common, you can't agree on a place to eat.</h2>
             <h2>Luckily, we've got your back. You can make a new invite and pick some new restaurants you think they might love.</h2>
             <h2>Try to make them count this time.</h2>
+
+            <button type="button" id="searchButton" v-on:click="createNew()"> CREATE A NEW INVITE </button>
+
         </div>
     </body>
 
@@ -32,8 +40,9 @@ export default {
   },
   data(){
       return{
+          isLoading: true,
           finalSelectionRestaurants: [],
-          noRestaurants: false,
+          noRestaurants: true,
           currentRestaurant: {
             restaurantName: ''
           }
@@ -42,13 +51,17 @@ export default {
   methods: {
       checkFinalList(){
           //if that final list is empty (all choices vetoed) then change isSelectionEmpty to true and toggle display
-      }
+      }, 
+      createNew(){
+          this.$router.push("/invite");
+        }
 
 
   }, 
   created(){
         InviteServices.getFinalistsByInviteId(this.$route.params.inviteId).then(response =>{
         this.finalSelectionRestaurants = response.data;
+        this.isLoading = false;
     })
 
   },

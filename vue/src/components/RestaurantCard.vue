@@ -31,11 +31,11 @@
                 </div> -->
                 <div class="icon-container">
                     <div class="take-out">
-                        <img v-f="restaurant.takeout" class="img-takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
+                        <img v-if="restaurant.takeout == true" class="img-takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
                     </div>
 
                     <div class="delivery">
-                        <img v-f="restaurant.delivery" class="img-delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
+                        <img v-if="restaurant.delivery == true" class="img-delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
                     </div>
                 </div>    
 
@@ -50,7 +50,6 @@
                 <div class="plusButton" v-show="isShow">
                     <button type="save" @click="isShow = !isShow" class="display" id="button2" v-on:click="saveRestaurant(restaurant)"><img src="..\assets\plus.png" class="plusButtonImg" alt="plus"/></button>
                 </div>
-
             </div>
 
         </div>

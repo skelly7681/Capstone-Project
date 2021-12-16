@@ -27,6 +27,7 @@ export default {
    
     data() {
         return {
+            isSearching: true,
             isShow: true,
             inviteId: 0,
             invite: {}

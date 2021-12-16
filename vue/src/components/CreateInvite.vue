@@ -31,6 +31,10 @@
           <button type="button" id="pending" v-on:click="viewVote()">view pending invite</button>
           <h2> Hold onto this, this is your invite ID: {{this.invite.inviteId}} (you'll need this to see final selections)</h2>
 
+          <div class="loading" v-if="isLoading">
+                <img class="pizza-gif" src="../assets/loading.gif" alt="HELP!!!">
+          </div>
+
 
         </div>
 
@@ -39,6 +43,9 @@
 
           <search-restaurants v-if="!inProcess"/>
           <restaurant-list/>
+
+<!-- this button needs to be centered -->
+          
         <!-- </div> -->
     </div>
 </div>
@@ -49,10 +56,10 @@ import inviteService from '../services/InviteServices';
 import RestaurantList from './RestaurantList.vue';
 export default {
   components: { SearchRestaurants, RestaurantList },
+  props:{ SearchRestaurants },
   data(){
       return{
           showSearchOption: false,
-          searchCompleted: true,
           inProcess: true,
           newInvite: [],  //this is where restaurants that are selected are stored
           isLoading: true,
@@ -71,6 +78,7 @@ export default {
   methods: {
       submitInvite(){
           this.inProcess = false;
+          this.isLoading = false;
           this.showSearchOption = true;
           const newInvite = {
               inviteId: "",
@@ -94,6 +102,9 @@ export default {
           viewVote(){
             let linkUrl = "http://localhost:8081/vote/" + this.invite.inviteId;
             window.open(linkUrl);
+        }, 
+        finish(){
+          this.$router.push("/");
         }
       }
   }

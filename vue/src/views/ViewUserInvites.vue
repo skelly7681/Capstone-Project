@@ -6,8 +6,9 @@
         <!-- clicking a pending invite shows them which restaurants were selected for the invitation --> 
       </div>
 
-      <display-finalist/>
+      
       <open-invites/>
+      <!-- <display-finalist/> -->
       <br>
       <br>
       <br>
@@ -16,13 +17,13 @@
 </template>
 
 <script>
-import DisplayFinalist from '../components/DisplayFinalist.vue'
+// import DisplayFinalist from '../components/DisplayFinalist.vue'
 import OpenInvites from '../components/OpenInvites'
 
 
 export default {
     components :{
-        DisplayFinalist, 
+        // DisplayFinalist, 
         OpenInvites,
     }
 

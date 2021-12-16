@@ -21,7 +21,7 @@
         <br>
         <br>
         <br>
-        <router-link to="/viewInvites" class="viewButton" tag="button">VIEW ALL INVITES</router-link>
+        <router-link to="/viewInvites" class="viewButton" tag="button">VIEW FINALIST</router-link>
         <br>
         <br>
         <br>
