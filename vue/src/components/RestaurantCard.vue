@@ -3,7 +3,7 @@
     <div id="cards">
 
         <div id="mainCard">
-            <div id="restaurant-details">
+            <div id="restaurant-details" :class="{red:!isShow}">
                 <img v-if="restaurant.image_url" :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
 
                 <div class="rest-name">
@@ -22,14 +22,25 @@
                 <br>
                 <br>
 
-                <div class="take-out">
+                <!-- <div class="take-out">
                     <img v-f="restaurant.takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
                 </div>
 
                  <div class="delivery">
                     <img v-f="restaurant.delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
-                </div>
-                
+                </div> -->
+                <div class="icon-container">
+                    <div class="take-out">
+                        <img v-f="restaurant.takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
+                    </div>
+
+                    <div class="delivery">
+                        <img v-f="restaurant.delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
+                    </div>
+                </div>    
+
+                <br>
+                    
                 <div class="phone-div">
                     <a href="tel:${restaurant.displayPhoneNumber}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
                 </div>
@@ -102,6 +113,10 @@ export default {
     margin: 2px 8px;
 }
 
+  .red{
+      background-color:#e6e6e6;
+  }
+
 #mainCard {
     background-color: white;
 
@@ -109,7 +124,7 @@ export default {
     border-radius: 10px;
 
     width: 300px;
-    height: 575px;
+    height: 625px;
     
     display: flex;
     flex-wrap: wrap;
@@ -189,6 +204,14 @@ export default {
 .plusButtonImg {
     height: 95%;
     width: 100%;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0px;
+    gap: 30px;
 }
 
 </style>
