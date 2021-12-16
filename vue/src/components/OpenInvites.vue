@@ -56,15 +56,7 @@ export default {
     
 }
 
-#searchButton {
-    border: none;
-    background-color: rgb(243, 214, 243);
-    font-size: 20px;
-    border-radius: 25px;
-    width: 20%;
-    padding: 12px 12px;
-    ;
-}
+
 
 #searchButton:hover {
   background-color: plum;
