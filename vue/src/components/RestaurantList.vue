@@ -1,16 +1,13 @@
 <template>
 <div>
-    <div class ="restaurant-container">
-      <restaurant-card class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant" />
-      <br>
-      <br>
-      <br>    
-  </div>
+    <div class ="restaurant-container" id="main-restaurant">
+      <restaurant-card class="card" v-for="restaurant in restaurants" v-bind:key="restaurant.id"  v-bind:restaurant="restaurant" />    
+    </div>
 
 <!-- needs to be centered at the bottom of the page -->
-        <div class="done-button">
+      <div class="done-button">
           <button type="button" class="inviteForm" id="searchButton" v-if="showButton" v-on:click="finish()"> ALL DONE.</button>
-        </div>  
+      </div>     
 
 
 </div>
@@ -64,6 +61,8 @@ export default {
 
 .card {
   display: inline-block;
+  border-radius: 8px;
+  margin: 4px;
 }
 
 .done-button {
