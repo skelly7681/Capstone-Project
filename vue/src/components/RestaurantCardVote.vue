@@ -1,7 +1,7 @@
 <template>
     <div id="cards">
         <div id="mainCard">
-            <div id="restaurant-details">
+            <div id="restaurant-details" :class="{red:!isShow}">
                 <img v-if="restaurant.thumbnailImage" :src="restaurant.thumbnailImage" alt="restaurant.restaurantName" class="thumbnail">
                 <div class="rest-name">
                     <h1 id="name" class ="display">{{restaurant.restaurantName}}</h1>
@@ -85,12 +85,21 @@ export default {
 .address {
     margin: 2px 8px;
 }
+
+.red{
+      background-image: linear-gradient(white, lightgray);
+  }
+
+  .img-takeout, .img-delivery {
+      border-radius: 15px;
+  }
+
 #mainCard {
     background-color: white;
     border: 3px solid lightgray;
     border-radius: 10px;
     width: 300px;
-    height: 575px;
+    height: 600px;
     display: flex;
     flex-wrap: wrap;
     overflow-x: auto;
@@ -148,8 +157,8 @@ export default {
     align-items: center;
 }
 .button {
-    height: 110px;
-    width: 110px;
+    height: 90px;
+    width: 90px;
     border: 0px;
     background: white;
 }
@@ -159,7 +168,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin: 0px;
-    gap: 65px;
+    gap: 110px;
 }
 .thumb-button {
     height: 95%;

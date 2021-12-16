@@ -29,6 +29,9 @@
                         <img v-f="restaurant.delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
                     </div>
                 </div> 
+
+                <br>
+                <br>
             
                 <div class="phone-div">
                 <a href="tel:${restaurant.phoneNumber}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>

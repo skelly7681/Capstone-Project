@@ -1,11 +1,13 @@
 <template>
 <div>
   
-    <restaurant-card-finalists class="card" v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant"/>
+  <div class ="restaurant-container" v-if="!noRestaurants">
+    <restaurant-card-finalists class="card" v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant" />
+  </div>
 
     <restaurant-list-vote/>
 
-    <body v-if="isSelectionListEmpty">
+    <body v-if="noRestaurants">
         <div class="oops-message">
             <h1 class="bad-news">We've got bad news!</h1>
             <br>
@@ -31,7 +33,7 @@ export default {
   data(){
       return{
           finalSelectionRestaurants: [],
-          isSelectionListEmpty: false,
+          noRestaurants: false,
           currentRestaurant: {
             restaurantName: ''
           }
@@ -67,6 +69,11 @@ body{
   gap: 25px;
 }
 
+.restaurant-container {
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
 
 .oops-message {
   padding: 10px;
