@@ -5,13 +5,14 @@
     
         <button type="button" :value="inviteId" @click="isShow = !isShow" id="searchB"  v-on:click="findInviteById()">SUBMIT INVITE ID</button>
     </div>
+    <br>
     <div id="inviteCard" v-show="!isShow" class="home-container">
-        <h1>Pending Invites</h1>
+        <h1 id="h1under">Pending Invites</h1>
         <h3>Invite ID: {{this.invite.inviteId}}</h3>
         <h3>This Invite will expire on: {{ this.invite.closing_date}} @ {{this.invite.closing_time}}</h3>
-
+        <div id="finalist2">
         <button type="button" id="finalist" v-on:click="viewFinalist()">view final selection</button>
-        {{ this.invite.closingDate}}
+        </div>
         <!-- below can be removed, this is just to remeber  -->
     </div>
 
@@ -51,12 +52,22 @@ export default {
 
 #inviteCard{
     border-width: 10px;
-    border-color: black;
-    border: 1px solid black;
-    width: 33%;
+    border-color: plum;
+    border: 1px solid plum;
     background-color: white;
-  
-    
+    margin: auto;
+    width: 50%;
+    padding: 10px;   
+}
+
+#finalist2{
+    margin: auto;
+    width: 200%;
+    padding: 10px;  
+}
+
+#h1under {
+    text-decoration: underline;
 }
 
 #searchB {
@@ -80,6 +91,8 @@ export default {
 .address {
     margin: 2px 8px;
 }
+
+
 
 #mainCard {
     background-color: white;
