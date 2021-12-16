@@ -3,8 +3,7 @@
 <div class="view-content">
     <div class="invitation">
       <h2 id="inviteTitle" >CREATE YOUR INVITE</h2>
-        <!-- do not show search until invite is created and invite ID is returned -->
-        <!-- this deadline box needs to be bound to an invite to send to the db -->
+      
         <form v-on:submit.prevent="submitInvite" class="inviteForm" v-if="inProcess">
             <div id="deadlineDate">
                 <h3>Enter closing date:</h3>
@@ -25,9 +24,9 @@
             </div>
         </form>
 
-        <div id="invite-info" v-if="!inProcess">
-          <p> Your friends must pick by {{this.invite.closing_date}} at {{this.invite.closing_time}}</p>
-          <p> send them this link: http://localhost:8081/vote/{{this.invite.inviteId}} </p>
+        <div class="tender-intro" id="left-panel" v-if="!inProcess">
+          <h2> Your friends must pick by {{this.invite.closing_date}} at {{this.invite.closing_time}}</h2>
+          <h2> send them this link: http://localhost:8081/vote/{{this.invite.inviteId}} </h2>
         </div>
 
         <!-- hide this until invite dates are picked -->
