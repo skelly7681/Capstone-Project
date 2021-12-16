@@ -192,4 +192,10 @@ export default {
     padding: 12px 12px;
 }
 
+#finalist:hover, #searchB:hover {
+  background-color: plum;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
 </style>
