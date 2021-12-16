@@ -23,8 +23,21 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public int findIdByUsername(String username) {
-        return jdbcTemplate.queryForObject("select user_id from users where username = ?", int.class, username);
+    public long findIdByUsername(String username) {
+
+        User currentUser = null;
+        long userId = 0;
+
+        String sql = "SELECT * from users where username = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        if (results.next()){
+            currentUser = mapRowToUser(results);
+        }
+
+        userId = currentUser.getId();
+
+        return userId;
     }
 
 	@Override

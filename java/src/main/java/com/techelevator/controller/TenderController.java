@@ -23,7 +23,7 @@ import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 public class TenderController {
@@ -124,12 +124,12 @@ public class TenderController {
 
     }
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("permitAll()")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public long getUserId(@RequestBody String username) {
 
-        return userDao.findByUsername(username).getId();
+        return userDao.findIdByUsername(username);
     }
 
     //this is giving me grief
