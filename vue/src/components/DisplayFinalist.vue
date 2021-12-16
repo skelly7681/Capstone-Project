@@ -13,7 +13,8 @@
     <restaurant-list-vote  v-if="noRestaurants"/>
 
     <body >
-        <div class="oops-message" v-if="!noRestaurants">
+      
+        <div class="oops-message" v-show="this.finalSelectionRestaurants.length==0">
             <h1 class="bad-news">We've got bad news!</h1>
             <br>
             <h2>For all you and your friends have in common, you can't agree on a place to eat.</h2>
@@ -62,8 +63,10 @@ export default {
 
         InviteServices.getFinalistsByInviteId(this.$route.params.inviteId).then(response =>{
         this.finalSelectionRestaurants = response.data;
-        if(this.finalSelectionRestaurants === null){
+        if(!this.finalSelectionRestaurants?.length != 0){
           this.noRestaurants = true;
+        } else {
+          this.noRestaurants = false;
         }
         this.isLoading = false;
     })
