@@ -24,9 +24,10 @@
             </div>
         </form>
 
-        <div class="tender-intro" id="left-panel" v-if="!inProcess">
+        <div class="tender-deadline" v-if="!inProcess">
           <h2> Your friends must pick by {{this.invite.closing_date}} at {{this.invite.closing_time}}</h2>
-          <h2> send them this link: http://localhost:8081/vote/{{this.invite.inviteId}} </h2>
+          <h2> Send them this link: http://localhost:8081/vote/{{this.invite.inviteId}} </h2>
+          <h2> Hold onto this, this is your invite ID: {{this.invite.inviteId}} (you'll need this to see final selections)</h2>
         </div>
 
         <!-- hide this until invite dates are picked -->
@@ -130,4 +131,13 @@ input:focus {
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
+
+.tender-deadline {
+  order: 1;
+  padding: 10px;
+  flex-basis: 67%;
+  color: white;
+  background-image: linear-gradient(to bottom right, rgb(235, 124, 235), rgb(114, 227, 241))
+}
+
 </style>

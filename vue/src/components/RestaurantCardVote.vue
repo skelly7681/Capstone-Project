@@ -149,7 +149,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin: 0px;
-    gap: 35px;
+    gap: 65px;
 }
 .thumb-button {
     height: 95%;
