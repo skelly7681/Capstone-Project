@@ -8,13 +8,11 @@
     <div id="inviteCard" v-show="!isShow" class="home-container">
         <h1>Pending Invites</h1>
         <h3>Invite ID: {{this.invite.inviteId}}</h3>
-        <h3>This Invite will expire on: {{ this.invite.closingDate}} @ {{this.invite.closing_time}}</h3>
-        <h3>Your Link to View Finalists is: http://localhost:8081/finalist/{{this.invite.inviteId}}</h3>
+        <h3>This Invite will expire on: {{ this.invite.closing_date}} @ {{this.invite.closing_time}}</h3>
+
+        <button type="button" id="finalist" v-on:click="viewFinalist()">view final selection</button>
         {{ this.invite.closingDate}}
         <!-- below can be removed, this is just to remeber  -->
-       
-
-       
     </div>
 
 </div> 
@@ -40,6 +38,10 @@ export default {
             this.$store.commit('SET_CURRENT_INVITE', this.invite);
             this.isLoading = false;
             })
+        }, 
+        viewFinalist(){
+            let linkUrl = "http://localhost:8081/finalist/" + this.invite.inviteId;
+            window.open(linkUrl);
         }
     }
 }
@@ -167,6 +169,15 @@ export default {
 .plusButtonImg {
     height: 95%;
     width: 100%;
+}
+
+#finalist {
+    border: none;
+    background-color: rgb(243, 214, 243);
+    font-size: 20px;
+    border-radius: 25px;
+    width: 25%;
+    padding: 12px 12px;
 }
 
 </style>
