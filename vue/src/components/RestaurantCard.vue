@@ -3,7 +3,7 @@
     <div id="cards">
 
         <div id="mainCard">
-            <div id="restaurant-details">
+            <div id="restaurant-details" :class="{red:!isShow}">
                 <img v-if="restaurant.image_url" :src="restaurant.image_url" alt="restaurant.name" class="thumbnail">
 
                 <div class="rest-name">
@@ -112,6 +112,10 @@ export default {
 .address {
     margin: 2px 8px;
 }
+
+  .red{
+      background-color:#e6e6e6;
+  }
 
 #mainCard {
     background-color: white;
