@@ -28,7 +28,7 @@
           <h2> Your friends must pick by {{this.invite.closing_date}} at {{this.invite.closing_time}}</h2>
           <h2> Send them this link: http://localhost:8081/vote/{{this.invite.inviteId}} </h2>
 
-          <button type="button" id="pending" v-on:click="viewVote()">view pending invite</button>
+          <button type="button" id="pending" v-on:click="viewVote()">VIEW PENDING INVITE</button>
           <h2> Hold onto this, this is your invite ID: {{this.invite.inviteId}} (you'll need this to see final selections)</h2>
 
           <div class="loading" v-if="isLoading">
@@ -156,6 +156,10 @@ input:focus {
   flex-basis: 67%;
   color: white;
   background-image: linear-gradient(to bottom right, rgb(235, 124, 235), rgb(114, 227, 241))
+}
+
+#pending {
+  width: 300px;
 }
 
 </style>

@@ -21,7 +21,9 @@
             <h2>Luckily, we've got your back. You can make a new invite and pick some new restaurants you think they might love.</h2>
             <h2>Try to make them count this time.</h2>
 
-            <button type="button" id="searchButton" v-on:click="createNew()"> CREATE A NEW INVITE </button>
+            <div class="new-invite-button-container">
+              <button type="button" class="invite-button" id="searchButton" v-on:click="createNew()"> CREATE A NEW INVITE </button>
+            </div>
 
         </div>
     </body>
@@ -110,6 +112,17 @@ body{
 
 h2 {
   font-weight: 300;
+}
+
+.new-invite-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.invite-button {
+  width: 100px;
 }
 
 </style>

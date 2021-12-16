@@ -8,7 +8,7 @@
   </div>
 
 <!-- needs to be centered at the bottom of the page -->
-        <div>
+        <div class="done-button">
           <button type="button" class="inviteForm" id="searchButton" v-if="showButton" v-on:click="finish()"> ALL DONE.</button>
         </div>  
 
@@ -64,6 +64,13 @@ export default {
 
 .card {
   display: inline-block;
+}
+
+.done-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
 }
 
 </style>

@@ -171,7 +171,6 @@ export default {
     gap: 110px;
 }
 .thumb-button {
-    height: 95%;
     width: 100%;
 }
 

@@ -6,12 +6,12 @@
         <button type="button" :value="inviteId" @click="isShow = !isShow" id="searchB"  v-on:click="findInviteById()">SUBMIT INVITE ID</button>
     </div>
     <br>
-    <div id="inviteCard" v-show="!isShow" class="home-container">
+    <div id="inviteCard" v-show="!isShow">
         <h1 id="h1under">Pending Invites</h1>
         <h3>Invite ID: {{this.invite.inviteId}}</h3>
         <h3>This Invite will expire on: {{ this.invite.closing_date}} @ {{this.invite.closing_time}}</h3>
         <div id="finalist2">
-        <button type="button" id="finalist" v-on:click="viewFinalist()">view final selection</button>
+            <button type="button" id="finalist" v-on:click="viewFinalist()">VIEW FINAL SELECTION</button>
         </div>
         <!-- below can be removed, this is just to remeber  -->
     </div>
@@ -62,8 +62,10 @@ export default {
 }
 
 #finalist2{
-    margin: auto;
-    width: 200%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
     padding: 10px;  
 }
 
@@ -189,7 +191,7 @@ export default {
     background-color: rgb(243, 214, 243);
     font-size: 20px;
     border-radius: 25px;
-    width: 25%;
+    width: 40%;
     padding: 12px 12px;
 }
 
@@ -197,6 +199,13 @@ export default {
   background-color: plum;
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.home-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 5px;
 }
 
 </style>
