@@ -20,13 +20,15 @@
                 <br>
                 <br>
 
-                <div class="take-out">
-                    <img v-f="restaurant.takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
-                </div>
+                <div class="icon-container">
+                    <div class="take-out">
+                        <img v-f="restaurant.takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
+                    </div>
 
-                 <div class="delivery">
-                    <img v-f="restaurant.delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
-                </div>
+                    <div class="delivery">
+                        <img v-f="restaurant.delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
+                    </div>
+                </div> 
             
                 <div class="phone-div">
                 <a href="tel:${restaurant.phoneNumber}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
@@ -178,6 +180,14 @@ export default {
 .plusButtonImg {
     height: 95%;
     width: 100%;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0px;
+    gap: 30px;
 }
 
 </style>
