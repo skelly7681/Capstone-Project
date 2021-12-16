@@ -10,10 +10,10 @@
     <restaurant-card-finalists class="card" v-for="restaurant in finalSelectionRestaurants" v-bind:key="restaurant.restaurantId"  v-bind:restaurant="restaurant" />
   </div>
 
-    <restaurant-list-vote  v-if="!noRestaurants"/>
+    <restaurant-list-vote  v-if="noRestaurants"/>
 
-    <body v-if="noRestaurants">
-        <div class="oops-message">
+    <body >
+        <div class="oops-message" v-if="!noRestaurants">
             <h1 class="bad-news">We've got bad news!</h1>
             <br>
             <h2>For all you and your friends have in common, you can't agree on a place to eat.</h2>
@@ -42,7 +42,7 @@ export default {
       return{
           isLoading: true,
           finalSelectionRestaurants: [],
-          noRestaurants: true,
+          noRestaurants: false,
           currentRestaurant: {
             restaurantName: ''
           }
@@ -59,8 +59,12 @@ export default {
 
   }, 
   created(){
+
         InviteServices.getFinalistsByInviteId(this.$route.params.inviteId).then(response =>{
         this.finalSelectionRestaurants = response.data;
+        if(this.finalSelectionRestaurants === null){
+          this.noRestaurants = true;
+        }
         this.isLoading = false;
     })
 
