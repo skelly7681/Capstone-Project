@@ -87,14 +87,19 @@ export default {
 }
 
 .red{
-      background-color:#e6e6e6;
+      background-image: linear-gradient(white, lightgray);
   }
+
+  .img-takeout, .img-delivery {
+      border-radius: 15px;
+  }
+
 #mainCard {
     background-color: white;
     border: 3px solid lightgray;
     border-radius: 10px;
     width: 300px;
-    height: 575px;
+    height: 600px;
     display: flex;
     flex-wrap: wrap;
     overflow-x: auto;
@@ -152,8 +157,8 @@ export default {
     align-items: center;
 }
 .button {
-    height: 110px;
-    width: 110px;
+    height: 90px;
+    width: 90px;
     border: 0px;
     background: white;
 }
@@ -163,7 +168,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin: 0px;
-    gap: 65px;
+    gap: 110px;
 }
 .thumb-button {
     height: 95%;

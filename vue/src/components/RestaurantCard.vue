@@ -114,11 +114,11 @@ export default {
 }
 
   .red{
-      background-color: rgb(218, 235, 250);
+      background-image: linear-gradient(white, lightgray);
   }
 
   .img-takeout, .img-delivery {
-      border-radius: 10px;
+      border-radius: 15px;
   }
 
 #mainCard {
