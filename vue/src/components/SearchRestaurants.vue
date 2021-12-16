@@ -2,22 +2,20 @@
     <div>
     
         <div id="searchbar">
-        <h2 id="searchTitle" >SEARCH FOR SOMEWHERE TO EAT</h2>
-        <form class="search-form" ref="anyName" @submit="search">
-            <input type="text" class="form-control" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
-            <!-- disable this button if a invite id is not active -->
-            <!-- create isempty property, if current invite is empty, button is disabled -->
-            <button type="button" id="searchButton" v-on:click="search()" v-if="!searchSent">SUBMIT</button>
-        </form>
+            <h2 id="searchTitle" >SEARCH FOR SOMEWHERE TO EAT</h2>
+            <form class="search-form" ref="anyName" @submit="search" v-if="!searchSent">
+                <input type="text" class="form-control" v-model="searchLocation" placeholder="City / Zip Code" id="location" />
+                <!-- disable this button if a invite id is not active -->
+                <!-- create isempty property, if current invite is empty, button is disabled -->
+                <button type="button" id="searchButton" v-on:click="search()">SUBMIT</button>
+            </form>
+            <div class="search-text" v-if="searchSent">
+                <h1> {{this.searchLocation}} </h1>
+            </div>
 
-        <div class="loading" v-if="isLoading">
-            <img class="pizza-gif" src="../assets/loading.gif" alt="HELP!!!">
-        </div>
-
-            <!-- This is the API vomit -->
-        <!-- <p>{{ foundRestaurants }}</p> -->
-
-
+            <div class="loading" v-if="isLoading">
+                <img class="pizza-gif" src="../assets/loading.gif" alt="HELP!!!">
+            </div>
         </div>
 
     </div>
