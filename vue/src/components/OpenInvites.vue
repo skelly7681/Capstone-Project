@@ -55,6 +55,7 @@ export default {
     border: 1px solid black;
     width: 33%;
     background-color: white;
+  
     
 }
 
@@ -67,8 +68,6 @@ export default {
     padding: 12px 12px;
     ;
 }
-
-
 
 #searchButton:hover {
   background-color: plum;
