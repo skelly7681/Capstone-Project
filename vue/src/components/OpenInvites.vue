@@ -3,7 +3,7 @@
     <div class="home-container" id="home">
     <input type="text"  placeholder="ENTER INVITE ID" v-model.number="inviteId"/>
     
-        <button type="button" :value="inviteId" @click="isShow = !isShow" id="searchButton"  v-on:click="findInviteById()">SUBMIT INVITE ID</button>
+        <button type="button" :value="inviteId" @click="isShow = !isShow" id="searchB"  v-on:click="findInviteById()">SUBMIT INVITE ID</button>
     </div>
     <div id="inviteCard" v-show="!isShow" class="home-container">
         <h1>Pending Invites</h1>
@@ -54,6 +54,16 @@ export default {
     width: 33%;
     background-color: white;
     
+}
+
+#searchB {
+    border: none;
+    background-color: rgb(243, 214, 243);
+    font-size: 20px;
+    border-radius: 25px;
+    width: 20%;
+    padding: 12px 12px;
+    ;
 }
 
 
