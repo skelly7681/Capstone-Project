@@ -31,11 +31,11 @@
                 </div> -->
                 <div class="icon-container">
                     <div class="take-out">
-                        <img v-f="restaurant.takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
+                        <img v-f="restaurant.takeout" class="img-takeout" src="..\assets\takeout.png" alt="like" height="40px"/>
                     </div>
 
                     <div class="delivery">
-                        <img v-f="restaurant.delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
+                        <img v-f="restaurant.delivery" class="img-delivery" src="..\assets\delivery.png" alt="like" height="40px"/>
                     </div>
                 </div>    
 
@@ -114,7 +114,11 @@ export default {
 }
 
   .red{
-      background-color:#e6e6e6;
+      background-color: rgb(218, 235, 250);
+  }
+
+  .img-takeout, .img-delivery {
+      border-radius: 10px;
   }
 
 #mainCard {
